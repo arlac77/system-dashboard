@@ -1,0 +1,23 @@
+[Unit]
+Description={{description}}
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=notify
+
+ExecStart={{installdir}}/bin/{{name}}
+ExecStop=/usr/bin/curl -s -XPOST --unix-socket {{socket}} http://localhost/stop
+ExecReload=/usr/bin/curl -s -XPOST --unix-socket {{socket}} http://localhost/reload
+TimeoutStartSec=40
+StandardOutput=syslog
+User={{name}}
+Group={{name}}
+PrivateTmp=true
+NoNewPrivileges=true
+RuntimeDirectory={{name}}
+StateDirectory={{name}}
+ConfigurationDirectory={{name}}
+
+[Install]
+WantedBy=multi-user.target

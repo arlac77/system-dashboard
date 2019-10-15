@@ -20,7 +20,10 @@
     "prepare": "rollup -c",
     "test": "ava"
   },
-  "dependencies": {},
+  "dependencies": {
+    "commander": "^3.0.2",
+    "config-expander": "^11.0.5"
+  },
   "devDependencies": {
     "ava": "^2.4.0",
     "builtin-modules": "^3.1.0",
@@ -36,6 +39,9 @@
     "rollup-plugin-node-resolve": "^5.2.0",
     "semantic-release": "^15.13.26"
   },
+  "optionalDependencies": {
+    "sd-daemon": "^1.0.1"
+  },
   "engines": {
     "node": ">=12.12.0"
   },
@@ -47,6 +53,40 @@
     "url": "https://github.com/arlac77/system-dashboard/issues"
   },
   "homepage": "https://github.com/arlac77/system-dashboard#readme",
+  "config": {
+    "base": "/services/system-dashboard/api",
+    "socket": "/run/${name}/socket"
+  },
+  "systemd": {
+    "units": {
+      "${name}": "systemd/${name}*"
+    }
+  },
+  "pacman": {
+    "groups": "webhook",
+    "hooks": "pacman/install.sh",
+    "backup": "etc/${name}/config.json",
+    "depends": {
+      "systemd": ">=243.51"
+    },
+    "installdir": "/services/${name}",
+    "content": {
+      "/etc/${name}/config.json": "config/config.json",
+      "/etc/nginx/config.d/${name}.conf": "pacman/nginx.conf"
+    }
+  },
+  "release": {
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      [
+        "@semantic-release/exec",
+        {
+          "publishCmd": "npx npm-pkgbuild --pkgver ${nextRelease.version} --npm-dist --npm-modules pkgbuild pacman makepkg"
+        }
+      ]
+    ]
+  },
   "ava": {
     "require": [
       "esm"

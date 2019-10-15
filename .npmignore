@@ -1,4 +1,3 @@
-
 build
 tests
 doc
@@ -11,3 +10,5 @@ doc
 .markdown-doctest-setup.js
 rollup.config.js
 .DS_Store
+systemd
+pacman
