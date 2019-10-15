@@ -6,10 +6,12 @@ import cleanup from "rollup-plugin-cleanup";
 import builtins from "builtin-modules";
 import pkg from "./package.json";
 
-const external = [...builtins];
+const external = [...builtins,
+  "sd-daemon"
+];
 
-export default [
-  ...Object.keys(pkg.bin || {}).map(name => {
+export default 
+  Object.keys(pkg.bin || {}).map(name => {
     return {
       input: `src/${name}-cli.mjs`,
       output: {
@@ -22,6 +24,7 @@ export default [
       },
       plugins: [
         commonjs(),
+        resolve(),
         json({
           include: "package.json",
           preferConst: true,
@@ -34,21 +37,5 @@ export default [
       ],
       external
     };
-  }),
-  {
-    input: pkg.module,
-    output: {
-      file: pkg.main,
-      format: "cjs",
-      interop: false,
-      externalLiveBindings: false
-    },
-    plugins: [
-      resolve(),
-      commonjs(),
-      cleanup({
-        extensions: ["js", "mjs", "jsx", "tag"]
-      })
-    ]
-  }
-];
+  });
+

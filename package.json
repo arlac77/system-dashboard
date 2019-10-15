@@ -1,7 +1,7 @@
 {
   "name": "system-dashboard",
   "version": "0.0.0-semantic-release",
-  "description" : "web gateway to systemd",
+  "description": "web gateway to systemd",
   "publishConfig": {
     "access": "public"
   },
