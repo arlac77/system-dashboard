@@ -16,10 +16,11 @@
   "bin": {
     "system-dashboard": "bin/system-dashboard"
   },
+  "module": "src/system-dashboard-cli.mjs",
   "scripts": {
     "cover": "c8 -x 'tests/**/*.mjs' --temp-directory build/tmp ava && c8 report -r lcov -o build/coverage --temp-directory build/tmp",
-    "docs": "documentation readme {{module}} --section=API",
-    "lint": "documentation lint {{module}}",
+    "docs": "documentation readme src/system-dashboard-cli.mjs--section=API",
+    "lint": "documentation lint src/system-dashboard-cli.mjs",
     "posttest": "npm run prepare && markdown-doctest",
     "prepare": "rollup -c",
     "test": "ava"
