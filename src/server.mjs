@@ -2,6 +2,7 @@ import Koa from "koa";
 import Router from "koa-better-router";
 import KoaJWT from "koa-jwt";
 import execa from "execa";
+import { list } from "./dbus.mjs";
 
 export const defaultServerConfig = {
   http: {
@@ -41,16 +42,16 @@ export async function server(config, sd) {
     return next();
   });
 
-  router.addRoute(
-    "GET",
-    "/systemctl/status",
-    restricted,
-    async (ctx, next) => {
-      const p = await execa("systemctl", ["status"], { all: true });
-      ctx.body = p.all;
-      return next();
-    }
-  );
+  router.addRoute("GET", "/systemctl/status", restricted, async (ctx, next) => {
+    const p = await execa("systemctl", ["status"], { all: true });
+    ctx.body = p.all;
+    return next();
+  });
+
+  router.addRoute("GET", "/dbus/list", restricted, async (ctx, next) => {
+    ctx.body = await list();
+    return next();
+  });
 
   app.use(router.middleware());
 
