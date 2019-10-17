@@ -14,9 +14,6 @@
     }
   ],
   "license": "BSD-2-Clause",
-  "files": [
-    "bin"
-  ],
   "bin": {
     "system-dashboard": "bin/system-dashboard"
   },
@@ -67,6 +64,9 @@
     "type": "git",
     "url": "https://github.com/arlac77/system-dashboard.git"
   },
+  "files": [
+    "bin"
+  ],
   "bugs": {
     "url": "https://github.com/arlac77/system-dashboard/issues"
   },
