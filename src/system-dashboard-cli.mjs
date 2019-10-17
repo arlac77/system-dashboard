@@ -3,6 +3,7 @@ import { version, description } from "../package.json";
 import program from "commander";
 import { expand } from "config-expander";
 import { defaultServerConfig, server } from "./server.mjs";
+import { defaultAuthConfig } from "./auth.mjs";
 
 program
   .version(version)
@@ -26,7 +27,8 @@ program
       },
       default: {
         version,
-        ...defaultServerConfig
+        ...defaultServerConfig,
+        ...defaultAuthConfig
       }
     });
 

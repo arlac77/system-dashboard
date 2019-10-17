@@ -32,8 +32,11 @@
     "commander": "^3.0.2",
     "config-expander": "^11.0.5",
     "execa": "^3.1.0",
+    "jsonwebtoken": "^8.5.1",
     "koa": "^2.10.0",
-    "koa-better-router": "^2.1.1"
+    "koa-better-router": "^2.1.1",
+    "koa-jwt": "^3.6.0",
+    "ldapts": "^1.10.0"
   },
   "devDependencies": {
     "@semantic-release/exec": "^3.3.7",
