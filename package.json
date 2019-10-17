@@ -30,7 +30,10 @@
   },
   "dependencies": {
     "commander": "^3.0.2",
-    "config-expander": "^11.0.5"
+    "config-expander": "^11.0.5",
+    "execa": "^3.1.0",
+    "koa": "^2.10.0",
+    "koa-better-router": "^2.1.1"
   },
   "devDependencies": {
     "@semantic-release/exec": "^3.3.7",

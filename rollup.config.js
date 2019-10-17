@@ -7,7 +7,9 @@ import builtins from "builtin-modules";
 import pkg from "./package.json";
 
 const external = [...builtins,
-  "sd-daemon"
+  "sd-daemon",
+  "koa",
+  "koa-better-router"
 ];
 
 export default 

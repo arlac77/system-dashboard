@@ -2,6 +2,8 @@ import { resolve } from "path";
 import { version, description } from "../package.json";
 import program from "commander";
 import { expand } from "config-expander";
+import { defaultServerConfig, server } from "./server.mjs";
+
 program
   .version(version)
   .description(description)
@@ -23,11 +25,19 @@ program
         installdir: resolve(__dirname, "..")
       },
       default: {
-        version
+        version,
+        ...defaultServerConfig
       }
     });
 
     const listeners = sd.listeners();
     if (listeners.length > 0) config.http.port = listeners[0];
+    console.log(removeSensibleValues(config));
+
+    try {
+      await server(config, sd);
+    } catch (error) {
+      console.log(error);
+    }
   })
   .parse(process.argv);
