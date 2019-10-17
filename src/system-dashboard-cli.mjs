@@ -32,7 +32,6 @@ program
 
     const listeners = sd.listeners();
     if (listeners.length > 0) config.http.port = listeners[0];
-    console.log(removeSensibleValues(config));
 
     try {
       await server(config, sd);
