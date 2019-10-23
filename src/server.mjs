@@ -48,6 +48,12 @@ export async function server(config, sd) {
     return next();
   });
 
+  router.addRoute("GET", "/fail2ban/status", restricted, async (ctx, next) => {
+    const p = await execa("fail2ban-client", ["status"], { all: true });
+    ctx.body = p.all;
+    return next();
+  });
+
   router.addRoute("GET", "/dbus/list", restricted, async (ctx, next) => {
     ctx.body = await list();
     return next();
