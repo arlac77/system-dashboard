@@ -26,7 +26,7 @@
     "test": "ava"
   },
   "dependencies": {
-    "commander": "^3.0.2",
+    "commander": "^4.0.1",
     "config-expander": "^11.0.5",
     "dbus-next": "^0.7.1",
     "execa": "^3.3.0",
