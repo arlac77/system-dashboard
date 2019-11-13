@@ -55,7 +55,7 @@
     "semantic-release": "^15.13.30"
   },
   "optionalDependencies": {
-    "sd-daemon": "^1.0.1"
+    "sd-daemon": "^1.0.2"
   },
   "engines": {
     "node": ">=12.12.0"
