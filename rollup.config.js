@@ -1,6 +1,7 @@
 import resolve from "rollup-plugin-node-resolve";
 import commonjs from "rollup-plugin-commonjs";
 import executable from "rollup-plugin-executable";
+import native from "rollup-plugin-native";
 import json from "@rollup/plugin-json";
 import cleanup from "rollup-plugin-cleanup";
 import builtins from "builtin-modules";
@@ -15,6 +16,7 @@ const extensions = ["js", "mjs", "jsx", "tag"];
 const plugins = [
   commonjs(),
   resolve(),
+  native(),
   json({
     preferConst: true,
     compact: true
