@@ -1,6 +1,6 @@
 import program from "commander";
 import { version, description } from "../package.json";
-import { StandaloneServiceProvider } from "@kronos-integration/service";
+import ServiceSystemd from "@kronos-integration/service-systemd";
 import { setup } from "./system-dashboard.mjs";
 
 program
@@ -9,10 +9,11 @@ program
   .option("-c, --config <directory>", "use config from directory")
   .action(async () => {
     if (program.config) {
+      process.env.CONFIGURATION_DIRECTORY = program.config;
     }
 
     try {
-      setup(new StandaloneServiceProvider());
+      setup(new ServiceSystemd());
     } catch (error) {
       console.log(error);
     }
