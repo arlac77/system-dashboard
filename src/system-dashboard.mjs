@@ -1,63 +1,50 @@
 import ServiceKOA from "@kronos-integration/service-koa";
 import ServiceHealthCheck from "@kronos-integration/service-health-check";
-import Router from "koa-better-router";
-import BodyParser from "koa-bodyparser";
-import { endpointRouter } from "@kronos-integration/service-koa";
-import { accessTokenGenerator } from "./auth.mjs";
-import KoaJWT from "koa-jwt";
+import {
+  CTXInterceptor,
+  CTXBodyParamInterceptor,
+  endpointRouter
+} from "@kronos-integration/service-koa";
+import ServiceLDAP from "@kronos-integration/service-ldap";
+import ServiceAuthenticator from "@kronos-integration/service-authenticator";
 
-
-export const config = {
-  jwt: {
-    options: {
-      algorithm: "RS256",
-      expiresIn: "12h"
-    }
-  },
-  ldap: {
-    url: "ldap://ldap.mf.de",
-    bindDN: "uid={{username}},ou=accounts,dc=mf,dc=de",
-    entitlements: {
-      base: "ou=groups,dc=mf,dc=de",
-      attribute: "cn",
-      scope: "sub",
-      filter:
-        "(&(objectclass=groupOfUniqueNames)(uniqueMember=uid={{username}},ou=accounts,dc=mf,dc=de))"
-    }
-  }
-};
 
 export async function setup(sp) {
+  const GET = { interceptors: [CTXInterceptor] };
+  const POST = {
+    method: "POST",
+    interceptors: [CTXBodyParamInterceptor /*, LoggingInterceptor*/]
+  };
+
   const services = await sp.declareServices({
     http: {
       type: ServiceKOA,
       endpoints: {
-        "/state" : {},
-        "/state/uptime" : {},
-        "/state/cpu" : {},
-        "/state/memory" : {}
+        "/state" : { ...GET, connected: "service(health).state" },
+        "/state/uptime" : { ...GET, connected: "service(health).uptime" },
+        "/state/cpu": { ...GET, connected: "service(health).cpu" },
+        "/state/memory" : { ...GET, connected: "service(health).memory" },
+        "/authenticate": { ...POST, connected: "service(auth).access_token" }
       }
+    },
+    ldap: {
+      type: ServiceLDAP
     },
     health: {
       type: ServiceHealthCheck
+    },
+    auth: {
+      type: ServiceAuthenticator,
+      endpoints: {
+        ldap: "service(ldap).authenticate"
+      }
     }
   });
 
   const koaService = services[0];
 
 
-  const restricted = KoaJWT({
-  //  secret: config.auth.jwt.public
-  });
-
-
-  const router = Router({
-    notFound: async (ctx, next) => {
-      console.log("route not found", ctx.request.url);
-      return next();
-    }
-  });
-
+  /*
   router.addRoute("GET", "/systemctl/status", restricted, async (ctx, next) => {
     const p = await execa("systemctl", ["status"], { all: true });
     ctx.body = p.all;
@@ -74,20 +61,7 @@ export async function setup(sp) {
     ctx.body = await list();
     return next();
   });
-
-  router.addRoute(
-    "POST",
-    "/authenticate",
-    BodyParser(),
-    accessTokenGenerator(config)
-  );
-
-  koaService.koa.use(router.middleware());
-
-  koaService.endpoints["/state/uptime"].connected = sp.getService('health').endpoints.uptime;
-  koaService.endpoints["/state/memory"].connected = sp.getService('health').endpoints.memory;
-  koaService.endpoints["/state/cpu"].connected = sp.getService('health').endpoints.cpu;
-  koaService.endpoints["/state"].connected = sp.getService('health').endpoints.state;
+*/
 
   koaService.koa.use(endpointRouter(koaService));  
 
