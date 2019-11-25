@@ -28,14 +28,13 @@
   },
   "dependencies": {
     "@kronos-integration/service": "^7.1.2",
+    "@kronos-integration/service-authentication": "^1.0.0",
     "@kronos-integration/service-health-check": "^4.0.0",
-    "@kronos-integration/service-koa": "^6.0.0",
+    "@kronos-integration/service-koa": "^7.0.0",
     "@kronos-integration/service-ldap": "^2.0.0",
-    "@kronos-integration/service-authenticate": "^1.0.0",
     "commander": "^4.0.1",
     "dbus-next": "^0.7.1",
-    "execa": "^3.3.0",
-    "jsonwebtoken": "^8.5.1"
+    "execa": "^3.3.0"
   },
   "devDependencies": {
     "@rollup/plugin-json": "^4.0.0",
