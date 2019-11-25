@@ -6,6 +6,8 @@ import {
 } from "@kronos-integration/service-koa";
 import ServiceLDAP from "@kronos-integration/service-ldap";
 import ServiceAuthenticator from "@kronos-integration/service-authenticator";
+import ServiceAdmin from "@kronos-integration/service-admin";
+import ServiceSystemdControl from "./service-systemd-control.mjs";
 
 
 export async function setup(sp) {
@@ -23,7 +25,9 @@ export async function setup(sp) {
         "/state/uptime" : { ...GET, connected: "service(health).uptime" },
         "/state/cpu": { ...GET, connected: "service(health).cpu" },
         "/state/memory" : { ...GET, connected: "service(health).memory" },
-        "/authenticate": { ...POST, connected: "service(auth).access_token" }
+        "/authenticate": { ...POST, connected: "service(auth).access_token" },
+        "/services": {...GET, connected: "service(admin).services" },
+        "/systemctl/status": {...GET, connected: "service(systemctl).status" }
       }
     },
     ldap: {
@@ -37,27 +41,14 @@ export async function setup(sp) {
       endpoints: {
         ldap: "service(ldap).authenticate"
       }
+    },
+    admin: {
+      type: ServiceAdmin
+    },
+    systemctl : {
+      type: ServiceSystemdControl
     }
   });
-
-  /*
-  router.addRoute("GET", "/systemctl/status", restricted, async (ctx, next) => {
-    const p = await execa("systemctl", ["status"], { all: true });
-    ctx.body = p.all;
-    return next();
-  });
-
-  router.addRoute("GET", "/fail2ban/status", restricted, async (ctx, next) => {
-    const p = await execa("fail2ban-client", ["status"], { all: true });
-    ctx.body = p.all;
-    return next();
-  });
-
-  router.addRoute("GET", "/dbus/list", restricted, async (ctx, next) => {
-    ctx.body = await list();
-    return next();
-  });
-*/
 
   await sp.start();
   await Promise.all(services.map(s => s.start()));
