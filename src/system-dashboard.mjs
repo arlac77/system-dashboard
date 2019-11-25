@@ -2,8 +2,7 @@ import ServiceKOA from "@kronos-integration/service-koa";
 import ServiceHealthCheck from "@kronos-integration/service-health-check";
 import {
   CTXInterceptor,
-  CTXBodyParamInterceptor,
-  endpointRouter
+  CTXBodyParamInterceptor
 } from "@kronos-integration/service-koa";
 import ServiceLDAP from "@kronos-integration/service-ldap";
 import ServiceAuthenticator from "@kronos-integration/service-authenticator";
@@ -41,9 +40,6 @@ export async function setup(sp) {
     }
   });
 
-  const koaService = services[0];
-
-
   /*
   router.addRoute("GET", "/systemctl/status", restricted, async (ctx, next) => {
     const p = await execa("systemctl", ["status"], { all: true });
@@ -62,8 +58,6 @@ export async function setup(sp) {
     return next();
   });
 */
-
-  koaService.koa.use(endpointRouter(koaService));  
 
   await sp.start();
   await Promise.all(services.map(s => s.start()));
