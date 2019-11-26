@@ -27,7 +27,11 @@ export async function setup(sp) {
         "/state/memory" : { ...GET, connected: "service(health).memory" },
         "/authenticate": { ...POST, connected: "service(auth).access_token" },
         "/services": {...GET, connected: "service(admin).services" },
-        "/systemctl/status": {...GET, connected: "service(systemctl).status" }
+        "/systemctl/status": {...GET, connected: "service(systemctl).status" },
+        "/systemctl/start/:unit": {...GET, connected: "service(systemctl).start" },
+        "/systemctl/stop/:unit": {...GET, connected: "service(systemctl).stop" },
+        "/systemctl/restart/:unit": {...GET, connected: "service(systemctl).restart" },
+        "/systemctl/reload/:unit": {...GET, connected: "service(systemctl).reload" }
       }
     },
     ldap: {

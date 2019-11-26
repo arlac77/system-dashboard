@@ -1,6 +1,12 @@
 import { Service } from "@kronos-integration/service";
 import execa from "execa";
 
+
+async function systemctl(cmd, params) {
+  const p = await execa("systemctl", [cmd, params.unit], { all: true });
+  return p.all;
+}
+
 export class ServiceSystemdControl extends Service {
   static get endpoints() {
     return {
@@ -11,6 +17,22 @@ export class ServiceSystemdControl extends Service {
           const p = await execa("systemctl", ["status"], { all: true });
           return p.all;
         }
+      },
+      start: {
+        default: true,
+        receive: async params => systemctl("start", params)
+      },
+      stop: {
+        default: true,
+        receive: async params => systemctl("stop", params)
+      },
+      restart: {
+        default: true,
+        receive: async params => systemctl("restart", params)
+      },
+      reload: {
+        default: true,
+        receive: async params => systemctl("reload", params)
       }
     };
   }
