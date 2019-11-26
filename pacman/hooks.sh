@@ -1,6 +1,6 @@
 
 pre_install() {
-	useradd -U -l -M -r -s /usr/bin/nologin -d /var/lib/{{name}} -c "{{description}}" {{name}}
+	useradd -U -l -M -r -s /usr/bin/nologin -d /var/lib/{{name}} -c "{{description}}" -G systemd-journal {{name}}
 }
 
 post_install() {
@@ -17,6 +17,7 @@ pre_upgrade() {
 }
 
 post_upgrade() {
+	usermode {{name}} -a -G systemd-journal
 	systemctl daemon-reload
 	systemctl start {{name}}.socket
 	systemctl is-enabled nginx 2>&1 >/dev/null && systemctl -q try-reload-or-restart nginx
