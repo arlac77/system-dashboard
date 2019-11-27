@@ -31,7 +31,7 @@
     "@kronos-integration/service-admin": "^3.0.1",
     "@kronos-integration/service-authenticator": "^1.0.3",
     "@kronos-integration/service-health-check": "^4.0.4",
-    "@kronos-integration/service-koa": "^7.1.2",
+    "@kronos-integration/service-koa": "^7.2.0",
     "@kronos-integration/service-ldap": "^2.0.1",
     "commander": "^4.0.1",
     "dbus-next": "^0.7.1",
