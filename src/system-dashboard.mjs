@@ -36,8 +36,7 @@ export async function setup(sp) {
       }
     },
     ldap: {
-      type: ServiceLDAP,
-      autostart: true
+      type: ServiceLDAP
     },
     health: {
       type: ServiceHealthCheck
