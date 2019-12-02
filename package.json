@@ -27,12 +27,12 @@
     "test": "ava"
   },
   "dependencies": {
-    "@kronos-integration/service": "^7.1.17",
-    "@kronos-integration/service-admin": "^3.0.1",
-    "@kronos-integration/service-authenticator": "^1.0.3",
-    "@kronos-integration/service-health-check": "^4.1.0",
-    "@kronos-integration/service-koa": "^7.3.5",
-    "@kronos-integration/service-ldap": "^2.1.1",
+    "@kronos-integration/service": "^7.1.26",
+    "@kronos-integration/service-admin": "^3.0.3",
+    "@kronos-integration/service-authenticator": "^1.0.4",
+    "@kronos-integration/service-health-check": "^4.1.2",
+    "@kronos-integration/service-koa": "^7.3.8",
+    "@kronos-integration/service-ldap": "^2.1.2",
     "commander": "^4.0.1",
     "dbus-next": "^0.7.1",
     "execa": "^3.4.0"
@@ -45,7 +45,7 @@
     "c8": "^6.0.1",
     "documentation": "^12.1.4",
     "esm": "^3.2.25",
-    "got": "^9.6.0",
+    "got": "^10.0.1",
     "markdown-doctest": "^1.0.0",
     "npm-pkgbuild": "^6.10.14",
     "rollup": "^1.27.8",
