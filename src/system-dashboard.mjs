@@ -1,17 +1,21 @@
-import ServiceKOA from "@kronos-integration/service-koa";
 import ServiceHealthCheck from "@kronos-integration/service-health-check";
-import {
-  CTXInterceptor,
-  CTXBodyParamInterceptor
-} from "@kronos-integration/service-koa";
 import ServiceLDAP from "@kronos-integration/service-ldap";
 import ServiceAuthenticator from "@kronos-integration/service-authenticator";
 import ServiceAdmin from "@kronos-integration/service-admin";
 import ServiceSystemdControl from "./service-systemd-control.mjs";
+import {
+  ServiceHTTP,
+  CTXInterceptor,
+  CTXJWTVerifyInterceptor,
+  CTXBodyParamInterceptor
+} from "@kronos-integration/service-http";
 
 
 export async function setup(sp) {
-  const GET = { interceptors: [CTXInterceptor] };
+  const getInterceptors = [/*new CTXJWTVerifyInterceptor(),*/ new CTXInterceptor()]
+  const GET = {
+    interceptors: getInterceptors
+  };
   const POST = {
     method: "POST",
     interceptors: [CTXBodyParamInterceptor /*, LoggingInterceptor*/]
@@ -19,9 +23,25 @@ export async function setup(sp) {
 
   await sp.declareServices({
     http: {
-      type: ServiceKOA,
+      type: ServiceHTTP,
       autostart: true,
       endpoints: {
+        "/ws/state/uptime": {
+          ws: true,
+          connected: "service(health).uptime"
+        },
+        "/ws/state/cpu": {
+          ws: true,
+          connected: "service(health).cpu"
+        },
+        "/ws/state/memory": {
+          ws: true,
+          connected: "service(health).memory"
+        },
+        "/ws/state": {
+          ws: true,
+          connected: "service(health).state"
+        },
         "/state" : { ...GET, connected: "service(health).state" },
         "/state/uptime" : { ...GET, connected: "service(health).uptime" },
         "/state/cpu": { ...GET, connected: "service(health).cpu" },
