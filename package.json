@@ -4,6 +4,9 @@
   "publishConfig": {
     "access": "public"
   },
+  "files": [
+    "bin"
+  ],
   "module": "src/system-dashboard-cli.mjs",
   "description": "web gateway to systemd",
   "keywords": [],
@@ -50,7 +53,7 @@
     "got": "^10.0.1",
     "markdown-doctest": "^1.0.0",
     "npm-pkgbuild": "^6.10.14",
-    "rollup": "^1.27.9",
+    "rollup": "^1.27.10",
     "rollup-plugin-cleanup": "^3.1.1",
     "rollup-plugin-commonjs": "^10.1.0",
     "rollup-plugin-executable": "^1.5.1",
@@ -67,9 +70,6 @@
     "type": "git",
     "url": "https://github.com/arlac77/system-dashboard.git"
   },
-  "files": [
-    "bin"
-  ],
   "bugs": {
     "url": "https://github.com/arlac77/system-dashboard/issues"
   },
