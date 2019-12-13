@@ -1,6 +1,5 @@
 [![Build Status](https://secure.travis-ci.org/arlac77/system-dashboard.png)](http://travis-ci.org/arlac77/system-dashboard)
 [![codecov.io](http://codecov.io/github/arlac77/system-dashboard/coverage.svg?branch=master)](http://codecov.io/github/arlac77/system-dashboard?branch=master)
-[![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
 [![Coverage Status](https://coveralls.io/repos/arlac77/system-dashboard/badge.svg)](https://coveralls.io/r/arlac77/system-dashboard)
 [![downloads](http://img.shields.io/npm/dm/system-dashboard.svg?style=flat-square)](https://npmjs.org/package/system-dashboard)
 [![GitHub Issues](https://img.shields.io/github/issues/arlac77/system-dashboard.svg?style=flat-square)](https://github.com/arlac77/system-dashboard/issues)
