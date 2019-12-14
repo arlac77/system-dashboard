@@ -36,7 +36,7 @@
     "@kronos-integration/service-http": "^9.0.6",
     "@kronos-integration/service-ldap": "^2.1.5",
     "commander": "^4.0.1",
-    "dbus-next": "^0.7.1",
+    "dbus-next": "^0.8.1",
     "execa": "^3.4.0"
   },
   "devDependencies": {
