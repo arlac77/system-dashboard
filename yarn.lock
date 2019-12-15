@@ -1014,12 +1014,12 @@
   dependencies:
     "@kronos-integration/service" "^8.1.6"
 
-"@kronos-integration/service-authenticator@^1.0.6":
-  version "1.0.6"
-  resolved "https://registry.yarnpkg.com/@kronos-integration/service-authenticator/-/service-authenticator-1.0.6.tgz#d7c523075c61609f2999ed84eddf312e7530359e"
-  integrity sha512-rN9gkcwmAlXEMuCX+/PS+aLFvZEjebgf/gYu4AEsLJFrQnMfPg9pdlHBV43/xKlbE89xCOZ3W0XDTwJBjjUd+A==
+"@kronos-integration/service-authenticator@^1.0.8":
+  version "1.0.8"
+  resolved "https://registry.yarnpkg.com/@kronos-integration/service-authenticator/-/service-authenticator-1.0.8.tgz#4aeaa340239f47597046d14c66f351dcf2274054"
+  integrity sha512-0cZ3dvdkndWcoS+kmgzajWBw+edq8gNRkygz/uWDFgMH/2uB972oK3+T6K97emEImqFY6csa4N1DmNBHMQ2U2Q==
   dependencies:
-    "@kronos-integration/service" "^8.1.0"
+    "@kronos-integration/service" "^8.2.6"
     jsonwebtoken "^8.5.1"
 
 "@kronos-integration/service-health-check@^5.0.7":
@@ -1030,10 +1030,10 @@
     "@kronos-integration/service" "^8.2.6"
     model-attributes "^4.1.3"
 
-"@kronos-integration/service-http@^9.0.6":
-  version "9.0.6"
-  resolved "https://registry.yarnpkg.com/@kronos-integration/service-http/-/service-http-9.0.6.tgz#3d45914b31b734c2808dded9538b12d6c57622df"
-  integrity sha512-QXayhwVCCymC5mMkuCjydd3xsl/nT19dtK8bXVS2PKnllHTjOhIPFEOl7KH72zM91gbRJCqMo6RdNXmuWbXATw==
+"@kronos-integration/service-http@^9.0.8":
+  version "9.0.8"
+  resolved "https://registry.yarnpkg.com/@kronos-integration/service-http/-/service-http-9.0.8.tgz#41af5592e8f782db191e4f7c52922f351d736430"
+  integrity sha512-GHsnm1yyPP6Zc3bDmIcFmrnKj9XIQxJj8MKQuIxEOwo1KYxwrCn36OAnxsaVHh6XJFG8E/wCxn86u/BYlLDF/Q==
   dependencies:
     "@kronos-integration/service" "^8.2.6"
     bufferutil "^4.0.1"
@@ -1059,10 +1059,10 @@
     "@kronos-integration/service" "^8.2.2"
     config-expander "^11.0.6"
 
-"@kronos-integration/service@^8.1.0", "@kronos-integration/service@^8.1.6", "@kronos-integration/service@^8.2.2", "@kronos-integration/service@^8.2.6":
-  version "8.2.6"
-  resolved "https://registry.yarnpkg.com/@kronos-integration/service/-/service-8.2.6.tgz#19b74b53a1f4581b5b1eac5f81d8d02a0c7dbc21"
-  integrity sha512-pmGeKbPo0o9qEp5oYcJ6kDmxOlyUlYK2vJoDxmLYaLIhJStOF2RM6zpEFu/SbofMUYoADx8H6K7v5e7h/3nCNA==
+"@kronos-integration/service@^8.1.6", "@kronos-integration/service@^8.2.2", "@kronos-integration/service@^8.2.6", "@kronos-integration/service@^8.3.0":
+  version "8.3.0"
+  resolved "https://registry.yarnpkg.com/@kronos-integration/service/-/service-8.3.0.tgz#5444285995db6b90a9bf5d19bf42a0dc49dea049"
+  integrity sha512-lHV7OX+BegGaYnonYoGhP/wpOjIOBn1xrk5mLMWeNI8E/pgpBCmvl+SaiIIXtxEoUcZo9A8xA+LuvXNCxBbayw==
   dependencies:
     "@kronos-integration/endpoint" "^7.5.1"
     loglevel-mixin "^5.0.3"
@@ -1425,9 +1425,9 @@ abstract-socket@^2.0.0:
 
 "acorn-private-class-elements@https://github.com/arlac77/acorn-private-class-elements.git":
   version "0.1.1"
-  resolved "https://github.com/arlac77/acorn-private-class-elements.git#770abd1aa8c651fb66c2b1a2147f6c672f7194e2"
+  resolved "https://github.com/arlac77/acorn-private-class-elements.git#21d5299310788535eaef04f36102aafea6bb3080"
   dependencies:
-    semver "^6.3.0"
+    semver "^7.0.0"
 
 acorn@^5.2.1:
   version "5.7.3"
@@ -7429,11 +7429,12 @@ regex-not@^1.0.0, regex-not@^1.0.2:
     safe-regex "^1.1.0"
 
 regexp.prototype.flags@^1.2.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/regexp.prototype.flags/-/regexp.prototype.flags-1.2.0.tgz#6b30724e306a27833eeb171b66ac8890ba37e41c"
-  integrity sha512-ztaw4M1VqgMwl9HlPpOuiYgItcHlunW0He2fE6eNfT6E/CF2FtYi9ofOYe4mKntstYk0Fyh/rDRBdS3AnxjlrA==
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/regexp.prototype.flags/-/regexp.prototype.flags-1.3.0.tgz#7aba89b3c13a64509dabcf3ca8d9fbb9bdf5cb75"
+  integrity sha512-2+Q0C5g951OlYlJz6yu5/M33IcsESLlLfsyIaLJaG4FA2r4yP8MvVMJUUP/fVBkSpbbbZlS5gynbEWLipiiXiQ==
   dependencies:
-    define-properties "^1.1.2"
+    define-properties "^1.1.3"
+    es-abstract "^1.17.0-next.1"
 
 regexpu-core@^4.6.0:
   version "4.6.0"
@@ -7799,7 +7800,7 @@ rollup-plugin-executable@^1.5.2:
   dependencies:
     "@babel/runtime" "^7.7.6"
 
-rollup-plugin-native@^1.0.0:
+rollup-plugin-native@^1.1.3:
   version "1.1.3"
   resolved "https://registry.yarnpkg.com/rollup-plugin-native/-/rollup-plugin-native-1.1.3.tgz#139dc07da6d054aaa65356b15e4ea6c7bb843ede"
   integrity sha512-FONqwULVdyINQDKOyu5NDiQwcB9jAKGChcuyAw3dhXZuyQrYQ2JPhX0YostcdglRiZR3M56sKh0yjxlJFi7/EA==
@@ -7813,7 +7814,7 @@ rollup-pluginutils@^2.3.3, rollup-pluginutils@^2.8.1:
   dependencies:
     estree-walker "^0.6.1"
 
-rollup@^1.27.12:
+rollup@^1.27.13:
   version "1.27.13"
   resolved "https://registry.yarnpkg.com/rollup/-/rollup-1.27.13.tgz#d6d3500512daacbf8de54d2800de62d893085b90"
   integrity sha512-hDi7M07MpmNSDE8YVwGVFA8L7n8jTLJ4lG65nMAijAyqBe//rtu4JdxjUBE7JqXfdpqxqDTbCDys9WcqdpsQvw==
@@ -7919,6 +7920,11 @@ semver@^6.0.0, semver@^6.2.0, semver@^6.3.0:
   version "6.3.0"
   resolved "https://registry.yarnpkg.com/semver/-/semver-6.3.0.tgz#ee0a64c8af5e8ceea67687b133761e1becbd1d3d"
   integrity sha512-b39TBaTSfV6yBrapU89p5fKekE2m/NwnDocOVruQFS1/veMgdzuPcnOM34M6CwxW8jH/lxEa5rBoDeUwu5HHTw==
+
+semver@^7.0.0:
+  version "7.0.0"
+  resolved "https://registry.yarnpkg.com/semver/-/semver-7.0.0.tgz#5f3ca35761e47e05b206c6daff2cf814f0316b8e"
+  integrity sha512-+GB6zVA9LWh6zovYQLALHwv5rb2PHGlJi3lfiqIHxR0uuwCgefcOJc59v9fv1w8GbStwxuuqqAjI9NMAOOgq1A==
 
 semver@~5.3.0:
   version "5.3.0"
