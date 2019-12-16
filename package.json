@@ -17,7 +17,10 @@
     }
   ],
   "license": "BSD-2-Clause",
-  "bin": {},
+  "bin": {
+    "system-dashboard": "bin/system-dashboard",
+    "system-dashboard-systemd": "bin/system-dashboard-systemd"
+  },
   "scripts": {
     "cover": "c8 -x 'tests/**/*' --temp-directory build/tmp ava && c8 report -r lcov -o build/coverage --temp-directory build/tmp",
     "docs": "documentation readme src/system-dashboard-cli.mjs --section=API",
