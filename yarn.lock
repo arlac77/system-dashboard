@@ -1059,10 +1059,10 @@
     "@kronos-integration/service" "^8.3.7"
     config-expander "^11.0.6"
 
-"@kronos-integration/service@^8.3.2", "@kronos-integration/service@^8.3.4", "@kronos-integration/service@^8.3.6", "@kronos-integration/service@^8.3.7":
-  version "8.3.7"
-  resolved "https://registry.yarnpkg.com/@kronos-integration/service/-/service-8.3.7.tgz#daece1d0a2212195a0b492b2dacde5d47de8301b"
-  integrity sha512-Gr768i87GcJqakA0SvDGcvIwm02bH0e+S8yQ9qhI8MX3S8iAk8nghwfUbFylwN01J70zOqMAkANKv8SItT6DMg==
+"@kronos-integration/service@^8.3.2", "@kronos-integration/service@^8.3.4", "@kronos-integration/service@^8.3.6", "@kronos-integration/service@^8.3.7", "@kronos-integration/service@^8.3.8":
+  version "8.3.8"
+  resolved "https://registry.yarnpkg.com/@kronos-integration/service/-/service-8.3.8.tgz#fdd7a80063f5e88bd2fae5281b86f609d0346e55"
+  integrity sha512-0xw4u8GwBaj8RnDosxe8rSZMeZZanOXrZYx/S1O3YH1hkY/GoTjs+Im87nXSHJifmdKNtj8LS/n0UewiwaES9Q==
   dependencies:
     "@kronos-integration/endpoint" "^7.5.1"
     loglevel-mixin "^5.0.3"
@@ -7915,9 +7915,9 @@ semver@^6.0.0, semver@^6.2.0, semver@^6.3.0:
   integrity sha512-b39TBaTSfV6yBrapU89p5fKekE2m/NwnDocOVruQFS1/veMgdzuPcnOM34M6CwxW8jH/lxEa5rBoDeUwu5HHTw==
 
 semver@^7.0.0:
-  version "7.1.0"
-  resolved "https://registry.yarnpkg.com/semver/-/semver-7.1.0.tgz#e5870a302d6929a86a967c346e699e19154e38e0"
-  integrity sha512-4P8Vc43MxQL6UKqSiEnf0jZNYx545R9W1HwXP6p65paPp86AUJiafZ8XG81hAbcldKMCUIbeykUTVYG19LB7Cw==
+  version "7.1.1"
+  resolved "https://registry.yarnpkg.com/semver/-/semver-7.1.1.tgz#29104598a197d6cbe4733eeecbe968f7b43a9667"
+  integrity sha512-WfuG+fl6eh3eZ2qAf6goB7nhiCd7NPXhmyFxigB/TOkQyeLP8w8GsVehvtGNtnNmyboz4TgeK40B1Kbql/8c5A==
 
 serialize-error@^2.1.0:
   version "2.1.0"
