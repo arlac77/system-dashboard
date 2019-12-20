@@ -12,13 +12,13 @@ import {
 
 
 export async function setup(sp) {
-  const getInterceptors = [/*new CTXJWTVerifyInterceptor(),*/ new CTXInterceptor()]
+  const getInterceptors = [new CTXJWTVerifyInterceptor(), new CTXInterceptor()]
   const GET = {
     interceptors: getInterceptors
   };
   const POST = {
     method: "POST",
-    interceptors: [CTXBodyParamInterceptor /*, LoggingInterceptor*/]
+    interceptors: [CTXBodyParamInterceptor]
   };
 
   await sp.declareServices({
@@ -42,10 +42,10 @@ export async function setup(sp) {
           ws: true,
           connected: "service(health).state"
         },
-        "/state" : { ...GET, connected: "service(health).state" },
-        "/state/uptime" : { ...GET, connected: "service(health).uptime" },
-        "/state/cpu": { ...GET, connected: "service(health).cpu" },
-        "/state/memory" : { ...GET, connected: "service(health).memory" },
+  //     "/state" : { ...GET, connected: "service(health).state" },
+  //     "/state/uptime" : { ...GET, connected: "service(health).uptime" },
+  //     "/state/cpu": { ...GET, connected: "service(health).cpu" },
+  //     "/state/memory" : { ...GET, connected: "service(health).memory" },
         "/authenticate": { ...POST, connected: "service(auth).access_token" },
         "/services": {...GET, connected: "service(admin).services" },
         "/systemctl/status": {...GET, connected: "service(systemctl).status" },
@@ -79,4 +79,6 @@ export async function setup(sp) {
   });
 
   await sp.start();
+
+  GETInterceptors[0].configure({ key: sp.services.auth.jwt.public });
 }
