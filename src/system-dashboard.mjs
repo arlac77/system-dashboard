@@ -4,6 +4,11 @@ import ServiceAuthenticator from "@kronos-integration/service-authenticator";
 import ServiceAdmin from "@kronos-integration/service-admin";
 import ServiceSystemdControl from "./service-systemd-control.mjs";
 import {
+  DecodeJSONInterceptor,
+  EncodeJSONInterceptor
+} from "@kronos-integration/interceptor-decode-json";
+
+import {
   ServiceHTTP,
   CTXInterceptor,
   CTXJWTVerifyInterceptor,
@@ -77,4 +82,8 @@ export async function setup(sp) {
   await sp.start();
 
   GETInterceptors[0].configure({ key: sp.services.auth.jwt.public });
+
+  sp.services.health.endpoints.memory.interceptors = [
+    new EncodeJSONInterceptor()
+  ];
 }

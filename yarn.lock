@@ -1005,6 +1005,13 @@
   dependencies:
     "@kronos-integration/interceptor" "^8.1.0"
 
+"@kronos-integration/interceptor-decode-json@^2.1.1":
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/@kronos-integration/interceptor-decode-json/-/interceptor-decode-json-2.1.1.tgz#f433822177eeb732c005988321ab7f1b9d149fb5"
+  integrity sha512-TxIjOb4ELTBDOosZBgKtQl0U9KvhcBhBDR1pnPXF26cN5EgLK/fo1trvlup0wvVPFBeuhYTphdMulp6fagfyGA==
+  dependencies:
+    "@kronos-integration/interceptor" "^8.1.0"
+
 "@kronos-integration/interceptor@^8.1.0":
   version "8.1.0"
   resolved "https://registry.yarnpkg.com/@kronos-integration/interceptor/-/interceptor-8.1.0.tgz#0400be637c6e0599dc9b3de252134803c6048bac"
@@ -1035,10 +1042,10 @@
     "@kronos-integration/service" "^8.3.12"
     model-attributes "^4.1.3"
 
-"@kronos-integration/service-http@^9.0.21":
-  version "9.0.21"
-  resolved "https://registry.yarnpkg.com/@kronos-integration/service-http/-/service-http-9.0.21.tgz#bb0dfb18ffb368250cd0bbc63c961e3726a4de03"
-  integrity sha512-I+44CY5KmOB4MWMHE4CckBfywZ2/hrCTsKHy2Fwt+kwBoWvDpOMwTOD/V/ykNnWWL2wGy66UKUoIeskjj2s4tA==
+"@kronos-integration/service-http@^9.0.22":
+  version "9.0.22"
+  resolved "https://registry.yarnpkg.com/@kronos-integration/service-http/-/service-http-9.0.22.tgz#0abc388a32f260a6b840c1ea724604315f32a4d4"
+  integrity sha512-yUzuvgXRRrOGe5ejIwjnH39TFO8TZdz5zEqaReXDLiSTKRChVmPTolj0oyLujPIaZK4CFuMoNFwOenO+Py/ReA==
   dependencies:
     "@kronos-integration/service" "^8.3.13"
     bufferutil "^4.0.1"
@@ -1056,15 +1063,15 @@
     "@kronos-integration/service" "^8.3.12"
     ldapts "^2.0.1"
 
-"@kronos-integration/service-systemd@^2.2.7":
-  version "2.2.7"
-  resolved "https://registry.yarnpkg.com/@kronos-integration/service-systemd/-/service-systemd-2.2.7.tgz#217321df2db171f77921d2e65a0a68d65b5b5ef5"
-  integrity sha512-/DBnOcvHUcH1Ha+vv+h4oZAcWUFHYD6V61lcnRkx0ifHDvQjZrk/K77P26LbN67KSBiVaATERZIH/EeF5aJJ3A==
+"@kronos-integration/service-systemd@^2.2.9":
+  version "2.2.9"
+  resolved "https://registry.yarnpkg.com/@kronos-integration/service-systemd/-/service-systemd-2.2.9.tgz#2bcf0f353e6c350fbe36d04afcd360afeb9bb4df"
+  integrity sha512-3NQPh8z4mbuKrhV9iKky61cBxZABc6Utn2Z7h5i/oEQ+sMDr95TDLxSnvv8eRG1SKJS84uVTl+jMn3gCfYBtqg==
   dependencies:
-    "@kronos-integration/service" "^8.3.10"
+    "@kronos-integration/service" "^8.3.13"
     config-expander "^11.0.7"
 
-"@kronos-integration/service@^8.3.10", "@kronos-integration/service@^8.3.12", "@kronos-integration/service@^8.3.13":
+"@kronos-integration/service@^8.3.12", "@kronos-integration/service@^8.3.13":
   version "8.3.13"
   resolved "https://registry.yarnpkg.com/@kronos-integration/service/-/service-8.3.13.tgz#96282c3e678125d39cb18ccef2622525fa99403a"
   integrity sha512-LpDU7I7kSyHUl0JTKDYeIsITMrOlK18q3xDQfB5FrHlEA7/NxtE8+apj2YCY1Dj7OpEevwn6jBG/YSkAk1i4eA==
@@ -1133,9 +1140,9 @@
     universal-user-agent "^4.0.0"
 
 "@octokit/rest@^16.27.0":
-  version "16.35.2"
-  resolved "https://registry.yarnpkg.com/@octokit/rest/-/rest-16.35.2.tgz#0098c9e2a895d4afb0fa6578479283553543143c"
-  integrity sha512-iijaNZpn9hBpUdh8YdXqNiWazmq4R1vCUsmxpBB0kCQ0asHZpCx+HNs22eiHuwYKRhO31ZSAGBJLi0c+3XHaKQ==
+  version "16.36.0"
+  resolved "https://registry.yarnpkg.com/@octokit/rest/-/rest-16.36.0.tgz#99892c57ba632c2a7b21845584004387b56c2cb7"
+  integrity sha512-zoZj7Ya4vWBK4fjTwK2Cnmu7XBB1p9ygSvTk2TthN6DVJXM4hQZQoAiknWFLJWSTix4dnA3vuHtjPZbExYoCZA==
   dependencies:
     "@octokit/request" "^5.2.0"
     "@octokit/request-error" "^1.0.2"
@@ -1179,7 +1186,7 @@
     is-module "^1.0.0"
     resolve "^1.11.1"
 
-"@rollup/pluginutils@^3.0.0":
+"@rollup/pluginutils@^3.0.0", "@rollup/pluginutils@^3.0.1":
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/@rollup/pluginutils/-/pluginutils-3.0.1.tgz#6923a24c4a0db2917e5c77b1ed7d6721ac7fe58e"
   integrity sha512-PmNurkecagFimv7ZdKCVOfQuqKDPkrcpLFxRBcQ00LYr4HAjJwhCFxBiY2Xoletll2htTIiXBg6g0Yg21h2M3w==
@@ -1318,9 +1325,9 @@
   integrity sha512-rr+OQyAjxze7GgWrSaJwydHStIhHq2lvY3BOC2Mj7KnzI7XK0Uw1TOOdI9lDoajEbSWLiYgoo4f1R51erQfhPQ==
 
 "@types/estree@*":
-  version "0.0.40"
-  resolved "https://registry.yarnpkg.com/@types/estree/-/estree-0.0.40.tgz#0e6cb9b9bbd098031fa19e4b4e8131bc70e5de13"
-  integrity sha512-p3KZgMto/JyxosKGmnLDJ/dG5wf+qTRMUjHJcspC2oQKa4jP7mz+tv0ND56lLBu3ojHlhzY33Ol+khLyNmilkA==
+  version "0.0.41"
+  resolved "https://registry.yarnpkg.com/@types/estree/-/estree-0.0.41.tgz#fd90754150b57432b72bf560530500597ff04421"
+  integrity sha512-rIAmXyJlqw4KEBO7+u9gxZZSQHaCNnIzYrnNmYVpgfJhxTqO0brCX0SYpqUTkVI5mwwUwzmtspLBGBKroMeynA==
 
 "@types/estree@0.0.39":
   version "0.0.39"
@@ -1357,9 +1364,9 @@
   integrity sha512-hRJD2ahnnpLgsj6KWMYSrmXkM3rm2Dl1qkx6IOFD5FnuNPXJIG5L0dhgKXCYTRMGzU4n0wImQ/xfmRc4POUFlg==
 
 "@types/keyv@*":
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/@types/keyv/-/keyv-3.1.0.tgz#1961f73b3bf1084c044f79a070b45a5bfa6578b9"
-  integrity sha512-OxT2IEeRdwvoUyp8n1v1hTIFzATb3NQYN8OHv/XbXRHiF2DXwKyzoI4UUaQgwZkRflLaSgyttat+RfWgsKIMIQ==
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/@types/keyv/-/keyv-3.1.1.tgz#e45a45324fca9dab716ab1230ee249c9fb52cfa7"
+  integrity sha512-MPtoySlAZQ37VoLaPcTHCu1RWJ4llDkULYZIzOYxlhxBqYPB0RsRlmMU0R6tahtFe27mIdkHV+551ZWV4PLmVw==
   dependencies:
     "@types/node" "*"
 
@@ -1369,14 +1376,14 @@
   integrity sha512-tHq6qdbT9U1IRSGf14CL0pUlULksvY9OZ+5eEgl1N7t+OA3tGvNpxJCzuKQlsNgCVwbAs670L1vcVQi8j9HjnA==
 
 "@types/node@*", "@types/node@>= 8":
-  version "12.12.21"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-12.12.21.tgz#aa44a6363291c7037111c47e4661ad210aded23f"
-  integrity sha512-8sRGhbpU+ck1n0PGAUgVrWrWdjSW2aqNeyC15W88GRsMpSwzv6RJGlLhE7s2RhVSOdyDmxbqlWSeThq4/7xqlA==
+  version "13.1.0"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-13.1.0.tgz#225cbaac5fdb2b9ac651b02c070d8aa3c37cc812"
+  integrity sha512-zwrxviZS08kRX40nqBrmERElF2vpw4IUTd5khkhBTfFH8AOaeoLVx48EC4+ZzS2/Iga7NevncqnsUSYjM4OWYA==
 
 "@types/node@~10.17.9":
-  version "10.17.11"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-10.17.11.tgz#46ba035fb917b31c948280dbea22ab8838f386a4"
-  integrity sha512-dNd2pp8qTzzNLAs3O8nH3iU9DG9866KHq9L3ISPB7DOGERZN81nW/5/g/KzMJpCU8jrbCiMRBzV9/sCEdRosig==
+  version "10.17.12"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-10.17.12.tgz#4134d75b0dade682f6da9a2f44f5463e8e4f4172"
+  integrity sha512-SSB4O9/0NVv5mbQ5/MabnAyFfcpVFRVIJj1TZkG21HHgwXQGjosiQB3SBWC9pMCMUTNpWL9gUe//9mFFPQAdKw==
 
 "@types/normalize-package-data@^2.4.0":
   version "2.4.0"
@@ -4009,9 +4016,9 @@ globby@^6.1.0:
     pinkie-promise "^2.0.0"
 
 got@^10.0.4:
-  version "10.1.0"
-  resolved "https://registry.yarnpkg.com/got/-/got-10.1.0.tgz#f8437664bdc95a80638db9e101fa81d6e730b67a"
-  integrity sha512-7tFtiOkTc47O9PyQ8or0urxjs8XF+4K7CfZMRM9RiZAm4kbllG3D8tGlA04PloiFDA2e178mS8yiLSZut1C6Zw==
+  version "10.2.0"
+  resolved "https://registry.yarnpkg.com/got/-/got-10.2.0.tgz#c7d54e5b41881e5c64952a4013986af12dbab47f"
+  integrity sha512-X14b2uo+20s+HrJz9qyUmGNdIyYbRUZNE05fUz0aS4eXp1l82oUvsvFcMjwY3D25zgWwittqEQWEia0XqSlzzw==
   dependencies:
     "@sindresorhus/is" "^1.0.0"
     "@szmarczak/http-timer" "^3.1.1"
@@ -6313,9 +6320,9 @@ npm-run-path@^2.0.0:
     path-key "^2.0.0"
 
 npm-run-path@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/npm-run-path/-/npm-run-path-4.0.0.tgz#d644ec1bd0569187d2a52909971023a0a58e8438"
-  integrity sha512-8eyAOAH+bYXFPSnNnKr3J+yoybe8O87Is5rtAQ8qRczJz1ajcsjg8l2oZqP+Ppx15Ii3S1vUTjQN2h4YO2tWWQ==
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/npm-run-path/-/npm-run-path-4.0.1.tgz#b7ecd1e5ed53da8e37a55e1c2269e0b97ed748ea"
+  integrity sha512-S48WzZW777zhNIrn7gxOlISNAqi9ZC/uQFnRdbeIHhZhCA6UqpkOT8T1G7BvfdgP4Er8gF4sUbaS0i7QvIfCWw==
   dependencies:
     path-key "^3.0.0"
 
@@ -7801,12 +7808,12 @@ rollup-plugin-executable@^1.5.2:
   dependencies:
     "@babel/runtime" "^7.7.6"
 
-rollup-plugin-native@^1.1.3:
-  version "1.1.4"
-  resolved "https://registry.yarnpkg.com/rollup-plugin-native/-/rollup-plugin-native-1.1.4.tgz#250b6eb2feab61d0387b6b75d021f1659101328e"
-  integrity sha512-VmteLRG2uGJoD0hMfQClexaHLJgwV+FEykS2PUEyTy1UhhhRKih2yJy5pHG5Xpn7HK3+XJptnj4ayDeFNh9WeA==
+rollup-plugin-native@^1.1.5:
+  version "1.1.5"
+  resolved "https://registry.yarnpkg.com/rollup-plugin-native/-/rollup-plugin-native-1.1.5.tgz#224f934869dfcefc9d44801c5556a6d2e7bcfaa1"
+  integrity sha512-IgCbxRev89GgtA4tM9tuIAaK6sptntfL9q7/URiHLP4dNisnpdy1++nTgvRaLsMohgwrzxFfiH8kx8SqnuTgmw==
   dependencies:
-    "@rollup/pluginutils" "^3.0.0"
+    "@rollup/pluginutils" "^3.0.1"
 
 rollup-pluginutils@^2.3.3:
   version "2.8.2"
