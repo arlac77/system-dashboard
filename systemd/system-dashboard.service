@@ -5,11 +5,10 @@ Wants=network-online.target
 
 [Service]
 Type=notify
-
 ExecStart=/usr/bin/node --title {{name}} {{installdir}}/bin/{{name}}-systemd
 ExecReload=/bin/kill -HUP $MAINPID
 ExecStop=/usr/bin/curl -s -XPOST --unix-socket {{socket}} http://localhost/stop
-TimeoutStartSec=40
+TimeoutStartSec=20
 StandardOutput=syslog
 User={{name}}
 Group={{name}}
@@ -18,6 +17,11 @@ NoNewPrivileges=true
 RuntimeDirectory={{name}}
 StateDirectory={{name}}
 ConfigurationDirectory={{name}}
+NotifyAccess=all
+FileDescriptorStoreMax=2
+MemoryAccounting=true
+MemoryHigh=150M
+MemoryMax=200M
 
 [Install]
 WantedBy=multi-user.target
