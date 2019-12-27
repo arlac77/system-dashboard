@@ -17,6 +17,8 @@ import {
 
 
 export async function setup(sp) {
+  const WSOutInterceptors = [ new EncodeJSONInterceptor()];
+
   const getInterceptors = [new CTXJWTVerifyInterceptor(), new CTXInterceptor()]
   const GET = {
     interceptors: getInterceptors
@@ -25,6 +27,10 @@ export async function setup(sp) {
     method: "POST",
     interceptors: [CTXBodyParamInterceptor]
   };
+  const WS = {
+    ws: true,
+    interceptors: [new DecodeJSONInterceptor()]
+  };
 
   await sp.declareServices({
     http: {
@@ -32,19 +38,19 @@ export async function setup(sp) {
       autostart: true,
       endpoints: {
         "/state/uptime": {
-          ws: true,
+          ...WS,
           connected: "service(health).uptime"
         },
         "/state/cpu": {
-          ws: true,
+          ...WS,
           connected: "service(health).cpu"
         },
         "/state/memory": {
-          ws: true,
+          ...WS,
           connected: "service(health).memory"
         },
         "/state": {
-          ws: true,
+          ...WS,
           connected: "service(health).state"
         },
         "/authenticate": { ...POST, connected: "service(auth).access_token" },
@@ -83,7 +89,8 @@ export async function setup(sp) {
 
   GETInterceptors[0].configure({ key: sp.services.auth.jwt.public });
 
-  sp.services.health.endpoints.memory.interceptors = [
-    new EncodeJSONInterceptor()
-  ];
+  sp.services.health.endpoints.memory.interceptors = WSOutInterceptors;
+  sp.services.health.endpoints.cpu.interceptors = WSOutInterceptors;
+  sp.services.health.endpoints.uptime.interceptors = WSOutInterceptors;
+  sp.services.health.endpoints.state.interceptors = WSOutInterceptors;
 }
