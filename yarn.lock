@@ -1026,7 +1026,7 @@
   dependencies:
     "@kronos-integration/service" "^8.3.14"
 
-"@kronos-integration/service-authenticator@^1.0.13":
+"@kronos-integration/service-authenticator@^1.0.14":
   version "1.0.14"
   resolved "https://registry.yarnpkg.com/@kronos-integration/service-authenticator/-/service-authenticator-1.0.14.tgz#f0e814958d591d8c25376fbb567fbe5b6c417037"
   integrity sha512-QsbiHKE8voLo2p2nYSYW/zojP/Iv5/OM24Z6PMyUq2KXTe5tQ5b/5xgjUsQoRLeu8oZOX+Fue0EmtKKq6jFiHQ==
@@ -2216,9 +2216,9 @@ camelcase@^5.0.0, camelcase@^5.3.1:
   integrity sha512-L28STB170nwWS63UjtlEOE3dldQApaJXZkOI1uMFfzf3rRuPegHaHesyee+YxQ+W6SvRDQV6UrdOdRiR153wJg==
 
 caniuse-lite@^1.0.30001015:
-  version "1.0.30001016"
-  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001016.tgz#16ea48d7d6e8caf3cad3295c2d746fe38c4e7f66"
-  integrity sha512-yYQ2QfotceRiH4U+h1Us86WJXtVHDmy3nEKIdYPsZCYnOV5/tMgGbmoIlrMzmh2VXlproqYtVaKeGDBkMZifFA==
+  version "1.0.30001017"
+  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001017.tgz#d3ad6ec18148b9bd991829958d9d7e562bb78cd6"
+  integrity sha512-EDnZyOJ6eYh6lHmCvCdHAFbfV4KJ9lSdfv4h/ppEhrU/Yudkl7jujwMZ1we6RX7DXqBfT04pVMQ4J+1wcTlsKA==
 
 capture-stack-trace@^1.0.0:
   version "1.0.1"
