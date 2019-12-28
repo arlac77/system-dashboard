@@ -15,13 +15,11 @@ import {
   CTXBodyParamInterceptor
 } from "@kronos-integration/service-http";
 
-
 export async function setup(sp) {
-  const WSOutInterceptors = [ new EncodeJSONInterceptor()];
-
-  const getInterceptors = [new CTXJWTVerifyInterceptor(), new CTXInterceptor()]
+  const WSOutInterceptors = [new EncodeJSONInterceptor()];
+  const GETInterceptors = [new CTXJWTVerifyInterceptor(), new CTXInterceptor()];
   const GET = {
-    interceptors: getInterceptors
+    interceptors: GETInterceptors
   };
   const POST = {
     method: "POST",
@@ -54,12 +52,24 @@ export async function setup(sp) {
           connected: "service(health).state"
         },
         "/authenticate": { ...POST, connected: "service(auth).access_token" },
-        "/services": {...GET, connected: "service(admin).services" },
-        "/systemctl/status": {...GET, connected: "service(systemctl).status" },
-        "/systemctl/start/:unit": {...GET, connected: "service(systemctl).start" },
-        "/systemctl/stop/:unit": {...GET, connected: "service(systemctl).stop" },
-        "/systemctl/restart/:unit": {...GET, connected: "service(systemctl).restart" },
-        "/systemctl/reload/:unit": {...GET, connected: "service(systemctl).reload" }
+        "/services": { ...GET, connected: "service(admin).services" },
+        "/systemctl/status": { ...GET, connected: "service(systemctl).status" },
+        "/systemctl/start/:unit": {
+          ...GET,
+          connected: "service(systemctl).start"
+        },
+        "/systemctl/stop/:unit": {
+          ...GET,
+          connected: "service(systemctl).stop"
+        },
+        "/systemctl/restart/:unit": {
+          ...GET,
+          connected: "service(systemctl).restart"
+        },
+        "/systemctl/reload/:unit": {
+          ...GET,
+          connected: "service(systemctl).reload"
+        }
       }
     },
     ldap: {
@@ -79,7 +89,7 @@ export async function setup(sp) {
       type: ServiceAdmin,
       autostart: true
     },
-    systemctl : {
+    systemctl: {
       type: ServiceSystemdControl,
       autostart: true
     }
