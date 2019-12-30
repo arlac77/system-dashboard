@@ -23,7 +23,7 @@ export async function setup(sp) {
   };
   const POST = {
     method: "POST",
-    interceptors: [CTXBodyParamInterceptor]
+    interceptors: [new CTXBodyParamInterceptor()]
   };
   const WS = {
     ws: true,
@@ -96,8 +96,6 @@ export async function setup(sp) {
   });
 
   await sp.start();
-
-  GETInterceptors[0].configure({ key: sp.services.auth.jwt.public });
 
   sp.services.health.endpoints.memory.interceptors = WSOutInterceptors;
   sp.services.health.endpoints.cpu.interceptors = WSOutInterceptors;
