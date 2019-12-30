@@ -82,8 +82,8 @@
   },
   "homepage": "https://github.com/arlac77/system-dashboard#readme",
   "config": {
-    "base": "/services/system-dashboard/api",
-    "socket": "/run/${name}/socket"
+    "base": "/services/${name}/api",
+    "socket": "/run/${name}/http/socket"
   },
   "systemd": {
     "units": {
