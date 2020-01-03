@@ -5,11 +5,14 @@
     "access": "public"
   },
   "files": [
-    "bin"
+    "bin",
+    "bin/system-dashboard-systemd"
   ],
   "module": "src/system-dashboard-cli.mjs",
   "description": "web gateway to systemd",
-  "keywords": [],
+  "keywords": [
+    "kronos-integration"
+  ],
   "contributors": [
     {
       "name": "Markus Felten",
