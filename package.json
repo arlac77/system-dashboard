@@ -103,13 +103,19 @@
     "hooks": "pacman/hooks.sh",
     "backup": "etc/${name}/config.json",
     "depends": {
-      "systemd": ">=244"
+      "systemd": ">=244.1",
+      "nginx-mainline": ">=1.17.7"
     },
     "installdir": "/services/${name}",
     "content": {
       "/etc/${name}/config.json": "config/config.json",
-      "/etc/nginx/config.d/${name}.conf": "pacman/nginx.conf"
-    }
+      "/etc/nginx/config.d/${name}.conf": "pacman/nginx.conf",
+      "/usr/lib/tmpfiles.d/${name}.conf": "pacman/tmpfiles.conf"
+    },
+    "additional-content": [
+      "npm-dist",
+      "npm-dependencies"
+    ]
   },
   "release": {
     "plugins": [
