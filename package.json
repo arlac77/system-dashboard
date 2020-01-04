@@ -94,6 +94,11 @@
     }
   },
   "pacman": {
+    "arch": [
+      "aarch64",
+      "armv7h",
+      "x86_64"
+    ],
     "additional-content": [
       "npm-dist",
       "npm-dependencies"
@@ -110,12 +115,7 @@
     },
     "groups": "webhook",
     "hooks": "pacman/hooks.sh",
-    "installdir": "/services/${name}",
-    "arch": [
-      "aarch64",
-      "armv7h",
-      "x86_64"
-    ]
+    "installdir": "/services/${name}"
   },
   "release": {
     "plugins": [
