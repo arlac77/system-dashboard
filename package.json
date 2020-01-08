@@ -11,7 +11,8 @@
   "module": "src/system-dashboard-cli.mjs",
   "description": "web gateway to systemd",
   "keywords": [
-    "kronos-integration"
+    "kronos-integration",
+    "systemd"
   ],
   "contributors": [
     {
@@ -65,7 +66,7 @@
     "@kronos-integration/service-systemd": "^2.2.11"
   },
   "engines": {
-    "node": ">=13.5.0"
+    "node": ">=13.6.0"
   },
   "os": [
     "linux",
