@@ -35,18 +35,18 @@
   "dependencies": {
     "@kronos-integration/interceptor-decode-json": "^2.1.1",
     "@kronos-integration/service": "^8.3.15",
-    "@kronos-integration/service-admin": "^3.0.10",
-    "@kronos-integration/service-authenticator": "^1.0.15",
+    "@kronos-integration/service-admin": "^3.0.12",
+    "@kronos-integration/service-authenticator": "^1.0.16",
     "@kronos-integration/service-health-check": "^5.0.12",
-    "@kronos-integration/service-http": "^10.0.4",
-    "@kronos-integration/service-ldap": "^2.1.14",
+    "@kronos-integration/service-http": "^10.0.5",
+    "@kronos-integration/service-ldap": "^2.1.15",
     "dbus-next": "^0.8.1",
     "execa": "^3.4.0"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^11.0.1",
     "@rollup/plugin-node-resolve": "^7.0.0",
-    "@semantic-release/exec": "^3.3.8",
+    "@semantic-release/exec": "^4.0.0",
     "acorn-class-fields": "https://github.com/arlac77/acorn-class-fields.git",
     "ava": "^2.4.0",
     "builtin-modules": "^3.1.0",
@@ -60,7 +60,7 @@
     "rollup-plugin-consts": "^1.0.1",
     "rollup-plugin-executable": "^1.5.2",
     "rollup-plugin-native": "^1.2.2",
-    "semantic-release": "^15.14.0"
+    "semantic-release": "^16.0.0"
   },
   "optionalDependencies": {
     "@kronos-integration/service-systemd": "^2.2.11"
