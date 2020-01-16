@@ -30,7 +30,8 @@
     "docs": "documentation readme src/system-dashboard-cli.mjs --section=API",
     "lint": "documentation lint src/system-dashboard-cli.mjs",
     "prepare": "rollup -c",
-    "test": "ava"
+    "test": "ava",
+    "posttest": "npm run prepare && markdown-doctest"
   },
   "dependencies": {
     "@kronos-integration/interceptor-decode-json": "^2.1.1",
@@ -45,15 +46,17 @@
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^11.0.1",
+    "@rollup/plugin-json": "^4.0.1",
     "@rollup/plugin-node-resolve": "^7.0.0",
     "@semantic-release/exec": "^4.0.0",
     "acorn-class-fields": "https://github.com/arlac77/acorn-class-fields.git",
     "ava": "^2.4.0",
     "builtin-modules": "^3.1.0",
-    "c8": "^7.0.0",
+    "c8": "^7.0.1",
     "documentation": "^12.1.4",
     "esm": "^3.2.25",
     "got": "^10.0.4",
+    "markdown-doctest": "^1.0.0",
     "npm-pkgbuild": "^6.11.4",
     "rollup": "^1.29.0",
     "rollup-plugin-cleanup": "^3.1.1",
@@ -145,7 +148,7 @@
   },
   "template": {
     "repository": {
-      "url": "https://github.com/arlac77/npm-package-template-kronos-app.git"
+      "url": "https://github.com/arlac77/npm-package-template.git"
     }
   }
 }
