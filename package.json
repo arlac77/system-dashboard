@@ -8,6 +8,9 @@
     "bin",
     "bin/system-dashboard-systemd"
   ],
+  "sideEffects": false,
+  "type": "module",
+  "main": "src/system-dashboard-cli.mjs",
   "module": "src/system-dashboard-cli.mjs",
   "description": "web gateway to systemd",
   "keywords": [
@@ -60,7 +63,7 @@
     "rollup-plugin-consts": "^1.0.1",
     "rollup-plugin-executable": "^1.5.2",
     "rollup-plugin-native": "^1.2.3",
-    "semantic-release": "^16.0.2"
+    "semantic-release": "^16.0.3"
   },
   "optionalDependencies": {
     "@kronos-integration/service-systemd": "^2.2.11"
