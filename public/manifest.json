@@ -1,0 +1,10 @@
+{
+  "name": "system-dashboard",
+  "description": "web gateway to systemd",
+  "icons": [
+    {
+      "src": "facicon.ico",
+      "sizes": "16x16"
+    }
+  ]
+}
