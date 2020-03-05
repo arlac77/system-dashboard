@@ -41,7 +41,7 @@
     "@kronos-integration/service-http": "^10.0.6",
     "@kronos-integration/service-ldap": "^2.1.17",
     "dbus-next": "^0.8.1",
-    "execa": "^3.4.0"
+    "execa": "^4.0.0"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^11.0.2",
