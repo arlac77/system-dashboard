@@ -5,7 +5,6 @@ import executable from "rollup-plugin-executable";
 import native from "rollup-plugin-native";
 import cleanup from "rollup-plugin-cleanup";
 import consts from "rollup-plugin-consts";
-import acornClassFields from "acorn-class-fields";
 
 import builtins from "builtin-modules";
 
@@ -19,23 +18,23 @@ const plugins = [
   consts({
     name,
     version,
-    description,
+    description
   }),
   commonjs(),
   resolve(),
   native(),
   cleanup({
-    extensions: ["js", "mjs"],
-  }),
+    extensions: ["js", "mjs"]
+  })
 ];
 
-const config = Object.keys(bin).map((name) => {
+const config = Object.keys(bin).map(name => {
   return {
     input: `src/${name}-cli.mjs`,
     output: {
       plugins: [executable()],
-      file: bin[name],
-    },
+      file: bin[name]
+    }
   };
 });
 
@@ -43,17 +42,17 @@ if (module !== undefined && main !== undefined) {
   config.push({
     input: module,
     output: {
-      file: main,
-    },
+      file: main
+    }
   });
 }
 
-export default config.map((c) => {
+export default config.map(c => {
   c.output = {
     interop: false,
     externalLiveBindings: false,
     format: "cjs",
-    ...c.output,
+    ...c.output
   };
-  return { acornInjectPlugins: [acornClassFields], plugins, external, ...c };
+  return { plugins, external, ...c };
 });
