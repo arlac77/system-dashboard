@@ -9,5 +9,5 @@ doc
 .vscode
 systemd
 pacman
-rollup.config.js
 .github
+rollup.config.mjs
