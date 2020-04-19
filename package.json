@@ -108,7 +108,8 @@
     "content": {
       "/etc/${name}/config.json": "config/config.json",
       "/etc/nginx/config.d/${name}.conf": "pacman/nginx.conf",
-      "/usr/lib/tmpfiles.d/${name}.conf": "pacman/tmpfiles.conf"
+      "/usr/lib/tmpfiles.d/${name}.conf": "pacman/tmpfiles.conf",
+      "/usr/lib/sysusers.d/${name}.conf": "pacman/sysusers.conf"
     },
     "depends": {
       "systemd": ">=244.1",
@@ -116,10 +117,7 @@
     },
     "groups": "webhook",
     "hooks": "pacman/hooks.sh",
-    "installdir": "/services/${name}",
-    "dependes": {
-      "nginx-mainline": ">=1.17.9"
-    }
+    "installdir": "/services/${name}"
   },
   "release": {
     "plugins": [
