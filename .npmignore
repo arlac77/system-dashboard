@@ -5,9 +5,9 @@ doc
 *.tmp
 .test
 .tmp
+rollup.config.*
 .travis.yml
 .vscode
 systemd
 pacman
 .github
-rollup.config.mjs
