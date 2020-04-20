@@ -105,7 +105,8 @@
     },
     "groups": "webhook",
     "hooks": "pacman/hooks.sh",
-    "installdir": "/services/${name}"
+    "installdir": "/services/${name}",
+    "group": "services"
   },
   "release": {
     "plugins": [
