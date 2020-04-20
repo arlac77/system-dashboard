@@ -2,6 +2,7 @@ import ServiceHealthCheck from "@kronos-integration/service-health-check";
 import ServiceLDAP from "@kronos-integration/service-ldap";
 import ServiceAuthenticator from "@kronos-integration/service-authenticator";
 import ServiceAdmin from "@kronos-integration/service-admin";
+import ServiceSwarm from "@kronos-integration/service-swarm";
 import ServiceSystemdControl from "./service-systemd-control.mjs";
 import {
   DecodeJSONInterceptor,
@@ -87,6 +88,10 @@ export async function setup(sp) {
     },
     admin: {
       type: ServiceAdmin,
+      autostart: true
+    },
+    swarm: {
+      type: ServiceSwarm,
       autostart: true
     },
     systemctl: {
