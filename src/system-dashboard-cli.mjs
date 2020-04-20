@@ -13,6 +13,8 @@ const { version, description } = JSON.parse(
 
 const args = process.argv.slice(2);
 
+let config;
+
 switch (args[0]) {
   case "--version":
     console.log(version);
@@ -28,12 +30,15 @@ usage:
 
   case "--config":
   case "-c":
-    process.env.CONFIGURATION_DIRECTORY = args[1];
+    config = JSON.parse(
+      readFileSync(join(args[1], "config.json"), { encoding: "utf8" })
+    );
+
     break;
 }
 
 try {
-  setup(new StandaloneServiceProvider());
+  setup(new StandaloneServiceProvider(config));
 } catch (error) {
   console.log(error);
 }
