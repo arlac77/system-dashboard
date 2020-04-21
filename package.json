@@ -86,10 +86,6 @@
       "armv7h",
       "x86_64"
     ],
-    "additional-content": [
-      "npm-dist",
-      "npm-dependencies"
-    ],
     "backup": "etc/${name}/config.json",
     "content": {
       "/etc/${name}/config.json": "config/config.json",
@@ -104,7 +100,14 @@
     "groups": "webhook",
     "hooks": "pacman/hooks.sh",
     "installdir": "/services/${name}",
-    "group": "services"
+    "group": "services",
+    "content-provider": {
+      "systemd": {
+        "units": {
+          "${name}": "systemd/${name}*"
+        }
+      }
+    }
   },
   "release": {
     "plugins": [
