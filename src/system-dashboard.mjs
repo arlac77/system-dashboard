@@ -92,7 +92,10 @@ export async function setup(sp) {
     },
     swarm: {
       type: ServiceSwarm,
-      autostart: true
+      autostart: true,
+      endpoints: {
+        "topic.uptime": { connected: "service(health).uptime" }
+      }  
     },
     systemctl: {
       type: ServiceSystemdControl,
