@@ -1,8 +1,4 @@
 
-pre_install() {
-	useradd -U -l -M -r -s /usr/bin/nologin -d /var/lib/{{name}} -G systemd-journal,http -c "{{description}}" {{name}}
-}
-
 post_install() {
 	systemctl daemon-reload
 	systemctl enable {{name}}
@@ -17,7 +13,6 @@ pre_upgrade() {
 }
 
 post_upgrade() {
-	usermod -a -G systemd-journal,http {{name}}
 	systemctl daemon-reload
 	systemctl start {{name}}.socket
 	systemctl is-enabled nginx 2>&1 >/dev/null && systemctl -q try-reload-or-restart nginx
@@ -33,7 +28,4 @@ pre_remove() {
 post_remove() {
 	systemctl daemon-reload
 	systemctl is-enabled nginx 2>&1 >/dev/null && systemctl -q try-reload-or-restart nginx
-
-	userdel {{name}}
-	groupdel {{name}}
 }

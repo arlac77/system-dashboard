@@ -7,7 +7,6 @@ Wants=network-online.target
 Type=notify
 ExecStart=/usr/bin/node --title {{name}} {{installdir}}/src/{{name}}-systemd-cli.mjs
 ExecReload=/bin/kill -HUP $MAINPID
-ExecStop=/usr/bin/curl -s -XPOST --unix-socket {{socket}} http://localhost/stop
 TimeoutStartSec=20
 StandardOutput=syslog
 User={{name}}
