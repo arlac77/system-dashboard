@@ -18,7 +18,16 @@ import {
 
 export async function setup(sp) {
   const WSOutInterceptors = [new EncodeJSONInterceptor()];
-  const GETInterceptors = [new CTXJWTVerifyInterceptor(), new CTXInterceptor()];
+  const GETInterceptors = [
+    new CTXJWTVerifyInterceptor(),
+    new CTXInterceptor({
+      headers: {
+        "Cache-Control": "no-store, no-cache, must-revalidate",
+        Pragma: "no-cache",
+        Expires: 0
+      }
+    })
+  ];
   const GET = {
     interceptors: GETInterceptors
   };
@@ -95,7 +104,7 @@ export async function setup(sp) {
       autostart: true,
       endpoints: {
         "topic.uptime": { connected: "service(health).uptime" }
-      }  
+      }
     },
     systemctl: {
       type: ServiceSystemdControl,
