@@ -29,6 +29,9 @@ ProtectHome=true
 ProtectKernelTunables=true
 ProtectSystem=full
 RestrictSUIDSGID=true
+TimeoutStopSec=25
+SupplementaryGroups=http
+ProtectClock=true
 
 [Install]
 WantedBy=multi-user.target
