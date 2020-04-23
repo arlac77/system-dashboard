@@ -31,6 +31,7 @@ ProtectSystem=full
 RestrictSUIDSGID=true
 TimeoutStopSec=25
 SupplementaryGroups=http
+SupplementaryGroups=systemd-journal
 ProtectClock=true
 
 [Install]
