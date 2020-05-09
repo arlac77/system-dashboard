@@ -45,6 +45,11 @@ export async function setup(sp) {
       type: ServiceHTTP,
       autostart: true,
       endpoints: {
+        "/services/peers": {
+          ...WS,
+          connected: "service(swarm).peers.services"
+        },
+
         "/state/uptime": {
           ...WS,
           connected: "service(health).uptime"
@@ -103,7 +108,8 @@ export async function setup(sp) {
       type: ServiceSwarm,
       autostart: true,
       endpoints: {
-        "topic.uptime": { connected: "service(health).uptime" }
+        "topic.services": { connected: "service(admin).services" },
+        "peers.services": { }
       }
     },
     systemctl: {
