@@ -27,13 +27,13 @@
   },
   "dependencies": {
     "@kronos-integration/interceptor-decode-json": "^2.1.8",
-    "@kronos-integration/service": "^8.3.29",
+    "@kronos-integration/service": "^8.3.30",
     "@kronos-integration/service-admin": "^3.0.25",
     "@kronos-integration/service-authenticator": "^1.0.26",
     "@kronos-integration/service-health-check": "^5.0.26",
     "@kronos-integration/service-http": "^10.1.5",
     "@kronos-integration/service-ldap": "^2.1.24",
-    "@kronos-integration/service-swarm": "^1.4.5",
+    "@kronos-integration/service-swarm": "^1.4.7",
     "dbus-next": "^0.8.2",
     "execa": "^4.0.1"
   },
