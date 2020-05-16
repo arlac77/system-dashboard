@@ -1,5 +1,6 @@
 
 post_install() {
+	systemctl daemon-reload
 	systemctl enable {{name}}
 	systemctl enable {{name}}.socket
 	systemctl start {{name}}
@@ -8,6 +9,7 @@ post_install() {
 }
 
 post_upgrade() {
+	systemctl daemon-reload
 	systemctl restart {{name}}
 	systemctl restart {{name}}.socket
 	systemctl is-enabled nginx 2>&1 >/dev/null && systemctl -q try-reload-or-restart nginx
@@ -21,5 +23,6 @@ pre_remove() {
 }
 
 post_remove() {
+	systemctl daemon-reload
 	systemctl is-enabled nginx 2>&1 >/dev/null && systemctl -q try-reload-or-restart nginx
 }
