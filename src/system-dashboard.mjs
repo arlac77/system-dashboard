@@ -124,4 +124,6 @@ export async function setup(sp) {
   sp.services.health.endpoints.cpu.interceptors = WSOutInterceptors;
   sp.services.health.endpoints.uptime.interceptors = WSOutInterceptors;
   sp.services.health.endpoints.state.interceptors = WSOutInterceptors;
+  sp.services.admin.endpoints.services.interceptors = WSOutInterceptors;
+
 }
