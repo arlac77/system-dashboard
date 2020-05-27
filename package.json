@@ -5,6 +5,7 @@
     "access": "public"
   },
   "main": "./src/system-dashboard-cli.mjs",
+  "exports": {},
   "description": "web gateway to systemd",
   "keywords": [
     "kronos-integration",
