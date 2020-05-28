@@ -18,8 +18,7 @@
   ],
   "license": "BSD-2-Clause",
   "bin": {
-    "system-dashboard": "src/system-dashboard-cli.mjs",
-    "system-dashboard-systemd": "src/system-dashboard-systemd-cli.mjs"
+    "system-dashboard": "src/system-dashboard-cli.mjs"
   },
   "scripts": {
     "test": "ava --timeout 2m",
