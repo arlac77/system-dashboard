@@ -1,29 +1,29 @@
 import { readFileSync } from "fs";
 import { join, dirname } from "path";
 import { fileURLToPath } from "url";
-import { setup } from "./system-dashboard.mjs";
+import setup from "./system-dashboard.mjs";
 import { StandaloneServiceProvider } from "@kronos-integration/service";
-
-const { version, description } = JSON.parse(
-  readFileSync(
-    join(dirname(fileURLToPath(import.meta.url)), "..", "package.json"),
-    { encoding: "utf8" }
-  )
-);
 
 const args = process.argv.slice(2);
 
 switch (args[0]) {
   case "--version":
-    console.log(version);
-    process.exit(0);
+    {
+      const { version } = info();
+      console.log(version);
+      process.exit(0);
+    }
+    break;
   case "--help":
   case "-h":
-    console.log(`${description} (${version})
+    {
+      const { description, version } = info();
+      console.log(`${description} (${version});
 usage:
  -h --help this help screen
  -c --config <directory> set config directory`);
-    process.exit(0);
+      process.exit(0);
+    }
     break;
 
   case "--config":
@@ -32,21 +32,33 @@ usage:
     break;
 }
 
-async function initialize() {
-  try {
-    try {
-      const m = await import("@kronos-integration/service-systemd");
-      setup(new m.default());
-    } catch (e) {
-      const config = JSON.parse(
-        readFileSync(join(args[1], "config.json"), { encoding: "utf8" })
-      );
+initialize();
 
-      setup(new StandaloneServiceProvider(config));
-    }
-  } catch (error) {
-    console.log(error);
-  }
+function info() {
+  return JSON.parse(
+    readFileSync(
+      join(dirname(fileURLToPath(import.meta.url)), "..", "package.json"),
+      { encoding: "utf8" }
+    )
+  );
 }
 
-initialize();
+async function initialize() {
+  try {
+    let serviceProvider;
+    try {
+      const m = await import("@kronos-integration/service-systemd");
+      serviceProvider = new m.default();
+    } catch (e) {
+      serviceProvider = new StandaloneServiceProvider(
+        JSON.parse(
+          readFileSync(join(args[1], "config.json"), { encoding: "utf8" })
+        )
+      );
+    }
+
+    await setup(serviceProvider);
+  } catch (error) {
+    console.error(error);
+  }
+}
