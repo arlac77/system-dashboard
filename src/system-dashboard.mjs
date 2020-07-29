@@ -68,7 +68,7 @@ export default async function setup(sp) {
         },
         "/authenticate": { ...POST, connected: "service(auth).access_token" },
         "/services": { ...GET, connected: "service(admin).services" },
-        "/systemctl/status": { ...GET, connected: "service(systemctl).status" },
+        "/systemctl/units": { ...GET, connected: "service(systemctl).units" },
         "/systemctl/start/:unit": {
           ...GET,
           connected: "service(systemctl).start"
