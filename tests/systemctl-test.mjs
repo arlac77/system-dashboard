@@ -1,12 +1,12 @@
 import test from "ava";
-import { decodeUnitList } from "../src/service-systemd-control.mjs";
+import { decodeUnits, decodeSockets, decodeTimers } from "../src/service-systemd-control.mjs";
 
-test("systemctl list-unit decode", t => {
+test("systemctl decode units", t => {
   const raw = `auditd.service                             loaded    inactive dead    Security Auditing Service
 avahi-daemon.service                       loaded    active   running Avahi mDNS/DNS-SD Stack
 backup.service                             loaded    inactive dead    backup`;
 
-  t.deepEqual(decodeUnitList(raw), [
+  t.deepEqual(decodeUnits(raw), [
     {
       unit: "auditd.service",
       load: "loaded",
@@ -29,4 +29,11 @@ backup.service                             loaded    inactive dead    backup`;
       description: "backup"
     }
   ]);
+});
+
+test.skip("systemctl decode timers", t => {
+  const raw = `Fri 2020-07-31 00:00:00 CEST 2min 7s left  Thu 2020-07-30 00:00:00 CEST 23h ago    logrotate.timer              logrotate.service             
+Fri 2020-07-31 00:00:00 CEST 2min 7s left  Thu 2020-07-30 00:00:00 CEST 23h ago    man-db.timer                 man-db.service  `;
+
+  t.deepEqual(decodeTimers(raw), [{},{}]);
 });

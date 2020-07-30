@@ -6,7 +6,7 @@ async function systemctl(cmd, params) {
   return p.all;
 }
 
-export function decodeUnitList(data) {
+export function decodeUnits(data) {
   // auditd.service                             loaded    inactive dead    Security Auditing Service
   // avahi-daemon.service                       loaded    active   running Avahi mDNS/DNS-SD Stack
   // backup.service                             loaded    inactive dead    backup
@@ -27,6 +27,18 @@ export function decodeUnitList(data) {
       description: description.join(" ")
     };
   });
+}
+
+export function decodeTimers(data) {
+  // Fri 2020-07-31 00:00:00 CEST 2min 7s left  Thu 2020-07-30 00:00:00 CEST 23h ago    logrotate.timer              logrotate.service             
+  // Fri 2020-07-31 00:00:00 CEST 2min 7s left  Thu 2020-07-30 00:00:00 CEST 23h ago    man-db.timer                 man-db.service                
+  return data;
+}
+
+export function decodeSockets(data) {
+  // /run/avahi-daemon/socket                       avahi-daemon.socket                  avahi-daemon.service                 
+  // /run/dbus/system_bus_socket                    dbus.socket                          dbus.service                         
+  return data;
 }
 
 export class ServiceSystemdControl extends Service {
@@ -52,7 +64,33 @@ export class ServiceSystemdControl extends Service {
             "--plain",
             "--no-legend"
           ]);
-          return decodeUnitList(p.stdout);
+          return decodeUnits(p.stdout);
+        }
+      },
+      timers: {
+        default: true,
+        receive: async () => {
+          const p = await execa("systemctl", [
+            "list-timers",
+            "--full",
+            "--all",
+            "--plain",
+            "--no-legend"
+          ]);
+          return decodeTimers(p.stdout);
+        }
+      },
+      sockets: {
+        default: true,
+        receive: async () => {
+          const p = await execa("systemctl", [
+            "list-sockets",
+            "--full",
+            "--all",
+            "--plain",
+            "--no-legend"
+          ]);
+          return decodeSockets(p.stdout);
         }
       },
       start: {
