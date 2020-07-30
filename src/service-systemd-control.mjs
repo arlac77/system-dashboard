@@ -13,20 +13,16 @@ export class ServiceSystemdControl extends Service {
       units: {
         default: true,
         receive: async () => {
-          const p = await execa(
-            "systemctl",
-            [
-              "list-units",
-              "-t",
-              "service",
-              "--full",
-              "--all",
-              "--plain",
-              "--no-legend"
-            ],
-            { all: true }
-          );
-          return p.all;
+          const p = await execa("systemctl", [
+            "list-units",
+            "-t",
+            "service",
+            "--full",
+            "--all",
+            "--plain",
+            "--no-legend"
+          ]);
+          return p.stdout;
         }
       },
       start: {
