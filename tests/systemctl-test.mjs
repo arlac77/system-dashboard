@@ -1,5 +1,5 @@
 import test from "ava";
-import { decodeUnits, decodeSockets, decodeTimers } from "../src/service-systemd-control.mjs";
+import { decodeUnits, decodeSockets, decodeTimers, decodeMachines } from "../src/service-systemd-control.mjs";
 
 test("systemctl decode units", t => {
   const raw = `auditd.service                             loaded    inactive dead    Security Auditing Service
@@ -36,4 +36,10 @@ test.skip("systemctl decode timers", t => {
 Fri 2020-07-31 00:00:00 CEST 2min 7s left  Thu 2020-07-30 00:00:00 CEST 23h ago    man-db.timer                 man-db.service  `;
 
   t.deepEqual(decodeTimers(raw), [{},{}]);
+});
+
+
+test.skip("systemctl decode machines", t => {
+  const raw = `pine1 (host) degraded 2      0   `;
+  t.deepEqual(decodeMachines(raw), [{name: "pine1", state: "degraded", failed: 2, jobs: 0}]);
 });

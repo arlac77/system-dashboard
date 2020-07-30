@@ -41,6 +41,29 @@ export function decodeSockets(data) {
   return data;
 }
 
+export function decodeMachines(data) {
+/*
+  NAME         STATE    FAILED JOBS
+* pine1 (host) degraded 2      0   
+*/
+
+  return data.split(/\n/).map(line => {
+    const [
+      name,
+      type,
+      state,
+      failed,
+      jobs
+    ] = line.split(/\s+/);
+    return {
+      name,
+      state,
+      failed: parseInt(failed),
+      jobs: parseInt(jobs)
+    };
+  });
+}
+
 export class ServiceSystemdControl extends Service {
   /**
    * @return {string} 'systemctl'
@@ -91,6 +114,19 @@ export class ServiceSystemdControl extends Service {
             "--no-legend"
           ]);
           return decodeSockets(p.stdout);
+        }
+      },
+      machines: {
+        default: true,
+        receive: async () => {
+          const p = await execa("systemctl", [
+            "list-machines",
+            "--full",
+            "--all",
+            "--plain",
+            "--no-legend"
+          ]);
+          return decodeMachines(p.stdout);
         }
       },
       start: {
