@@ -6,7 +6,37 @@ async function systemctl(cmd, params) {
   return p.all;
 }
 
+export function decodeUnitList(data) {
+  // auditd.service                             loaded    inactive dead    Security Auditing Service
+  // avahi-daemon.service                       loaded    active   running Avahi mDNS/DNS-SD Stack
+  // backup.service                             loaded    inactive dead    backup
+
+  return data.split(/\n/).map(line => {
+    const [
+      unit,
+      load,
+      active,
+      sub,
+      ...description
+    ] = line.split(/\s+/);
+    return {
+      unit,
+      load,
+      active,
+      sub,
+      description: description.join(" ")
+    };
+  });
+}
+
 export class ServiceSystemdControl extends Service {
+  /**
+   * @return {string} 'systemctl'
+   */
+  static get name() {
+    return "systemctl";
+  }
+
   static get endpoints() {
     return {
       ...super.endpoints,
@@ -22,7 +52,7 @@ export class ServiceSystemdControl extends Service {
             "--plain",
             "--no-legend"
           ]);
-          return p.stdout;
+          return decodeUnitList(p.stdout);
         }
       },
       start: {
