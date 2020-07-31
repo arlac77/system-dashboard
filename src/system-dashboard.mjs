@@ -74,19 +74,19 @@ export default async function setup(sp) {
         "/systemctl/unit": { ...GET, connected: "service(systemctl).units" },
         "/systemctl/unit/:unit": { ...GET, connected: "service(systemctl).unit" },
         "/systemctl/unit/:unit/start": {
-          ...GET,
+          ...POST,
           connected: "service(systemctl).start"
         },
         "/systemctl/unit/:unit/stop": {
-          ...GET,
+          ...POST,
           connected: "service(systemctl).stop"
         },
         "/systemctl/unit/:unit/restart": {
-          ...GET,
+          ...POST,
           connected: "service(systemctl).restart"
         },
         "/systemctl/unit/:unit/reload": {
-          ...GET,
+          ...POST,
           connected: "service(systemctl).reload"
         }
       }
