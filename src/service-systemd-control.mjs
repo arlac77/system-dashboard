@@ -25,9 +25,9 @@ export function decodeUnits(data) {
 
 export function decodeTimers(data) {
   /*
-  NEXT                         LEFT          LAST                         PASSED      UNIT                         ACTIVATES                     
-Fri 2020-07-31 12:10:28 CEST 17min left    Thu 2020-07-30 12:10:28 CEST 23h ago     systemd-tmpfiles-clean.timer systemd-tmpfiles-clean.service
-Fri 2020-07-31 13:50:00 CEST 1h 57min left Fri 2020-07-31 09:50:02 CEST 2h 2min ago desec.timer                  desec.service                 
+NEXT                         LEFT          LAST                         PASSED       UNIT                         ACTIVATES                     
+Sat 2020-08-01 00:00:00 CEST 4h 12min left Fri 2020-07-31 00:00:21 CEST 19h ago      logrotate.timer              logrotate.service             
+Sat 2020-08-01 00:00:00 CEST 4h 12min left Fri 2020-07-31 00:00:21 CEST 19h ago      man-db.timer                 man-db.service                
   */
   return data.split(/\n/).map(line => {
     return {
@@ -35,8 +35,8 @@ Fri 2020-07-31 13:50:00 CEST 1h 57min left Fri 2020-07-31 09:50:02 CEST 2h 2min 
       left: line.substr(29, 14).trim(),
       last: line.substr(43, 28),
       passed: line.substr(72, 11).trim(),
-      unit: line.substr(83).split(/\s+/)[0],
-      activates: line.substr(83).split(/\s+/)[1]
+      unit: line.substr(85).split(/\s+/)[0],
+      activates: line.substr(85).split(/\s+/)[1]
     };
   });
 }

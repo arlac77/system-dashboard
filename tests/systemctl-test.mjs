@@ -62,23 +62,23 @@ backup.service                             loaded    inactive dead    backup`;
 });
 
 test("systemctl decode timers", t => {
-  const raw = `Fri 2020-07-31 00:00:00 CEST 2min 7s left  Thu 2020-07-30 00:00:00 CEST 23h ago    logrotate.timer              logrotate.service             
-Fri 2020-07-31 00:00:00 CEST 2min 7s left  Thu 2020-07-30 00:00:00 CEST 23h ago    man-db.timer                 man-db.service  `;
+  const raw = `Sat 2020-08-01 00:00:00 CEST 4h 12min left Fri 2020-07-31 00:00:21 CEST 19h ago      logrotate.timer              logrotate.service             
+Sat 2020-08-01 00:00:00 CEST 4h 12min left Fri 2020-07-31 00:00:21 CEST 19h ago      man-db.timer                 man-db.service                `;
 
   t.deepEqual(decodeTimers(raw), [
     {
-      next: "Fri 2020-07-31 00:00:00 CEST",
-      left: "2min 7s left",
-      last: "Thu 2020-07-30 00:00:00 CEST",
-      passed: "23h ago",
+      next: "Sat 2020-08-01 00:00:00 CEST",
+      left: "4h 12min left",
+      last: "Fri 2020-07-31 00:00:21 CEST",
+      passed: "19h ago",
       unit: "logrotate.timer",
       activates: "logrotate.service"
     },
     {
-      next: "Fri 2020-07-31 00:00:00 CEST",
-      left: "2min 7s left",
-      last: "Thu 2020-07-30 00:00:00 CEST",
-      passed: "23h ago",
+      next: "Sat 2020-08-01 00:00:00 CEST",
+      left: "4h 12min left",
+      last: "Fri 2020-07-31 00:00:21 CEST",
+      passed: "19h ago",
       unit: "man-db.timer",
       activates: "man-db.service"
     }
