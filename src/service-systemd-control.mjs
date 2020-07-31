@@ -141,14 +141,11 @@ export class ServiceSystemdControl extends Service {
       unit: {
         default: true,
         receive: async params => {
-          const p = await execa("systemctl", [
-            "status",
-            params.unit,
-            "--full",
-            "--all",
-            "--lines",
-            "0"
-          ]);
+          const p = await execa(
+            "systemctl",
+            ["status", params.unit, "--full", "--all", "--lines", "0"],
+            { reject: false }
+          );
           return decodeUnit(p.stdout);
         }
       },
