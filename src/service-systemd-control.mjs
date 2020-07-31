@@ -79,6 +79,29 @@ export function decodeMachines(data) {
   });
 }
 
+export function decodeUnit(data) {
+/*
+* hook-ci.service - simple ci to be triggered by git hooks
+     Loaded: loaded (/usr/lib/systemd/system/hook-ci.service; enabled; vendor preset: disabled)
+    Drop-In: /etc/systemd/system/hook-ci.service.d
+             `-env.conf
+     Active: active (running) since Thu 2020-07-30 20:47:21 CEST; 17h ago
+TriggeredBy: * hook-ci.socket
+   Main PID: 22036 (node)
+     Memory: 403.8M (high: 500.0M max: 1000.0M)
+     CGroup: /system.slice/hook-ci.service
+             `-22036 hook-ci
+*/
+ 
+ return Object.fromEntries(data.split(/\n/).map(line => {
+   const m = line.match(/^\s*([\w\-\s]+):\s+(.+)/);
+   if(m) {
+     return [m[1], m[2]];
+   }
+  }));
+}
+
+
 export class ServiceSystemdControl extends Service {
   /**
    * @return {string} 'systemctl'
@@ -90,6 +113,20 @@ export class ServiceSystemdControl extends Service {
   static get endpoints() {
     return {
       ...super.endpoints,
+      unit: {
+        default: true,
+        receive: async (params) => {
+          const p = await execa("systemctl", [
+            "status",
+            params.unit,
+            "--full",
+            "--all",
+            "--lines",
+            "0"
+          ]);
+          return decodeUnit(p.stdout);
+        }
+      },
       units: {
         default: true,
         receive: async () => {

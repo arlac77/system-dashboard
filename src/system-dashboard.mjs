@@ -68,23 +68,24 @@ export default async function setup(sp) {
         },
         "/authenticate": { ...POST, connected: "service(auth).access_token" },
         "/services": { ...GET, connected: "service(admin).services" },
-        "/systemctl/units": { ...GET, connected: "service(systemctl).units" },
         "/systemctl/machines": { ...GET, connected: "service(systemctl).machines" },
         "/systemctl/timers": { ...GET, connected: "service(systemctl).timers" },
         "/systemctl/sockets": { ...GET, connected: "service(systemctl).sockets" },
-        "/systemctl/start/:unit": {
+        "/systemctl/unit": { ...GET, connected: "service(systemctl).units" },
+        "/systemctl/unit/:unit": { ...GET, connected: "service(systemctl).unit" },
+        "/systemctl/unit/:unit/start": {
           ...GET,
           connected: "service(systemctl).start"
         },
-        "/systemctl/stop/:unit": {
+        "/systemctl/unit/:unit/stop": {
           ...GET,
           connected: "service(systemctl).stop"
         },
-        "/systemctl/restart/:unit": {
+        "/systemctl/unit/:unit/restart": {
           ...GET,
           connected: "service(systemctl).restart"
         },
-        "/systemctl/reload/:unit": {
+        "/systemctl/unit/:unit/reload": {
           ...GET,
           connected: "service(systemctl).reload"
         }
