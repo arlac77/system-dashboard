@@ -96,8 +96,17 @@ TriggeredBy: * hook-ci.socket
  return Object.fromEntries(data.split(/\n/).map(line => {
    const m = line.match(/^\s*([\w\-\s]+):\s+(.+)/);
    if(m) {
+     switch(m[1]) {
+       case 'Loaded':
+         return ['load',m[2].split(/\s/)[0]];
+       case 'Active':
+         return ['active',m[2].split(/\s/)[0]];
+       case 'Main PID':
+         return ['mainPid',parseInt(m[2].split(/\s/)[0])];
+     }
      return [m[1], m[2]];
    }
+   return ['line',line];
   }));
 }
 
