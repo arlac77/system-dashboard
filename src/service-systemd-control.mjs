@@ -55,8 +55,8 @@ route 1361                                     systemd-networkd.socket          
   return data.split(/\n/).map(line => {
     const last = line.substr(47).split(/\s+/);
     return {
-      listen: line.substring(0,47).trim(),
-      units: last[0],
+      listen: line.substring(0, 47).trim(),
+      units: [last[0]],
       activates: last[1]
     };
   });
@@ -80,7 +80,7 @@ export function decodeMachines(data) {
 }
 
 export function decodeUnit(data) {
-/*
+  /*
 * hook-ci.service - simple ci to be triggered by git hooks
      Loaded: loaded (/usr/lib/systemd/system/hook-ci.service; enabled; vendor preset: disabled)
     Drop-In: /etc/systemd/system/hook-ci.service.d
@@ -92,24 +92,40 @@ TriggeredBy: * hook-ci.socket
      CGroup: /system.slice/hook-ci.service
              `-22036 hook-ci
 */
- 
- return Object.fromEntries(data.split(/\n/).map(line => {
-   const m = line.match(/^\s*([\w\-\s]+):\s+(.+)/);
-   if(m) {
-     switch(m[1]) {
-       case 'Loaded':
-         return ['load',m[2].split(/\s/)[0]];
-       case 'Active':
-         return ['active',m[2].split(/\s/)[0]];
-       case 'Main PID':
-         return ['mainPid',parseInt(m[2].split(/\s/)[0])];
-     }
-     return [m[1], m[2]];
-   }
-   return ['line',line];
-  }));
-}
 
+  const unit = {};
+
+  data.split(/\n/).forEach(line => {
+    let m = line.match(/^\s*([\w\-\s]+):\s+(.+)/);
+    if (m) {
+      switch (m[1]) {
+        case "Loaded":
+          unit.load = m[2].split(/\s/)[0];
+          break;
+        case "Active":
+          unit.active = m[2].split(/\s/)[0];
+          break;
+        case "Main PID":
+          unit.mainPid = parseInt(m[2].split(/\s/)[0]);
+          break;
+        case "TriggeredBy":
+          unit.triggeredBy = m[2].split(/\s/)[1];
+          break;
+
+        default:
+          unit[m[1]] = m[2];
+      }
+    } else {
+      m = line.match(/^\*?\s+([\w\.\-]+)\s+-\s+(.*)/);
+      if (m) {
+        unit.unit = m[1];
+        unit.description = m[2];
+      }
+    }
+  });
+
+  return unit;
+}
 
 export class ServiceSystemdControl extends Service {
   /**
@@ -124,7 +140,7 @@ export class ServiceSystemdControl extends Service {
       ...super.endpoints,
       unit: {
         default: true,
-        receive: async (params) => {
+        receive: async params => {
           const p = await execa("systemctl", [
             "status",
             params.unit,

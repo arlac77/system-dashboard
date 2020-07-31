@@ -7,26 +7,26 @@ import {
   decodeMachines
 } from "../src/service-systemd-control.mjs";
 
-test.skip("systemctl decode unit", t => {
+test("systemctl decode unit", t => {
   const raw = `* hook-ci.service - simple ci to be triggered by git hooks
      Loaded: loaded (/usr/lib/systemd/system/hook-ci.service; enabled; vendor preset: disabled)
     Drop-In: /etc/systemd/system/hook-ci.service.d
-             -env.conf
+        \`-env.conf
      Active: active (running) since Thu 2020-07-30 20:47:21 CEST; 17h ago
 TriggeredBy: * hook-ci.socket
    Main PID: 22036 (node)
      Memory: 403.8M (high: 500.0M max: 1000.0M)
      CGroup: /system.slice/hook-ci.service
-             -22036 hook-ci`;
+        \`-22036 hook-ci`;
 
-  t.deepEqual(decodeUnit(raw),
+  t.like(decodeUnit(raw),
     {
       unit: "hook-ci.service",
       description: "simple ci to be triggered by git hooks",
       load: "loaded",
       active: "active",
       mainPid: 22036,
-      memory: 403800000
+      triggeredBy: "hook-ci.socket"
     });
 });
 
@@ -100,22 +100,22 @@ route 1361                                     systemd-networkd.socket          
   t.deepEqual(decodeSockets(raw), [
     {
       listen: "/run/avahi-daemon/socket",
-      units: "avahi-daemon.socket",
+      units: ["avahi-daemon.socket"],
       activates: "avahi-daemon.service"
     },
     {
       listen: "/run/dbus/system_bus_socket",
-      units: "dbus.socket",
+      units: ["dbus.socket"],
       activates: "dbus.service"
     },
     {
       listen: "[::]:19531",
-      units: "systemd-journal-gatewayd.socket",
+      units: ["systemd-journal-gatewayd.socket"],
       activates: "systemd-journal-gatewayd.service"
     },
     {
       listen: "route 1361",
-      units: "systemd-networkd.socket",
+      units: ["systemd-networkd.socket"],
       activates: "systemd-networkd.service"
     }
   ]);
