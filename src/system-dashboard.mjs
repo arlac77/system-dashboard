@@ -33,6 +33,10 @@ export default async function setup(sp) {
   };
   const POST = {
     method: "POST",
+    interceptors: GETInterceptors
+  };
+  const POST_PLAIN = {
+    method: "POST",
     interceptors: [new CTXBodyParamInterceptor()]
   };
   const WS = {
@@ -66,7 +70,7 @@ export default async function setup(sp) {
           ...WS,
           connected: "service(health).state"
         },
-        "/authenticate": { ...POST, connected: "service(auth).access_token" },
+        "/authenticate": { ...POST_PLAIN, connected: "service(auth).access_token" },
         "/services": { ...GET, connected: "service(admin).services" },
         "/systemctl/machines": { ...GET, connected: "service(systemctl).machines" },
         "/systemctl/timers": { ...GET, connected: "service(systemctl).timers" },
