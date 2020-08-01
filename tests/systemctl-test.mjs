@@ -16,6 +16,7 @@ test("systemctl decode unit", t => {
 TriggeredBy: * hook-ci.socket
    Main PID: 22036 (node)
      Memory: 403.8M (high: 500.0M max: 1000.0M)
+      Tasks: 11 (limit: 2211)
      CGroup: /system.slice/hook-ci.service
         \`-22036 hook-ci`;
 
@@ -29,6 +30,8 @@ TriggeredBy: * hook-ci.socket
       since: "Thu 2020-07-30 20:47:21 CEST",
       passed: "17h ago",
       mainPid: 22036,
+      tasks: 11,
+      taskLimit: 2211,
       triggeredBy: "hook-ci.socket"
     });
 });

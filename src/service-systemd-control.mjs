@@ -103,6 +103,13 @@ TriggeredBy: * hook-ci.socket
         case "Loaded":
           unit.load = value.split(/\s/)[0];
           break;
+        case "Tasks":
+          m = value.match(/(\w+)\s+\(limit: (\w+)\)/);
+          if (m) {
+            unit.tasks = parseInt(m[1]);
+            unit.taskLimit = parseInt(m[2]);
+          }
+          break;
         case "Active":
           m = value.match(/(\w+)\s+\((\w+)\)\s+\w+\s+([^;]+);\s+(.*)/);
           if (m) {
@@ -111,7 +118,6 @@ TriggeredBy: * hook-ci.socket
             unit.since = m[3];
             unit.passed = m[4];
           }
-          //unit.active = value.split(/\s/)[0];
           break;
         case "Main PID":
           unit.mainPid = parseInt(value.split(/\s/)[0]);
