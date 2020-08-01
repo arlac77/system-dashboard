@@ -25,6 +25,9 @@ TriggeredBy: * hook-ci.socket
       description: "simple ci to be triggered by git hooks",
       load: "loaded",
       active: "active",
+      sub: "running",
+      since: "Thu 2020-07-30 20:47:21 CEST",
+      passed: "17h ago",
       mainPid: 22036,
       triggeredBy: "hook-ci.socket"
     });

@@ -98,22 +98,29 @@ TriggeredBy: * hook-ci.socket
   data.split(/\n/).forEach(line => {
     let m = line.match(/^\s*([\w\-\s]+):\s+(.+)/);
     if (m) {
+      const value = m[2];
       switch (m[1]) {
         case "Loaded":
-          unit.load = m[2].split(/\s/)[0];
+          unit.load = value.split(/\s/)[0];
           break;
         case "Active":
-          unit.active = m[2].split(/\s/)[0];
+          m = value.match(/(\w+)\s+\((\w+)\)\s+\w+\s+([^;]+);\s+(.*)/);
+          if (m) {
+            unit.active = m[1];
+            unit.sub = m[2];
+            unit.since = m[3];
+            unit.passed = m[4];
+          }
+          //unit.active = value.split(/\s/)[0];
           break;
         case "Main PID":
-          unit.mainPid = parseInt(m[2].split(/\s/)[0]);
+          unit.mainPid = parseInt(value.split(/\s/)[0]);
           break;
         case "TriggeredBy":
-          unit.triggeredBy = m[2].split(/\s/)[1];
+          unit.triggeredBy = value.split(/\s/)[1];
           break;
-
         default:
-          unit[m[1]] = m[2];
+          unit[m[1]] = value;
       }
     } else {
       m = line.match(/^\*?\s+([\w\.\-]+)\s+-\s+(.*)/);
