@@ -103,7 +103,21 @@ TriggeredBy: * hook-ci.socket
         case "Loaded":
           unit.load = value.split(/\s/)[0];
           break;
-        case "Tasks":
+          case "Memory":
+            m = value.match(/([\d\.]+)(\w+)(\s+\([^\)]+\))?/);
+            if (m) {
+              unit.memory = parseFloat(m[1]);
+              switch(m[2]) {
+                case 'K': unit.memory *=  1024;
+                break;
+                case 'M': unit.memory *=  1024 * 1024;
+                break;
+                case 'G': unit.memory *=  1024 * 1024 * 1024;
+                break;
+              }
+            }
+            break;
+          case "Tasks":
           m = value.match(/(\w+)\s+\(limit: (\w+)\)/);
           if (m) {
             unit.tasks = parseInt(m[1]);

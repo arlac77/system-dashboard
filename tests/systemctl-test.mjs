@@ -27,6 +27,7 @@ TriggeredBy: * hook-ci.socket
       load: "loaded",
       active: "active",
       sub: "running",
+      memory: 403.8 * 1024 * 1024,
       since: "Thu 2020-07-30 20:47:21 CEST",
       passed: "17h ago",
       mainPid: 22036,
