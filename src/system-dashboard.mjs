@@ -53,7 +53,6 @@ export default async function setup(sp) {
           ...WS,
           connected: "service(swarm).peers.services"
         },
-
         "/state/uptime": {
           ...WS,
           connected: "service(health).uptime"
@@ -92,6 +91,10 @@ export default async function setup(sp) {
         "/systemctl/unit/:unit/reload": {
           ...POST,
           connected: "service(systemctl).reload"
+        },
+        "/other/fail2ban": {
+          ...GET,
+          connected: "service(systemctl).fail2ban"
         }
       }
     },

@@ -103,21 +103,24 @@ TriggeredBy: * hook-ci.socket
         case "Loaded":
           unit.load = value.split(/\s/)[0];
           break;
-          case "Memory":
-            m = value.match(/([\d\.]+)(\w+)(\s+\([^\)]+\))?/);
-            if (m) {
-              unit.memory = parseFloat(m[1]);
-              switch(m[2]) {
-                case 'K': unit.memory *=  1024;
+        case "Memory":
+          m = value.match(/([\d\.]+)(\w+)(\s+\([^\)]+\))?/);
+          if (m) {
+            unit.memory = parseFloat(m[1]);
+            switch (m[2]) {
+              case "K":
+                unit.memory *= 1024;
                 break;
-                case 'M': unit.memory *=  1024 * 1024;
+              case "M":
+                unit.memory *= 1024 * 1024;
                 break;
-                case 'G': unit.memory *=  1024 * 1024 * 1024;
+              case "G":
+                unit.memory *= 1024 * 1024 * 1024;
                 break;
-              }
             }
-            break;
-          case "Tasks":
+          }
+          break;
+        case "Tasks":
           m = value.match(/(\w+)\s+\(limit: (\w+)\)/);
           if (m) {
             unit.tasks = parseInt(m[1]);
@@ -245,21 +248,17 @@ export class ServiceSystemdControl extends Service {
       reload: {
         default: true,
         receive: async params => systemctl("reload", params)
+      },
+
+      fail2ban: {
+        default: true,
+        receive: async params => {
+          const p = await execa("fail2ban-client", ["status"]);
+          return p.stdout;
+        }
       }
     };
   }
-
-  /*
-  router.addRoute("GET", "/fail2ban/status", restricted, async (ctx, next) => {
-    const p = await execa("fail2ban-client", ["status"], { all: true });
-    ctx.body = p.all;
-    return next();
-  });
-  router.addRoute("GET", "/dbus/list", restricted, async (ctx, next) => {
-    ctx.body = await list();
-    return next();
-  });
-  */
 }
 
 export default ServiceSystemdControl;
