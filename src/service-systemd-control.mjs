@@ -79,6 +79,12 @@ export function decodeMachines(data) {
   });
 }
 
+export function decodeOptions(str) {
+  const options = {};
+
+  return options;
+}
+ 
 export function decodeUnit(data) {
   /*
 * hook-ci.service - simple ci to be triggered by git hooks
