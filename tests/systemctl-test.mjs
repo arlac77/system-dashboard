@@ -5,7 +5,8 @@ import {
   decodeSockets,
   decodeTimers,
   decodeMachines,
-  decodeFiles
+  decodeFiles,
+  decodeOptions
 } from "../src/service-systemd-control.mjs";
 
 test("systemctl decode unit", t => {

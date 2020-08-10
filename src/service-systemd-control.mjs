@@ -82,9 +82,36 @@ export function decodeMachines(data) {
 export function decodeOptions(str) {
   const options = {};
 
+  while (str && str.length) {
+    const m = str.match(/(\w+):\s+([^\s,]+)([\s,]*)(.*)/);
+    if (m) {
+      options[m[1]] = m[2];
+      str = m[4];
+    }
+    else {
+      break;
+    }
+  }
+
   return options;
 }
- 
+
+function bytes(value)
+{
+  const m = value.match(/([\d\.]+)(\w+)/);
+  const memory = parseFloat(m[1]);
+  switch (m[2]) {
+    case "K":
+      return memory * 1024;
+    case "M":
+      return memory * 1024 * 1024;
+    case "G":
+      return memory * 1024 * 1024 * 1024;
+      break;
+  }
+  return memory;
+}
+
 export function decodeUnit(data) {
   /*
 * hook-ci.service - simple ci to be triggered by git hooks
@@ -110,21 +137,7 @@ TriggeredBy: * hook-ci.socket
           unit.load = value.split(/\s/)[0];
           break;
         case "Memory":
-          m = value.match(/([\d\.]+)(\w+)(\s+\([^\)]+\))?/);
-          if (m) {
-            unit.memory = parseFloat(m[1]);
-            switch (m[2]) {
-              case "K":
-                unit.memory *= 1024;
-                break;
-              case "M":
-                unit.memory *= 1024 * 1024;
-                break;
-              case "G":
-                unit.memory *= 1024 * 1024 * 1024;
-                break;
-            }
-          }
+          unit.memory = bytes(value);
           break;
         case "Tasks":
           m = value.match(/(\w+)\s+\(limit: (\w+)\)/);
@@ -167,14 +180,13 @@ export function decodeFiles(data) {
   const files = {};
   let lines;
 
-  for(const line of data.split(/\n/)) {
+  for (const line of data.split(/\n/)) {
     const m = line.match(/^#\s+(\/(.+))/);
 
-    if(m) {
+    if (m) {
       lines = [];
       files[m[1]] = lines;
-    }
-    else {
+    } else {
       lines.push(line);
     }
   }
@@ -196,11 +208,9 @@ export class ServiceSystemdControl extends Service {
       files: {
         default: true,
         receive: async params => {
-          const p = await execa(
-            "systemctl",
-            ["cat", params.unit],
-            { reject: false }
-          );
+          const p = await execa("systemctl", ["cat", params.unit], {
+            reject: false
+          });
           return decodeFiles(p.stdout);
         }
       },
