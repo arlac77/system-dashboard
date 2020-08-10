@@ -163,6 +163,25 @@ TriggeredBy: * hook-ci.socket
   return unit;
 }
 
+export function decodeFiles(data) {
+  const files = {};
+  let lines;
+
+  for(const line of data.split(/\n/)) {
+    const m = line.match(/^#\s+(\/(.+))/);
+
+    if(m) {
+      lines = [];
+      files[m[1]] = lines;
+    }
+    else {
+      lines.push(line);
+    }
+  }
+
+  return files;
+}
+
 export class ServiceSystemdControl extends Service {
   /**
    * @return {string} 'systemctl'
@@ -174,6 +193,17 @@ export class ServiceSystemdControl extends Service {
   static get endpoints() {
     return {
       ...super.endpoints,
+      files: {
+        default: true,
+        receive: async params => {
+          const p = await execa(
+            "systemctl",
+            ["cat", params.unit],
+            { reject: false }
+          );
+          return decodeFiles(p.stdout);
+        }
+      },
       unit: {
         default: true,
         receive: async params => {

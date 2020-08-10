@@ -4,7 +4,8 @@ import {
   decodeUnits,
   decodeSockets,
   decodeTimers,
-  decodeMachines
+  decodeMachines,
+  decodeFiles
 } from "../src/service-systemd-control.mjs";
 
 test("systemctl decode unit", t => {
@@ -20,23 +21,21 @@ TriggeredBy: * hook-ci.socket
      CGroup: /system.slice/hook-ci.service
         \`-22036 hook-ci`;
 
-  t.like(decodeUnit(raw),
-    {
-      unit: "hook-ci.service",
-      description: "simple ci to be triggered by git hooks",
-      load: "loaded",
-      active: "active",
-      sub: "running",
-      memory: 403.8 * 1024 * 1024,
-      since: "Thu 2020-07-30 20:47:21 CEST",
-      passed: "17h ago",
-      mainPid: 22036,
-      tasks: 11,
-      taskLimit: 2211,
-      triggeredBy: "hook-ci.socket"
-    });
+  t.like(decodeUnit(raw), {
+    unit: "hook-ci.service",
+    description: "simple ci to be triggered by git hooks",
+    load: "loaded",
+    active: "active",
+    sub: "running",
+    memory: 403.8 * 1024 * 1024,
+    since: "Thu 2020-07-30 20:47:21 CEST",
+    passed: "17h ago",
+    mainPid: 22036,
+    tasks: 11,
+    taskLimit: 2211,
+    triggeredBy: "hook-ci.socket"
+  });
 });
-
 
 test("systemctl decode units", t => {
   const raw = `auditd.service                             loaded    inactive dead    Security Auditing Service
@@ -126,4 +125,17 @@ route 1361                                     systemd-networkd.socket          
       activates: "systemd-networkd.service"
     }
   ]);
+});
+
+test("systemctl decode files", t => {
+  const raw = `# /file1
+line 1
+line 2
+# /file2
+line a`;
+
+  t.deepEqual(decodeFiles(raw), {
+    "/file1": ["line 1", "line 2"],
+    "/file2": ["line a"]
+  });
 });

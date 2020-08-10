@@ -76,6 +76,7 @@ export default async function setup(sp) {
         "/systemctl/sockets": { ...GET, connected: "service(systemctl).sockets" },
         "/systemctl/unit": { ...GET, connected: "service(systemctl).units" },
         "/systemctl/unit/:unit": { ...GET, connected: "service(systemctl).unit" },
+        "/systemctl/unit/:unit/files": { ...GET, connected: "service(systemctl).files" },
         "/systemctl/unit/:unit/start": {
           ...POST,
           connected: "service(systemctl).start"
