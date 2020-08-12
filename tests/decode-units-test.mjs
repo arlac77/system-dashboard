@@ -44,4 +44,16 @@ test("systemctl decode units", t => {
       description: "backup"
     }
   );
+
+  //console.log(units.map(u => u.unit));
+  t.deepEqual(
+    units.find(u => u.unit === "dev-disk-by-uuid-806fc6bb-526c-40ea-be90-233701157796.device"),
+    {
+      unit: "dev-disk-by-uuid-806fc6bb-526c-40ea-be90-233701157796.device",
+      load: "loaded",
+      active: "active",
+      sub: "plugged",
+      description: "/dev/disk/by-uuid/806fc6bb-526c-40ea-be90-233701157796"
+    }
+  );
 });

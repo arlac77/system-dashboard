@@ -1,0 +1,20 @@
+/run/avahi-daemon/socket                       avahi-daemon.socket                  avahi-daemon.service                 
+/run/dbus/system_bus_socket                    dbus.socket                          dbus.service                         
+/run/dmeventd-client                           dm-event.socket                      dm-event.service                     
+/run/dmeventd-server                           dm-event.socket                      dm-event.service                     
+/run/hook-ci/socket                            hook-ci.socket                       hook-ci.service                      
+/run/konsum/http/socket                        konsum.socket                        konsum.service                       
+/run/lvm/lvmetad.socket                        lvm2-lvmetad.socket                  lvm2-lvmetad.service                 
+/run/lvm/lvmpolld.socket                       lvm2-lvmpolld.socket                 lvm2-lvmpolld.service                
+/run/npm-template-sync-github-hook/http/socket npm-template-sync-github-hook.socket npm-template-sync-github-hook.service
+/run/system-dashboard/http/socket              system-dashboard.socket              system-dashboard.service             
+/run/systemd/coredump                          systemd-coredump.socket              -                                    
+/run/systemd/journal/dev-log                   systemd-journald-dev-log.socket      systemd-journald.service             
+/run/systemd/journal/socket                    systemd-journald.socket              systemd-journald.service             
+/run/systemd/journal/stdout                    systemd-journald.socket              systemd-journald.service             
+/run/systemd/journal/syslog                    syslog.socket                        syslog.service                       
+/run/udev/control                              systemd-udevd-control.socket         systemd-udevd.service                
+[::]:19531                                     systemd-journal-gatewayd.socket      systemd-journal-gatewayd.service     
+audit 1                                        systemd-journald-audit.socket        systemd-journald.service             
+kobject-uevent 1                               systemd-udevd-kernel.socket          systemd-udevd.service                
+route 1361                                     systemd-networkd.socket              systemd-networkd.service             

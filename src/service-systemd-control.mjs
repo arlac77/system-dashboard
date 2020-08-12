@@ -14,7 +14,7 @@ export function decodeUnits(data) {
   return data.split(/\n/).map(line => {
     const [unit, load, active, sub, ...description] = line.split(/\s+/);
     return {
-      unit,
+      unit: unit.replace(/\\x(\w\w)/g,(m,n) => String.fromCharCode(parseInt(n,16))),
       load,
       active,
       sub,
