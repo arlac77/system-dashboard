@@ -115,7 +115,7 @@
       [
         "@semantic-release/exec",
         {
-          "verifyConditionsCmd": "which makepkg",        
+          "verifyConditionsCmd": "which makepkg",
           "publishCmd": "npx npm-pkgbuild --pkgver ${nextRelease.version} --npm-dist --npm-modules pkgbuild pacman makepkg"
         }
       ]
