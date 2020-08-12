@@ -1,34 +1,9 @@
 import test from "ava";
 import {
   decodeSockets,
-  decodeTimers,
   decodeMachines,
   decodeFiles
 } from "../src/service-systemd-control.mjs";
-
-test("systemctl decode timers", t => {
-  const raw = `Sat 2020-08-01 00:00:00 CEST 4h 12min left Fri 2020-07-31 00:00:21 CEST 19h ago      logrotate.timer              logrotate.service             
-Sat 2020-08-01 00:00:00 CEST 4h 12min left Fri 2020-07-31 00:00:21 CEST 19h ago      man-db.timer                 man-db.service                `;
-
-  t.deepEqual(decodeTimers(raw), [
-    {
-      next: "Sat 2020-08-01 00:00:00 CEST",
-      left: "4h 12min left",
-      last: "Fri 2020-07-31 00:00:21 CEST",
-      passed: "19h ago",
-      unit: "logrotate.timer",
-      activates: "logrotate.service"
-    },
-    {
-      next: "Sat 2020-08-01 00:00:00 CEST",
-      left: "4h 12min left",
-      last: "Fri 2020-07-31 00:00:21 CEST",
-      passed: "19h ago",
-      unit: "man-db.timer",
-      activates: "man-db.service"
-    }
-  ]);
-});
 
 test("systemctl decode machines", t => {
   const raw = `pine1 (host) degraded 2      0   `;

@@ -7,6 +7,31 @@ import { decodeTimers } from "../src/service-systemd-control.mjs";
 
 const here = dirname(fileURLToPath(import.meta.url));
 
+test.skip("systemctl decode timers A", t => {
+  const raw = `Thu 2020-08-13 00:00:00 CEST 3h 25min left Wed 2020-08-12 00:00:03 CEST 20h ago    logrotate.timer              logrotate.service  
+Sat 2020-08-01 00:00:00 CEST 4h 12min left Fri 2020-07-31 00:00:21 CEST 19h ago      logrotate.timer              logrotate.service             
+Sat 2020-08-01 00:00:00 CEST 4h 12min left Fri 2020-07-31 00:00:21 CEST 19h ago      man-db.timer                 man-db.service                `;
+
+  t.deepEqual(decodeTimers(raw), [
+    {
+      next: "Sat 2020-08-01 00:00:00 CEST",
+      left: "4h 12min left",
+      last: "Fri 2020-07-31 00:00:21 CEST",
+      passed: "19h ago",
+      unit: "logrotate.timer",
+      activates: "logrotate.service"
+    },
+    {
+      next: "Sat 2020-08-01 00:00:00 CEST",
+      left: "4h 12min left",
+      last: "Fri 2020-07-31 00:00:21 CEST",
+      passed: "19h ago",
+      unit: "man-db.timer",
+      activates: "man-db.service"
+    }
+  ]);
+});
+
 test("systemctl decode timers", t => {
   const raw = readFileSync(join(here, "fixtures", "list-timers"), {
     encoding: "utf8"
