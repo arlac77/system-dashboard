@@ -1,0 +1,11 @@
+* hook-ci.service - simple ci to be triggered by git hooks
+     Loaded: loaded (/usr/lib/systemd/system/hook-ci.service; enabled; vendor preset: disabled)
+    Drop-In: /etc/systemd/system/hook-ci.service.d
+             `-env.conf
+     Active: active (running) since Wed 2020-08-12 14:16:01 CEST; 8h ago
+TriggeredBy: * hook-ci.socket
+   Main PID: 21944 (node)
+     Memory: 345.0M (high: 500.0M max: 1000.0M)
+      Tasks: 11 (limit: 2211)
+     CGroup: /system.slice/hook-ci.service
+             `-21944 hook-ci

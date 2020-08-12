@@ -6,6 +6,12 @@ async function systemctl(cmd, params) {
   return p.all;
 }
 
+function hex2char(str) {
+  return str.replace(/\\x(\w\w)/g, (m, n) =>
+    String.fromCharCode(parseInt(n, 16))
+  );
+}
+
 export function decodeUnits(data) {
   // auditd.service                             loaded    inactive dead    Security Auditing Service
   // avahi-daemon.service                       loaded    active   running Avahi mDNS/DNS-SD Stack
@@ -14,7 +20,7 @@ export function decodeUnits(data) {
   return data.split(/\n/).map(line => {
     const [unit, load, active, sub, ...description] = line.split(/\s+/);
     return {
-      unit: unit.replace(/\\x(\w\w)/g,(m,n) => String.fromCharCode(parseInt(n,16))),
+      unit: hex2char(unit),
       load,
       active,
       sub,
@@ -31,16 +37,19 @@ NEXT                         LEFT          LAST                         PASSED  
 Sat 2020-08-01 00:00:00 CEST 4h 12min left Fri 2020-07-31 00:00:21 CEST 19h ago      logrotate.timer              logrotate.service             
 Sat 2020-08-01 00:00:00 CEST 4h 12min left Fri 2020-07-31 00:00:21 CEST 19h ago      man-db.timer                 man-db.service                
   */
-  return data.split(/\n/).map(line => {
-    return {
-      next: line.substr(0, 28),
-      left: line.substr(29, 14).trim(),
-      last: line.substr(43, 28),
-      passed: line.substr(72, 11).trim(),
-      unit: line.substr(83).split(/\s+/)[0],
-      activates: line.substr(83).split(/\s+/)[1]
-    };
-  }).filter(t => t.unit)
+  return data
+    .split(/\n/)
+    .map(line => {
+      return {
+        next: line.substr(0, 28),
+        left: line.substr(29, 14).trim(),
+        last: line.substr(43, 28),
+        passed: line.substr(72, 11).trim(),
+        unit: line.substr(83).split(/\s+/)[0],
+        activates: line.substr(83).split(/\s+/)[1]
+      };
+    })
+    .filter(t => t.unit);
 }
 
 export function decodeSockets(data) {
@@ -134,6 +143,7 @@ TriggeredBy: * hook-ci.socket
   const unit = {};
 
   data.split(/\n/).forEach(line => {
+    line = hex2char(line);
     let m = line.match(/^\s*([\w\-\s]+):\s+([^\(]+)(\s*\(([^\)]*)\))?\s*(.*)/);
     if (m) {
       const value = m[2].trim();
@@ -166,6 +176,12 @@ TriggeredBy: * hook-ci.socket
             unit.since = m[1];
             unit.passed = m[2];
           }
+          break;
+        case "Device":
+          unit.device = value;
+          break;
+        case "Follow":
+          unit.follow = value.replace('unit currently follows state of ','');
           break;
         case "Main PID":
           unit.mainPid = parseInt(value.split(/\s/)[0]);
