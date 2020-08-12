@@ -18,7 +18,7 @@ export function decodeUnits(data) {
       load,
       active,
       sub,
-      description: description.join(" ")
+      description: description.join(" ").trim()
     };
   });
 }
@@ -240,8 +240,6 @@ export class ServiceSystemdControl extends Service {
         receive: async () => {
           const p = await execa("systemctl", [
             "list-units",
-            "-t",
-            "service",
             "--full",
             "--all",
             "--plain",

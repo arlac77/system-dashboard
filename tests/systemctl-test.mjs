@@ -1,41 +1,10 @@
 import test from "ava";
 import {
-  decodeUnits,
   decodeSockets,
   decodeTimers,
   decodeMachines,
   decodeFiles
 } from "../src/service-systemd-control.mjs";
-
-test("systemctl decode units", t => {
-  const raw = `auditd.service                             loaded    inactive dead    Security Auditing Service
-avahi-daemon.service                       loaded    active   running Avahi mDNS/DNS-SD Stack
-backup.service                             loaded    inactive dead    backup`;
-
-  t.deepEqual(decodeUnits(raw), [
-    {
-      unit: "auditd.service",
-      load: "loaded",
-      active: "inactive",
-      sub: "dead",
-      description: "Security Auditing Service"
-    },
-    {
-      unit: "avahi-daemon.service",
-      load: "loaded",
-      active: "active",
-      sub: "running",
-      description: "Avahi mDNS/DNS-SD Stack"
-    },
-    {
-      unit: "backup.service",
-      load: "loaded",
-      active: "inactive",
-      sub: "dead",
-      description: "backup"
-    }
-  ]);
-});
 
 test("systemctl decode timers", t => {
   const raw = `Sat 2020-08-01 00:00:00 CEST 4h 12min left Fri 2020-07-31 00:00:21 CEST 19h ago      logrotate.timer              logrotate.service             
