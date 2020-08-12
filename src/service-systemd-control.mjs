@@ -25,6 +25,8 @@ export function decodeUnits(data) {
 
 export function decodeTimers(data) {
   /*
+Thu 2020-08-13 00:00:00 CEST 3h 25min left Wed 2020-08-12 00:00:03 CEST 20h ago    logrotate.timer              logrotate.service             
+
 NEXT                         LEFT          LAST                         PASSED       UNIT                         ACTIVATES                     
 Sat 2020-08-01 00:00:00 CEST 4h 12min left Fri 2020-07-31 00:00:21 CEST 19h ago      logrotate.timer              logrotate.service             
 Sat 2020-08-01 00:00:00 CEST 4h 12min left Fri 2020-07-31 00:00:21 CEST 19h ago      man-db.timer                 man-db.service                
@@ -35,10 +37,10 @@ Sat 2020-08-01 00:00:00 CEST 4h 12min left Fri 2020-07-31 00:00:21 CEST 19h ago 
       left: line.substr(29, 14).trim(),
       last: line.substr(43, 28),
       passed: line.substr(72, 11).trim(),
-      unit: line.substr(85).split(/\s+/)[0],
-      activates: line.substr(85).split(/\s+/)[1]
+      unit: line.substr(83).split(/\s+/)[0],
+      activates: line.substr(83).split(/\s+/)[1]
     };
-  });
+  }).filter(t => t.unit)
 }
 
 export function decodeSockets(data) {
