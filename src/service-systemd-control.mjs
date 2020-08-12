@@ -177,6 +177,9 @@ TriggeredBy: * hook-ci.socket
             unit.passed = m[2];
           }
           break;
+        case "Docs":
+          unit.docs = value;
+        break;
         case "Device":
           unit.device = value;
           break;
