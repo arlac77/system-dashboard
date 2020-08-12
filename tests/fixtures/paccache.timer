@@ -1,0 +1,5 @@
+* paccache.timer - Discard unused packages weekly
+     Loaded: loaded (/usr/lib/systemd/system/paccache.timer; enabled; vendor preset: disabled)
+     Active: active (waiting) since Wed 2020-08-12 01:32:20 CEST; 21h ago
+    Trigger: Mon 2020-08-17 00:00:00 CEST; 4 days left
+   Triggers: * paccache.service

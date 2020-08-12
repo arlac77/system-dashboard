@@ -44,3 +44,19 @@ test("systemctl decode device unit", t => {
     follow: "sys-devices-platform-soc-soc:usb3\x2d0-12000000.dwc3-xhci\x2dhcd.3.auto-usb3-3\x2d1-3\x2d1.2-3\x2d1.2:1.0-host0-target0:0:0-0:0:0:0-block-sda-sda2.device"
   });
 });
+
+
+test("systemctl decode timer unit", t => {
+  t.like(decodeUnit(getRawUnit("paccache.timer")), {
+    unit: "paccache.timer",
+    description: "Discard unused packages weekly",
+    load: "loaded",
+    active: "active",
+    sub: "waiting",
+    since: "Wed 2020-08-12 01:32:20 CEST",
+    passed: "21h ago",
+    trigger: "Mon 2020-08-17 00:00:00 CEST",
+    left:  "4 days",
+    triggers: "paccache.service"
+  });
+});

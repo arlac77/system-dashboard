@@ -181,13 +181,24 @@ TriggeredBy: * hook-ci.socket
           unit.device = value;
           break;
         case "Follow":
-          unit.follow = value.replace('unit currently follows state of ','');
+          unit.follow = value.replace("unit currently follows state of ", "");
           break;
         case "Main PID":
           unit.mainPid = parseInt(value.split(/\s/)[0]);
           break;
         case "TriggeredBy":
           unit.triggeredBy = value.split(/\s/)[1];
+          break;
+        case "Trigger":
+          m = value.match(/([^;]+);\s+(.*)\s+left/);
+          if (m) {
+            unit.trigger = m[1];
+            unit.left = m[2];
+          }
+          break;
+
+        case "Triggers":
+          unit.triggers = value.replace(/\*\s+/, "");
           break;
         default:
           unit[m[1]] = value;
