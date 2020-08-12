@@ -32,7 +32,7 @@
     "@kronos-integration/service-health-check": "^5.0.42",
     "@kronos-integration/service-http": "^10.1.28",
     "@kronos-integration/service-ldap": "^2.1.46",
-    "@kronos-integration/service-swarm": "^1.7.2",
+    "@kronos-integration/service-swarm": "^1.7.3",
     "dbus-next": "^0.8.2",
     "execa": "^4.0.3"
   },
@@ -94,7 +94,7 @@
     },
     "depends": {
       "systemd": ">=246.1",
-      "nginx-mainline": ">=1.19.1"
+      "nginx-mainline": ">=1.19.2"
     },
     "groups": "webhook",
     "hooks": "pacman/hooks.sh",
