@@ -83,12 +83,16 @@ export function decodeOptions(str) {
   const options = {};
 
   while (str && str.length) {
-    const m = str.match(/(\w+):\s+([^\s,]+)([\s,]*)(.*)/);
+    let m = str.match(/^(\w+)$/);
+    if (m) {
+      options[m[1]] = true;
+      break;
+    }
+    m = str.match(/\s*([\s\w]+):\s+([^\s,]+)([\s,]*)(.*)/);
     if (m) {
       options[m[1]] = m[2];
       str = m[4];
-    }
-    else {
+    } else {
       break;
     }
   }
@@ -96,8 +100,7 @@ export function decodeOptions(str) {
   return options;
 }
 
-function bytes(value)
-{
+function bytes(value) {
   const m = value.match(/([\d\.]+)(\w+)/);
   const memory = parseFloat(m[1]);
   switch (m[2]) {
@@ -129,30 +132,37 @@ TriggeredBy: * hook-ci.socket
   const unit = {};
 
   data.split(/\n/).forEach(line => {
-    let m = line.match(/^\s*([\w\-\s]+):\s+(.+)/);
+    let m = line.match(/^\s*([\w\-\s]+):\s+([^\(]+)(\s*\(([^\)]*)\))?\s*(.*)/);
     if (m) {
-      const value = m[2];
+      const value = m[2].trim();
+      const extra = m[5];
+      const options = decodeOptions(m[4]);
       switch (m[1]) {
         case "Loaded":
           unit.load = value.split(/\s/)[0];
           break;
         case "Memory":
           unit.memory = bytes(value);
+          if (options.high) {
+            unit.highMemory = bytes(options.high);
+          }
+          if (options.max) {
+            unit.maxMemory = bytes(options.max);
+          }
           break;
         case "Tasks":
-          m = value.match(/(\w+)\s+\(limit: (\w+)\)/);
-          if (m) {
-            unit.tasks = parseInt(m[1]);
-            unit.taskLimit = parseInt(m[2]);
+          unit.tasks = parseInt(value);
+          if (options.limit) {
+            unit.taskLimit = parseInt(options.limit);
           }
           break;
         case "Active":
-          m = value.match(/(\w+)\s+\((\w+)\)\s+\w+\s+([^;]+);\s+(.*)/);
+          unit.active = value;
+          unit.sub = Object.keys(options)[0];
+          m = extra.match(/\w+\s+([^;]+);\s+(.*)/);
           if (m) {
-            unit.active = m[1];
-            unit.sub = m[2];
-            unit.since = m[3];
-            unit.passed = m[4];
+            unit.since = m[1];
+            unit.passed = m[2];
           }
           break;
         case "Main PID":

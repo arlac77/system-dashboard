@@ -12,6 +12,7 @@ test(dot, undefined, {});
 test(dot, " ", {});
 
 test(dot, "high: 500.0M max: 1000.0M", { high: "500.0M", max: "1000.0M" });
+test(dot, "running", { running: true });
 
 test.skip(
   dot,
