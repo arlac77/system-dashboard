@@ -1,0 +1,8 @@
+* nginx.service - A high performance web server and a reverse proxy server
+     Loaded: loaded (/usr/lib/systemd/system/nginx.service; enabled; vendor preset: disabled)
+     Active: active (running) (thawing) since Wed 2020-08-12 01:32:23 CEST; 1 day 7h ago
+   Main PID: 377 (nginx)
+     Memory: 8.6M
+     CGroup: /system.slice/nginx.service
+             |- 377 nginx: master process /usr/bin/nginx -g pid /run/nginx.pid; error_log stderr;
+             `-4997 nginx: worker process

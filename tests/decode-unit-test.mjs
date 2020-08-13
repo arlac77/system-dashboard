@@ -27,7 +27,30 @@ test("systemctl decode service unit", t => {
     mainPid: 21944,
     tasks: 11,
     taskLimit: 2211,
-    triggeredBy: "hook-ci.socket"
+    triggeredBy: "hook-ci.socket",
+
+    dropIn: { "/etc/systemd/system/hook-ci.service.d": ["env.conf"] },
+    CGroup: { "/system.slice/hook-ci.service": ["21944 hook-ci"] }
+  });
+});
+
+test("systemctl decode service unit cgroup", t => {
+  t.like(decodeUnit(getRawUnit("nginx.service")), {
+    unit: "nginx.service",
+    description: "A high performance web server and a reverse proxy server",
+    load: "loaded",
+    active: "active",
+    sub: "running",
+    memory: 8.6 * 1024 * 1024,
+    since: "Wed 2020-08-12 01:32:23 CEST",
+  //  passed: "1 day 7h",
+    mainPid: 377,
+    CGroup: {
+      "/system.slice/nginx.service": [
+        "377 nginx: master process /usr/bin/nginx -g pid /run/nginx.pid; error_log stderr;",
+        "4997 nginx: worker process"
+      ]
+    }
   });
 });
 
@@ -40,8 +63,10 @@ test("systemctl decode device unit", t => {
     sub: "plugged",
     since: "Wed 2020-08-12 01:32:13 CEST",
     passed: "20h ago",
-    device: "/sys/devices/platform/soc/soc:usb3-0/12000000.dwc3/xhci-hcd.3.auto/usb3/3-1/3-1.2/3-1.2:1.0/host0/target0:0:0/0:0:0:0/block/sda/sda2",
-    follow: "sys-devices-platform-soc-soc:usb3\x2d0-12000000.dwc3-xhci\x2dhcd.3.auto-usb3-3\x2d1-3\x2d1.2-3\x2d1.2:1.0-host0-target0:0:0-0:0:0:0-block-sda-sda2.device"
+    device:
+      "/sys/devices/platform/soc/soc:usb3-0/12000000.dwc3/xhci-hcd.3.auto/usb3/3-1/3-1.2/3-1.2:1.0/host0/target0:0:0/0:0:0:0/block/sda/sda2",
+    follow:
+      "sys-devices-platform-soc-soc:usb3\x2d0-12000000.dwc3-xhci\x2dhcd.3.auto-usb3-3\x2d1-3\x2d1.2-3\x2d1.2:1.0-host0-target0:0:0-0:0:0:0-block-sda-sda2.device"
   });
 });
 
@@ -55,7 +80,7 @@ test("systemctl decode timer unit", t => {
     since: "Wed 2020-08-12 01:32:20 CEST",
     passed: "21h ago",
     trigger: "Mon 2020-08-17 00:00:00 CEST",
-    left:  "4 days",
+    left: "4 days",
     triggers: "paccache.service"
   });
 });
@@ -68,9 +93,28 @@ test("systemctl decode scope unit", t => {
     active: "active",
     sub: "running",
     since: "Wed 2020-08-12 01:32:09 CEST",
-//    passed: "1 day 6h",
+    //    passed: "1 day 6h",
     memory: 17.3 * 1024 * 1024,
-    transient: true,
-//    docs: "man:systemd(1)"
+    transient: true
+    //    docs: ["man:systemd(1)" ]
+  });
+});
+
+test("systemctl decode automount unit", t => {
+  t.like(decodeUnit(getRawUnit("proc-sys-fs-binfmt_misc.automount")), {
+    unit: "proc-sys-fs-binfmt_misc.automount",
+    description:
+      "Arbitrary Executable File Formats File System Automount Point",
+    load: "loaded",
+    active: "active",
+    sub: "waiting",
+    since: "Wed 2020-08-12 01:32:10 CEST",
+    //    passed: "1 day 6h",
+    triggers: "proc-sys-fs-binfmt_misc.mount",
+    where: "/proc/sys/fs/binfmt_misc",
+    docs: [
+      "https://www.kernel.org/doc/html/latest/admin-guide/binfmt-misc.html",
+      "https://www.freedesktop.org/wiki/Software/systemd/APIFileSystems"
+    ]
   });
 });
