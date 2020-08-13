@@ -1,0 +1,8 @@
+* init.scope - System and Service Manager
+     Loaded: loaded
+  Transient: yes
+     Active: active (running) since Wed 2020-08-12 01:32:09 CEST; 1 day 6h ago
+       Docs: man:systemd(1)
+     Memory: 17.3M
+     CGroup: /init.scope
+             `-1 /sbin/init
