@@ -112,7 +112,7 @@ export function decodeOptions(str) {
 }
 
 function parseBoolean(value) {
-  return value === 'yes';
+  return value === "yes";
 }
 
 function parseBytes(value) {
@@ -146,10 +146,15 @@ TriggeredBy: * hook-ci.socket
 
   const unit = {};
 
+  let key;
+  let values;
+
   data.split(/\n/).forEach(line => {
     line = hex2char(line);
     let m = line.match(/^\s*([\w\-\s]+):\s+([^\(]+)(\s*\(([^\)]*)\))?\s*(.*)/);
     if (m) {
+      key = m[1].toLowerCase();
+
       const value = m[2].trim();
       const extra = m[5];
       const options = decodeOptions(m[4]);
@@ -182,13 +187,12 @@ TriggeredBy: * hook-ci.socket
           }
           break;
         case "Docs":
-          unit.docs = value;
-        break;
+          values = [value];
+          unit.docs = values;
+          break;
+
         case "Transient":
           unit.transient = parseBoolean(value);
-        break;
-        case "Device":
-          unit.device = value;
           break;
         case "Follow":
           unit.follow = value.replace("unit currently follows state of ", "");
@@ -210,14 +214,39 @@ TriggeredBy: * hook-ci.socket
         case "Triggers":
           unit.triggers = value.replace(/\*\s+/, "");
           break;
+
+        case "Drop-In":
+          values = [];
+          unit.dropIn = { [value]: values };
+          break;
+        case "CGroup":
+          values = [];
+          unit.CGroup = { [value]: values };
+          break;
+
+        //case "Where":
+        //case "Device":
         default:
-          unit[m[1]] = value;
+          unit[key] = value;
       }
     } else {
       m = line.match(/^\*?\s+([\w\.\-]+)\s+-\s+(.*)/);
       if (m) {
         unit.unit = m[1];
         unit.description = m[2];
+      } else {
+        m = line.match(/^\s{13}(.+)/);
+        if (m) {
+          const value = m[1];
+
+          m = value.match(/^(`|\|)\-\s*(.*)/);
+          if(m) {
+            values.push(m[2]);
+          }
+          else {
+            values.push(value);
+          }
+        }
       }
     }
   });
