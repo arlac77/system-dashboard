@@ -45,7 +45,6 @@ test("systemctl decode device unit", t => {
   });
 });
 
-
 test("systemctl decode timer unit", t => {
   t.like(decodeUnit(getRawUnit("paccache.timer")), {
     unit: "paccache.timer",
@@ -58,5 +57,20 @@ test("systemctl decode timer unit", t => {
     trigger: "Mon 2020-08-17 00:00:00 CEST",
     left:  "4 days",
     triggers: "paccache.service"
+  });
+});
+
+test("systemctl decode scope unit", t => {
+  t.like(decodeUnit(getRawUnit("init.scope")), {
+    unit: "init.scope",
+    description: "System and Service Manager",
+    load: "loaded",
+    active: "active",
+    sub: "running",
+    since: "Wed 2020-08-12 01:32:09 CEST",
+//    passed: "1 day 6h",
+    memory: 17.3 * 1024 * 1024,
+    transient: true,
+//    docs: "man:systemd(1)"
   });
 });

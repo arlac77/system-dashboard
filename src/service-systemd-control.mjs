@@ -111,7 +111,11 @@ export function decodeOptions(str) {
   return options;
 }
 
-function bytes(value) {
+function parseBoolean(value) {
+  return value === 'yes';
+}
+
+function parseBytes(value) {
   const m = value.match(/([\d\.]+)(\w+)/);
   const memory = parseFloat(m[1]);
   switch (m[2]) {
@@ -154,12 +158,12 @@ TriggeredBy: * hook-ci.socket
           unit.load = value.split(/\s/)[0];
           break;
         case "Memory":
-          unit.memory = bytes(value);
+          unit.memory = parseBytes(value);
           if (options.high) {
-            unit.highMemory = bytes(options.high);
+            unit.highMemory = parseBytes(options.high);
           }
           if (options.max) {
-            unit.maxMemory = bytes(options.max);
+            unit.maxMemory = parseBytes(options.max);
           }
           break;
         case "Tasks":
@@ -179,6 +183,9 @@ TriggeredBy: * hook-ci.socket
           break;
         case "Docs":
           unit.docs = value;
+        break;
+        case "Transient":
+          unit.transient = parseBoolean(value);
         break;
         case "Device":
           unit.device = value;
