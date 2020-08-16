@@ -118,3 +118,19 @@ test("systemctl decode automount unit", t => {
     ]
   });
 });
+
+test("systemctl decode slice unit", t => {
+  t.like(decodeUnit(getRawUnit("root.slice")), {
+    unit: "-.slice",
+    description:
+      "Root Slice",
+    load: "loaded",
+    //active: "active",
+    //since: "2020-08-12 01:32:09 CEST",
+    tasks: 361,
+    memory: 1.7 * 1024 * 1024 * 1024,
+    docs: [
+      "man:systemd.special(7)"
+    ]
+  });
+});

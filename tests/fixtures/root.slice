@@ -1,0 +1,99 @@
+* -.slice - Root Slice
+     Loaded: loaded
+     Active: active since Wed 2020-08-12 01:32:09 CEST; 4 days ago
+       Docs: man:systemd.special(7)
+      Tasks: 361
+     Memory: 1.7G
+        CPU: 22h 53min 21.520s
+     CGroup: /
+             |-init.scope
+             | `-1 /sbin/init
+             |-system.slice
+             | |-dbus.service
+             | | `-281 /usr/bin/dbus-daemon --system --address=systemd: --nofork --nopidfile --systemd-activation --syslog-only
+             | |-dhcpd4.service
+             | | `-340 /usr/bin/dhcpd -4 -q -cf /etc/dhcpd.conf -pf /run/dhcpd4/dhcpd.pid
+             | |-dovecot.service
+             | | |- 2480 /usr/bin/dovecot -F
+             | | |- 2482 dovecot/replicator
+             | | |- 2484 dovecot/anvil
+             | | |- 2485 dovecot/log
+             | | |- 2486 dovecot/stats
+             | | |- 2487 dovecot/config
+             | | |- 2489 dovecot/auth
+             | | |- 2842 dovecot/aggregator
+             | | |- 5803 dovecot/imap-login
+             | | |- 5823 dovecot/imap
+             | | |- 6099 dovecot/imap-login
+             | | |- 6100 dovecot/imap-login
+             | | |- 6102 dovecot/imap
+             | | |- 6104 dovecot/imap
+             | | |- 8609 dovecot/imap-login
+             | | |- 8612 dovecot/imap
+             | | |- 8974 dovecot/imap-login
+             | | |- 8977 dovecot/imap
+             | | |- 9320 dovecot/imap-login
+             | | |-31594 dovecot/imap-login
+             | | `-31599 dovecot/imap
+             | |-fail2ban.service
+             | | `-308 /usr/bin/python /usr/bin/fail2ban-server -xf start
+             | |-haveged.service
+             | | `-219 /usr/bin/haveged -w 1024 -v 1 --Foreground
+             | |-lvm2-lvmetad.service
+             | | `-231 /usr/bin/lvmetad -f
+             | |-named.service
+             | | `-286 /usr/bin/named -f -u named
+             | |-nginx.service
+             | | |- 8454 nginx: worker process
+             | | `-19431 nginx: master process /usr/bin/nginx -g pid /run/nginx.pid; error_log stderr;
+             | |-ntpd.service
+             | | `-293 /usr/bin/ntpd -g -u ntp:ntp
+             | |-sshd.service
+             | | `-298 sshd: /usr/bin/sshd -D [listener] 0 of 10-100 startups
+             | |-system-dashboard.service
+             | | `-8992 system-dashboard
+             | |-system-getty.slice
+             | | `-getty@tty1.service
+             | |   `-310 /sbin/agetty -o -p -- \u --noclear tty1 linux
+             | |-system-serial\x2dgetty.slice
+             | | `-serial-getty@ttySAC2.service
+             | |   `-311 /sbin/agetty -o -p -- \u --keep-baud 115200,38400,9600 ttySAC2 vt220
+             | |-systemd-journal-gatewayd.service
+             | | `-17785 /usr/lib/systemd/systemd-journal-gatewayd
+             | |-systemd-journald.service
+             | | `-220 /usr/lib/systemd/systemd-journald
+             | |-systemd-logind.service
+             | | `-299 /usr/lib/systemd/systemd-logind
+             | |-systemd-networkd.service
+             | | `-239 /usr/lib/systemd/systemd-networkd
+             | |-systemd-resolved.service
+             | | `-272 /usr/lib/systemd/systemd-resolved
+             | |-systemd-udevd.service
+             | | `-221 /usr/lib/systemd/systemd-udevd
+             | `-verdaccio.service
+             |   `-1079 Verdaccio
+             `-user.slice
+               |-user-0.slice
+               | |-session-34.scope
+               | | |-24136 sshd: root@pts/0
+               | | `-24138 -bash
+               | |-session-69.scope
+               | | |- 7245 sshd: root@pts/2
+               | | |- 7247 -bash
+               | | `-10518 systemctl status --full --all --lines 0 -- -.slice
+               | |-session-72.scope
+               | | |-8862 sshd: root@pts/3
+               | | `-8864 -bash
+               | `-user@0.service
+               |   `-init.scope
+               |     |-690 /usr/lib/systemd/systemd --user
+               |     `-691 (sd-pam)
+               `-user-1002.slice
+                 |-session-44.scope
+                 | |-29450 sshd: hugo [priv]
+                 | |-29467 sshd: hugo@pts/1
+                 | `-29468 -bash
+                 `-user@1002.service
+                   `-init.scope
+                     |-29453 /usr/lib/systemd/systemd --user
+                     `-29455 (sd-pam)
