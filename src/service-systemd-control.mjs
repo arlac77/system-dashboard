@@ -187,7 +187,8 @@ TriggeredBy: * hook-ci.socket
           }
           break;
         case "Docs":
-          values = [value];
+          m = line.match(/^\s*([\w\-\s]+):\s+(.*)/);
+          values = [m[2]];
           unit.docs = values;
           break;
 
@@ -297,7 +298,7 @@ export class ServiceSystemdControl extends Service {
         receive: async params => {
           const p = await execa(
             "systemctl",
-            ["status", params.unit, "--full", "--all", "--lines", "0"],
+            ["status", "--full", "--all", "--lines", "0", "--", params.unit],
             { reject: false }
           );
           return decodeUnit(p.stdout);
