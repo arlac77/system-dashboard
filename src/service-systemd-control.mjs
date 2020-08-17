@@ -231,10 +231,10 @@ TriggeredBy: * hook-ci.socket
           unit[key] = value;
       }
     } else {
-      m = line.match(/^\*?\s+([\w\.\-]+)\s+-\s+(.*)/);
+      m = line.match(/^\*?\s?([\w\.\-]+)(\s+-\s+(.*))?/);
       if (m) {
         unit.unit = m[1];
-        unit.description = m[2];
+        unit.description = m[3];
       } else {
         m = line.match(/^\s{13}(.+)/);
         if (m) {

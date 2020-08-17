@@ -1,0 +1,4 @@
+* pacman-update.path
+     Loaded: loaded (/etc/systemd/system/pacman-update.path; enabled; vendor preset: disabled)
+     Active: active (waiting) since Wed 2020-08-12 01:32:20 CEST; 5 days ago
+   Triggers: * pacman-update.service

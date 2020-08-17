@@ -134,3 +134,13 @@ test("systemctl decode slice unit", t => {
     ]
   });
 });
+
+
+test("systemctl decode path unit", t => {
+  t.like(decodeUnit(getRawUnit("pacman-update.path")), {
+    unit: "pacman-update.path",
+    load: "loaded",
+    active: "active",
+    since: "Wed 2020-08-12 01:32:20 CEST"
+  });
+});
