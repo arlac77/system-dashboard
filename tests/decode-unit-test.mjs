@@ -131,7 +131,12 @@ test("systemctl decode slice unit", t => {
     memory: 1.7 * 1024 * 1024 * 1024,
     docs: [
       "man:systemd.special(7)"
-    ]
+    ],
+    CGroup: {
+      "init.scope": undefined /*[
+        "-1 /sbin/init"
+      ]*/
+    }
   });
 });
 

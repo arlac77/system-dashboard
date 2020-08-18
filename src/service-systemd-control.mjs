@@ -240,9 +240,9 @@ TriggeredBy: * hook-ci.socket
         if (m) {
           const value = m[1];
 
-          m = value.match(/^(`|\|)\-\s*(.*)/);
+          m = value.match(/^(`|\|)(\-)?\s*(.*)/);
           if(m) {
-            values.push(m[2]);
+            values.push(m[3]);
           }
           else {
             values.push(value);
