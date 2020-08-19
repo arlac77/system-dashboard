@@ -137,4 +137,5 @@ export default async function setup(sp) {
   sp.services.health.endpoints.uptime.interceptors = WSOutInterceptors;
   sp.services.health.endpoints.state.interceptors = WSOutInterceptors;
   sp.services.admin.endpoints.services.interceptors = WSOutInterceptors;
+  sp.services.swarm.endpoints["peers.services"].interceptors = WSOutInterceptors;
 }
