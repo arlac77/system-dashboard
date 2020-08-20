@@ -42,6 +42,7 @@ export default async function setup(sp) {
   const WS = {
     ws: true,
     interceptors: [new DecodeJSONInterceptor()]
+  //  receiveInterceptors :[new EncodeJSONInterceptor()]
   };
 
   await sp.declareServices({
