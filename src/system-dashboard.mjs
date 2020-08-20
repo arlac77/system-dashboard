@@ -41,8 +41,8 @@ export default async function setup(sp) {
   };
   const WS = {
     ws: true,
-    interceptors: [new DecodeJSONInterceptor()]
-  //  receiveInterceptors :[new EncodeJSONInterceptor()]
+    interceptors: [new DecodeJSONInterceptor()],
+    receivingInterceptors :[new EncodeJSONInterceptor()]
   };
 
   await sp.declareServices({
@@ -133,10 +133,12 @@ export default async function setup(sp) {
 
   await sp.start();
 
+  /*
   sp.services.health.endpoints.memory.interceptors = WSOutInterceptors;
   sp.services.health.endpoints.cpu.interceptors = WSOutInterceptors;
   sp.services.health.endpoints.uptime.interceptors = WSOutInterceptors;
   sp.services.health.endpoints.state.interceptors = WSOutInterceptors;
   sp.services.admin.endpoints.services.interceptors = WSOutInterceptors;
   sp.services.swarm.endpoints["peers.services"].interceptors = WSOutInterceptors;
+  */
 }
