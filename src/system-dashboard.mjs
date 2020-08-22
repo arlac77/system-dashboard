@@ -121,7 +121,10 @@ export default async function setup(sp) {
       type: ServiceSwarm,
       autostart: true,
       endpoints: {
-        "topic.services": { connected: "service(admin).services" },
+        "topic.services": {
+          connected: "service(admin).services",
+          receivingInterceptors :[new EncodeJSONInterceptor()]
+        }, 
         "peers.services": { }
       }
     },
@@ -132,13 +135,4 @@ export default async function setup(sp) {
   });
 
   await sp.start();
-
-  /*
-  sp.services.health.endpoints.memory.interceptors = WSOutInterceptors;
-  sp.services.health.endpoints.cpu.interceptors = WSOutInterceptors;
-  sp.services.health.endpoints.uptime.interceptors = WSOutInterceptors;
-  sp.services.health.endpoints.state.interceptors = WSOutInterceptors;
-  sp.services.admin.endpoints.services.interceptors = WSOutInterceptors;
-  sp.services.swarm.endpoints["peers.services"].interceptors = WSOutInterceptors;
-  */
 }
