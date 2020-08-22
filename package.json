@@ -32,7 +32,7 @@
     "@kronos-integration/service-health-check": "^5.0.43",
     "@kronos-integration/service-http": "^10.2.1",
     "@kronos-integration/service-ldap": "^2.1.47",
-    "@kronos-integration/service-swarm": "^1.8.5",
+    "@kronos-integration/service-swarm": "^1.8.6",
     "dbus-next": "^0.9.1",
     "execa": "^4.0.3"
   },
