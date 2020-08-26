@@ -29,24 +29,22 @@ export function decodeUnits(data) {
   });
 }
 
-export function decodeTimers(data) {
-  /*
+/*
 Thu 2020-08-13 00:00:00 CEST 3h 25min left Wed 2020-08-12 00:00:03 CEST 20h ago    logrotate.timer              logrotate.service             
-
-NEXT                         LEFT          LAST                         PASSED       UNIT                         ACTIVATES                     
-Sat 2020-08-01 00:00:00 CEST 4h 12min left Fri 2020-07-31 00:00:21 CEST 19h ago      logrotate.timer              logrotate.service             
-Sat 2020-08-01 00:00:00 CEST 4h 12min left Fri 2020-07-31 00:00:21 CEST 19h ago      man-db.timer                 man-db.service                
-  */
+Thu 2020-08-27 00:00:00 CEST 9h left        Wed 2020-08-26 00:00:00 CEST 14h ago    logrotate.timer              logrotate.service             
+*/
+export function decodeTimers(data) {
   return data
     .split(/\n/)
     .map(line => {
+      const units = line.substr(83).trim().split(/\s+/);
       return {
         next: line.substr(0, 28),
         left: line.substr(29, 14).trim(),
-        last: line.substr(43, 28),
+        last: line.substr(43, 29).trim(),
         passed: line.substr(72, 11).trim(),
-        unit: line.substr(83).split(/\s+/)[0],
-        activates: line.substr(83).split(/\s+/)[1]
+        unit: units[0],
+        activates: units[1]
       };
     })
     .filter(t => t.unit);

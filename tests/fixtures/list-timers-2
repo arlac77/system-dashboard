@@ -1,0 +1,10 @@
+Thu 2020-08-27 00:00:00 CEST 9h left        Wed 2020-08-26 00:00:00 CEST 14h ago    logrotate.timer              logrotate.service             
+Thu 2020-08-27 00:00:00 CEST 9h left        Wed 2020-08-26 00:00:00 CEST 14h ago    man-db.timer                 man-db.service                
+Thu 2020-08-27 00:00:00 CEST 9h left        Wed 2020-08-26 00:00:00 CEST 14h ago    shadow.timer                 shadow.service                
+Thu 2020-08-27 00:00:00 CEST 9h left        Wed 2020-08-26 00:00:00 CEST 14h ago    spamassassin-update.timer    spamassassin-update.service   
+Thu 2020-08-27 01:21:22 CEST 11h left       Wed 2020-08-26 01:31:04 CEST 12h ago    certbot-renewal.timer        certbot-renewal.service       
+Thu 2020-08-27 03:50:00 CEST 13h left       Wed 2020-08-26 13:50:03 CEST 19min ago  desec.timer                  desec.service                 
+Thu 2020-08-27 04:00:00 CEST 13h left       Wed 2020-08-26 04:00:08 CEST 10h ago    dynv6.timer                  dynv6.service                 
+Thu 2020-08-27 13:46:44 CEST 23h left       Wed 2020-08-26 13:46:44 CEST 23min ago  systemd-tmpfiles-clean.timer systemd-tmpfiles-clean.service
+Fri 2020-08-28 01:52:53 CEST 1 day 11h left Mon 2020-08-24 01:17:44 CEST 2 days ago backup.timer                 backup.service                
+Mon 2020-08-31 00:00:00 CEST 4 days left    Mon 2020-08-24 00:00:08 CEST 2 days ago paccache.timer               paccache.service              
