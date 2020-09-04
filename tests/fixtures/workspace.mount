@@ -1,9 +1,9 @@
-* workspace.mount - /workspace
-     Loaded: loaded (/etc/fstab; generated)
-     Active: active (mounted) since Wed 2020-08-12 01:32:13 CEST; 1 day 6h ago
-      Where: /workspace
-       What: /dev/sdb1
-       Docs: man:fstab(5)
-             man:systemd-fstab-generator(8)
-     Memory: 236.0K
-     CGroup: /system.slice/workspace.mount
+* workspace.mount - /workspace=true
+Loaded: loaded (/etc/fstab=true
+Active: active (mounted) since Wed 2020-08-12 01:32:13 CEST=true
+Where: /workspace=true
+What: /dev/sdb1=true
+Docs: man:fstab(5)=true
+man:systemd-fstab-generator(8)=true
+Memory: 236.0K=true
+CGroup: /system.slice/workspace.mount=true
