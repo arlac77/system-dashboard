@@ -13,7 +13,7 @@ function getRawUnit(name) {
 }
 
 test("systemctl decode service unit", t => {
-  t.like(decodeUnit(getRawUnit("hook-ci.service")), {
+  t.like(decodeUnit(getRawUnit("hook-ci.service-list")), {
     unit: "hook-ci.service",
     description: "simple ci to be triggered by git hooks",
     load: "loaded",
@@ -35,7 +35,7 @@ test("systemctl decode service unit", t => {
 });
 
 test("systemctl decode service unit cgroup", t => {
-  t.like(decodeUnit(getRawUnit("nginx.service")), {
+  t.like(decodeUnit(getRawUnit("nginx.service-list")), {
     unit: "nginx.service",
     description: "A high performance web server and a reverse proxy server",
     load: "loaded",
@@ -55,7 +55,7 @@ test("systemctl decode service unit cgroup", t => {
 });
 
 test("systemctl decode device unit", t => {
-  t.like(decodeUnit(getRawUnit("dev-sda2.device")), {
+  t.like(decodeUnit(getRawUnit("dev-sda2.device-list")), {
     unit: "dev-sda2.device",
     description: "WDC_WD20EARS-00MVWB0 MF-TM-003",
     load: "loaded",
@@ -71,7 +71,7 @@ test("systemctl decode device unit", t => {
 });
 
 test("systemctl decode timer unit", t => {
-  t.like(decodeUnit(getRawUnit("paccache.timer")), {
+  t.like(decodeUnit(getRawUnit("paccache.timer-list")), {
     unit: "paccache.timer",
     description: "Discard unused packages weekly",
     load: "loaded",
@@ -86,7 +86,7 @@ test("systemctl decode timer unit", t => {
 });
 
 test("systemctl decode scope unit", t => {
-  t.like(decodeUnit(getRawUnit("init.scope")), {
+  t.like(decodeUnit(getRawUnit("init.scope-list")), {
     unit: "init.scope",
     description: "System and Service Manager",
     load: "loaded",
@@ -101,7 +101,7 @@ test("systemctl decode scope unit", t => {
 });
 
 test("systemctl decode automount unit", t => {
-  t.like(decodeUnit(getRawUnit("proc-sys-fs-binfmt_misc.automount")), {
+  t.like(decodeUnit(getRawUnit("proc-sys-fs-binfmt_misc.automount-list")), {
     unit: "proc-sys-fs-binfmt_misc.automount",
     description:
       "Arbitrary Executable File Formats File System Automount Point",
@@ -120,7 +120,7 @@ test("systemctl decode automount unit", t => {
 });
 
 test("systemctl decode slice unit", t => {
-  t.like(decodeUnit(getRawUnit("root.slice")), {
+  t.like(decodeUnit(getRawUnit("root.slice-list")), {
     unit: "-.slice",
     description:
       "Root Slice",
@@ -142,7 +142,7 @@ test("systemctl decode slice unit", t => {
 
 
 test("systemctl decode path unit", t => {
-  t.like(decodeUnit(getRawUnit("pacman-update.path")), {
+  t.like(decodeUnit(getRawUnit("pacman-update.path-list")), {
     unit: "pacman-update.path",
     load: "loaded",
     active: "active",
