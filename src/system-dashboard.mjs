@@ -54,6 +54,8 @@ export default async function setup(sp) {
           ...WS,
           connected: "service(swarm).peers.services"
         },
+        "/services": { ...WS, connected: "service(admin).services" },
+
         "/state/uptime": {
           ...WS,
           connected: "service(health).uptime"
@@ -70,7 +72,6 @@ export default async function setup(sp) {
           ...WS,
           connected: "service(health).state"
         },
-        "/services": { ...WS, connected: "service(admin).services" },
 
         "/authenticate": { ...POST_PLAIN, connected: "service(auth).access_token" },
         "/systemctl/machines": { ...GET, connected: "service(systemctl).machines" },
