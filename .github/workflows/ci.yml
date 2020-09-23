@@ -10,7 +10,6 @@ jobs:
     steps:
       - name: Install packages
         run: sudo apt-get install makepkg
-      - uses: actions/checkout@v2
       - name: checkout
         uses: actions/checkout@v2
       - name: Cache node modules
