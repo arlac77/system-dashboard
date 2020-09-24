@@ -17,7 +17,6 @@ import {
 } from "@kronos-integration/service-http";
 
 export default async function setup(sp) {
-  const WSOutInterceptors = [new EncodeJSONInterceptor()];
   const GETInterceptors = [
     new CTXJWTVerifyInterceptor(),
     new CTXInterceptor({
