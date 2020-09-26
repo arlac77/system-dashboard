@@ -103,12 +103,19 @@ test("systemctl decode timers 2", t => {
   });
 
   const timers = decodeTimers(raw);
-  t.deepEqual(timers[0], {
+  t.deepEqual(timers, [{
     next: "Thu 2020-08-27 00:00:00 CEST",
     left: "9h left",
     last: "Wed 2020-08-26 00:00:00 CEST",
     passed: "14h ago",
     unit: "logrotate.timer",
     activates: "logrotate.service"
-  });
+  },{
+    next: "Sun 2020-09-27 01:07:45 CEST",
+    left: "46min left",
+    last: "Sat 2020-09-26 01:05:31 CEST",
+    passed: "23h ago",
+    unit: "certbot-renewal.timer",
+    activates: "certbot-renewal.service"
+  }]);
 });
