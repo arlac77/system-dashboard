@@ -171,8 +171,7 @@ TriggeredBy: * hook-ci.socket
           unit.sub = Object.keys(options)[0];
           m = extra.match(/\w+\s+([^;]+);\s+(.*)/);
           if (m) {
-            unit.since = m[1];
-            unit.passed = m[2];
+            unit.since = decodeDate(m[1]);
           }
           break;
         case "Docs":

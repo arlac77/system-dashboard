@@ -22,8 +22,7 @@ test("systemctl decode service unit", t => {
     memory: 345.0 * 1024 * 1024,
     highMemory: 500 * 1024 * 1024,
     maxMemory: 1000 * 1024 * 1024,
-    since: "Wed 2020-08-12 14:16:01 CEST",
-    passed: "8h ago",
+    since: new Date("2020-08-12 14:16:01 GMT+2"),
     mainPid: 21944,
     tasks: 11,
     taskLimit: 2211,
@@ -42,8 +41,7 @@ test("systemctl decode service unit cgroup", t => {
     active: "active",
     sub: "running",
     memory: 8.6 * 1024 * 1024,
-    since: "Wed 2020-08-12 01:32:23 CEST",
-  //  passed: "1 day 7h",
+    since: new Date("2020-08-12 01:32:23 GMT+2"),
     mainPid: 377,
     CGroup: {
       "/system.slice/nginx.service": [
@@ -61,8 +59,7 @@ test("systemctl decode device unit", t => {
     load: "loaded",
     active: "active",
     sub: "plugged",
-    since: "Wed 2020-08-12 01:32:13 CEST",
-    passed: "20h ago",
+    since: new Date("2020-08-12 01:32:13 GMT+2"),
     device:
       "/sys/devices/platform/soc/soc:usb3-0/12000000.dwc3/xhci-hcd.3.auto/usb3/3-1/3-1.2/3-1.2:1.0/host0/target0:0:0/0:0:0:0/block/sda/sda2",
     follow:
@@ -77,8 +74,7 @@ test("systemctl decode timer unit", t => {
     load: "loaded",
     active: "active",
     sub: "waiting",
-    since: "Wed 2020-08-12 01:32:20 CEST",
-    passed: "21h ago",
+    since: new Date("2020-08-12 01:32:20 GMT+2"),
     trigger: "Mon 2020-08-17 00:00:00 CEST",
     left: "4 days",
     triggers: "paccache.service"
@@ -92,8 +88,7 @@ test("systemctl decode scope unit", t => {
     load: "loaded",
     active: "active",
     sub: "running",
-    since: "Wed 2020-08-12 01:32:09 CEST",
-    //    passed: "1 day 6h",
+    since: new Date("2020-08-12 01:32:09 GMT+2"),
     memory: 17.3 * 1024 * 1024,
     transient: true
     //    docs: ["man:systemd(1)" ]
@@ -108,8 +103,7 @@ test("systemctl decode automount unit", t => {
     load: "loaded",
     active: "active",
     sub: "waiting",
-    since: "Wed 2020-08-12 01:32:10 CEST",
-    //    passed: "1 day 6h",
+    since: new Date("2020-08-12 01:32:10 GMT+2"),
     triggers: "proc-sys-fs-binfmt_misc.mount",
     where: "/proc/sys/fs/binfmt_misc",
     docs: [
@@ -146,6 +140,6 @@ test("systemctl decode path unit", t => {
     unit: "pacman-update.path",
     load: "loaded",
     active: "active",
-    since: "Wed 2020-08-12 01:32:20 CEST"
+    since: new Date("2020-08-12 01:32:20 GMT+2"),
   });
 });
