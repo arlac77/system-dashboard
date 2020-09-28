@@ -75,8 +75,7 @@ test("systemctl decode timer unit", t => {
     active: "active",
     sub: "waiting",
     since: new Date("2020-08-12 01:32:20 GMT+2"),
-    trigger: "Mon 2020-08-17 00:00:00 CEST",
-    left: "4 days",
+    trigger: new Date("2020-08-17 00:00:00 GMT+2"),
     triggers: "paccache.service"
   });
 });

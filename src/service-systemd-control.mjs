@@ -195,8 +195,7 @@ TriggeredBy: * hook-ci.socket
         case "Trigger":
           m = value.match(/([^;]+);\s+(.*)\s+left/);
           if (m) {
-            unit.trigger = m[1];
-            unit.left = m[2];
+            unit.trigger = decodeDate(m[1]);
           }
           break;
 
