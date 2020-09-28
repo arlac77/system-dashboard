@@ -15,83 +15,63 @@ test("systemctl decode timers 1", t => {
   const timers = decodeTimers(raw);
   t.deepEqual(timers, [
     {
-      next: "Thu 2020-08-13 00:00:00 CEST",
-      left: "3h 25min left",
-      last: "Wed 2020-08-12 00:00:03 CEST",
-      passed: "20h ago",
+      next: new Date("2020-08-12 22:00:00 GMT+0"),
+      last: new Date("2020-08-11 22:00:03 GMT+0"),
       unit: "logrotate.timer",
       activates: "logrotate.service"
     },
     {
-      next: "Thu 2020-08-13 00:00:00 CEST",
-      left: "3h 25min left",
-      last: "Wed 2020-08-12 00:00:03 CEST",
-      passed: "20h ago",
+      next: new Date("2020-08-12 22:00:00 GMT+0"),
+      last: new Date("2020-08-11 22:00:03 GMT+0"),
       unit: "man-db.timer",
       activates: "man-db.service"
     },
     {
       activates: "shadow.service",
-      last: "Wed 2020-08-12 00:00:03 CEST",
-      left: "3h 25min left",
-      next: "Thu 2020-08-13 00:00:00 CEST",
-      passed: "20h ago",
+      last: new Date("2020-08-11 22:00:03 GMT+0"),
+      next: new Date("2020-08-12 22:00:00 GMT+0"),
       unit: "shadow.timer"
     },
     {
       activates: "spamassassin-update.service",
-      last: "Wed 2020-08-12 00:00:03 CEST",
-      left: "3h 25min left",
-      next: "Thu 2020-08-13 00:00:00 CEST",
-      passed: "20h ago",
+      last: new Date("2020-08-11 22:00:03 GMT+0"),
+      next: new Date("2020-08-12 22:00:00 GMT+0"),
       unit: "spamassassin-update.timer"
     },
     {
       activates: "certbot-renewal.service",
-      last: "Wed 2020-08-12 01:45:27 CEST",
-      left: "5h 11min left",
-      next: "Thu 2020-08-13 01:46:00 CEST",
-      passed: "18h ago",
+      last: new Date("2020-08-11 23:45:27 GMT+0"),
+      next: new Date("2020-08-12 23:46:00 GMT+0"),
       unit: "certbot-renewal.timer"
     },
     {
       activates: "systemd-tmpfiles-clean.service",
-      last: "Wed 2020-08-12 01:47:01 CEST",
-      left: "5h 13min left",
-      next: "Thu 2020-08-13 01:47:01 CEST",
-      passed: "18h ago",
+      last: new Date("2020-08-11 23:47:01 GMT+0"),
+      next: new Date("2020-08-12 23:47:01 GMT+0"),
       unit: "systemd-tmpfiles-clean.timer"
     },
     {
       activates: "desec.service",
-      last: "Wed 2020-08-12 13:50:06 CEST",
-      left: "7h left",
-      next: "Thu 2020-08-13 03:50:00 CEST",
-      passed: "6h ago",
+      last: new Date("2020-08-12 11:50:06 GMT+0"),
+      next: new Date("2020-08-13 01:50:00 GMT+0"),
       unit: "desec.timer"
     },
     {
       activates: "dynv6.service",
-      last: "Wed 2020-08-12 04:00:10 CEST",
-      left: "7h left",
-      next: "Thu 2020-08-13 04:00:00 CEST",
-      passed: "16h ago",
+      last: new Date("2020-08-12 02:00:10 GMT+0"),
+      next: new Date("2020-08-13 02:00:00 GMT+0"),
       unit: "dynv6.timer"
     },
     {
       activates: "backup.service",
-      last: "Mon 2020-08-10 01:58:03 CEST",
-      left: "1 day 5h left",
-      next: "Fri 2020-08-14 01:42:38 CEST",
-      passed: "2 days ago",
+      last: new Date("2020-08-09 23:58:03 GMT+0"),
+      next: new Date("2020-08-13 23:42:38 GMT+0"),
       unit: "backup.timer"
     },
     {
       activates: "paccache.service",
-      last: "Mon 2020-08-10 00:00:03 CEST",
-      left: "4 days left",
-      next: "Mon 2020-08-17 00:00:00 CEST",
-      passed: "2 days ago",
+      last: new Date("2020-08-09 22:00:03 GMT+0"),
+      next: new Date("2020-08-16 22:00:00 GMT+0"),
       unit: "paccache.timer"
     }
   ]);
@@ -102,19 +82,18 @@ test("systemctl decode timers 2", t => {
     encoding: "utf8"
   });
 
+
   const timers = decodeTimers(raw);
   t.deepEqual(timers, [{
-    next: "Thu 2020-08-27 00:00:00 CEST",
-    left: "9h left",
-    last: "Wed 2020-08-26 00:00:00 CEST",
-    passed: "14h ago",
+    // Thu 2020-08-27 00:00:00 CEST 9h left        Wed 2020-08-26 00:00:00 CEST 14h ago    logrotate.timer              logrotate.service             
+    next: new Date("2020-08-26 22:00:00 GMT+0"),
+    last: new Date("2020-08-25 22:00:00 GMT+0"),
     unit: "logrotate.timer",
     activates: "logrotate.service"
   },{
-    next: "Sun 2020-09-27 01:07:45 CEST",
-    left: "46min left",
-    last: "Sat 2020-09-26 01:05:31 CEST",
-    passed: "23h ago",
+    // Sun 2020-09-27 01:07:45 CEST 46min left    Sat 2020-09-26 01:05:31 CEST 23h ago       certbot-renewal.timer        certbot-renewal.service       
+    next: new Date("2020-09-26 23:07:45 GMT+0"),
+    last: new Date("2020-09-25 23:05:31 GMT+0"),
     unit: "certbot-renewal.timer",
     activates: "certbot-renewal.service"
   }]);

@@ -1,15 +1,10 @@
 import { Service } from "@kronos-integration/service";
 import execa from "execa";
+import { decodeDate, hex2char } from "../src/util.mjs";
 
 async function systemctl(cmd, params) {
   const p = await execa("systemctl", [cmd, params.unit], { all: true });
   return p.all;
-}
-
-function hex2char(str) {
-  return str.replace(/\\x(\w\w)/g, (m, n) =>
-    String.fromCharCode(parseInt(n, 16))
-  );
 }
 
 export function decodeUnits(data) {
@@ -34,20 +29,16 @@ Thu 2020-08-13 00:00:00 CEST 3h 25min left Wed 2020-08-12 00:00:03 CEST 20h ago 
 Thu 2020-08-27 00:00:00 CEST 9h left        Wed 2020-08-26 00:00:00 CEST 14h ago    logrotate.timer              logrotate.service             
 */
 export function decodeTimers(data) {
-  return data
-    .split(/\n/)
-    .map(line => {
-      const units = line.substr(83).trim().split(/\s+/);
-      return {
-        next: line.substr(0, 28),
-        left: line.substr(29, 14).trim(),
-        last: line.substr(43, 29).trim(),
-        passed: line.substr(72, 11).trim(),
-        unit: units[0],
-        activates: units[1]
-      };
-    })
-    .filter(t => t.unit);
+  return data.split(/\n/).map(line => {
+    const suffix = line.substring(line.indexOf("ago") + 4).trim().split(/\s+/);
+
+    return {
+      next: decodeDate(line),
+      last: decodeDate(line.substring(line.indexOf("left") + 5)),
+      unit: suffix[0],
+      activates: suffix[1]
+    };
+  }).filter(e => e.unit);
 }
 
 export function decodeSockets(data) {
@@ -239,10 +230,9 @@ TriggeredBy: * hook-ci.socket
           const value = m[1];
 
           m = value.match(/^(`|\|)(\-)?\s*(.*)/);
-          if(m) {
+          if (m) {
             values.push(m[3]);
-          }
-          else {
+          } else {
             values.push(value);
           }
         }
