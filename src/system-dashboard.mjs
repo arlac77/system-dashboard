@@ -79,30 +79,16 @@ export default async function setup(sp) {
         "/systemctl/unit": { ...GET, connected: "service(systemctl).units" },
         "/systemctl/unit/:unit": { ...GET, connected: "service(systemctl).unit" },
         "/systemctl/unit/:unit/files": { ...GET, connected: "service(systemctl).files" },
-        "/systemctl/unit/:unit/start": {
-          ...POST,
-          connected: "service(systemctl).start"
-        },
-        "/systemctl/unit/:unit/stop": {
-          ...POST,
-          connected: "service(systemctl).stop"
-        },
-        "/systemctl/unit/:unit/restart": {
-          ...POST,
-          connected: "service(systemctl).restart"
-        },
-        "/systemctl/unit/:unit/reload": {
-          ...POST,
-          connected: "service(systemctl).reload"
-        },
-        "/systemctl/unit/:unit/freeze": {
-          ...POST,
-          connected: "service(systemctl).freeze"
-        },
-        "/systemctl/unit/:unit/thaw": {
-          ...POST,
-          connected: "service(systemctl).thaw"
-        },
+        ...Object.fromEntries(
+          ServiceSystemdControl.unitActionNames.map(name => [
+            `/systemctl/unit/:unit/${name}`,
+            {
+              ...POST,
+              connected: `service(systemctl).${name}`
+            }
+          ])
+        ),
+  
         "/other/fail2ban": {
           ...GET,
           connected: "service(systemctl).fail2ban"

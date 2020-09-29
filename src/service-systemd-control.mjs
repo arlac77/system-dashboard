@@ -265,22 +265,16 @@ export function decodeFiles(data) {
   return files;
 }
 
-const unitActionNames = [
-  "start",
-  "stop",
-  "restart",
-  "reload",
-  "freeze",
-  "thaw"
-];
-
-
 export class ServiceSystemdControl extends Service {
   /**
    * @return {string} 'systemctl'
    */
   static get name() {
     return "systemctl";
+  }
+
+  static get unitActionNames() {
+    return ["start", "stop", "restart", "reload", "freeze", "thaw"];
   }
 
   static get endpoints() {
@@ -360,7 +354,7 @@ export class ServiceSystemdControl extends Service {
       },
 
       ...Object.fromEntries(
-        unitActionNames.map(name => [
+        this.unitActionNames.map(name => [
           name,
           {
             default: true,
@@ -368,7 +362,7 @@ export class ServiceSystemdControl extends Service {
           }
         ])
       ),
-      
+
       fail2ban: {
         default: true,
         receive: async params => {
