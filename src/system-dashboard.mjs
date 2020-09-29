@@ -95,6 +95,14 @@ export default async function setup(sp) {
           ...POST,
           connected: "service(systemctl).reload"
         },
+        "/systemctl/unit/:unit/freeze": {
+          ...POST,
+          connected: "service(systemctl).freeze"
+        },
+        "/systemctl/unit/:unit/thaw": {
+          ...POST,
+          connected: "service(systemctl).thaw"
+        },
         "/other/fail2ban": {
           ...GET,
           connected: "service(systemctl).fail2ban"

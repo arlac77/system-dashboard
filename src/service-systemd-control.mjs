@@ -29,16 +29,22 @@ Thu 2020-08-13 00:00:00 CEST 3h 25min left Wed 2020-08-12 00:00:03 CEST 20h ago 
 Thu 2020-08-27 00:00:00 CEST 9h left        Wed 2020-08-26 00:00:00 CEST 14h ago    logrotate.timer              logrotate.service             
 */
 export function decodeTimers(data) {
-  return data.split(/\n/).map(line => {
-    const suffix = line.substring(line.indexOf("ago") + 4).trim().split(/\s+/);
+  return data
+    .split(/\n/)
+    .map(line => {
+      const suffix = line
+        .substring(line.indexOf("ago") + 4)
+        .trim()
+        .split(/\s+/);
 
-    return {
-      next: decodeDate(line),
-      last: decodeDate(line.substring(line.indexOf("left") + 5)),
-      unit: suffix[0],
-      activates: suffix[1]
-    };
-  }).filter(e => e.unit);
+      return {
+        next: decodeDate(line),
+        last: decodeDate(line.substring(line.indexOf("left") + 5)),
+        unit: suffix[0],
+        activates: suffix[1]
+      };
+    })
+    .filter(e => e.unit);
 }
 
 export function decodeSockets(data) {
@@ -259,6 +265,16 @@ export function decodeFiles(data) {
   return files;
 }
 
+const unitActionNames = [
+  "start",
+  "stop",
+  "restart",
+  "reload",
+  "freeze",
+  "thaw"
+];
+
+
 export class ServiceSystemdControl extends Service {
   /**
    * @return {string} 'systemctl'
@@ -342,23 +358,17 @@ export class ServiceSystemdControl extends Service {
           return decodeMachines(p.stdout);
         }
       },
-      start: {
-        default: true,
-        receive: async params => systemctl("start", params)
-      },
-      stop: {
-        default: true,
-        receive: async params => systemctl("stop", params)
-      },
-      restart: {
-        default: true,
-        receive: async params => systemctl("restart", params)
-      },
-      reload: {
-        default: true,
-        receive: async params => systemctl("reload", params)
-      },
 
+      ...Object.fromEntries(
+        unitActionNames.map(name => [
+          name,
+          {
+            default: true,
+            receive: async params => systemctl(name, params)
+          }
+        ])
+      ),
+      
       fail2ban: {
         default: true,
         receive: async params => {
