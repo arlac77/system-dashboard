@@ -1,6 +1,11 @@
 import { Service } from "@kronos-integration/service";
 import execa from "execa";
-import { decodeDate, hex2char } from "../src/util.mjs";
+import {
+  decodeDate,
+  hex2char,
+  parseBoolean,
+  parseBytes
+} from "../src/util.mjs";
 
 async function systemctl(cmd, params) {
   const p = await execa("systemctl", [cmd, params.unit], { all: true });
@@ -104,25 +109,6 @@ export function decodeOptions(str) {
   }
 
   return options;
-}
-
-function parseBoolean(value) {
-  return value === "yes";
-}
-
-function parseBytes(value) {
-  const m = value.match(/([\d\.]+)(\w+)/);
-  const memory = parseFloat(m[1]);
-  switch (m[2]) {
-    case "K":
-      return memory * 1024;
-    case "M":
-      return memory * 1024 * 1024;
-    case "G":
-      return memory * 1024 * 1024 * 1024;
-      break;
-  }
-  return memory;
 }
 
 export function decodeUnit(data) {
