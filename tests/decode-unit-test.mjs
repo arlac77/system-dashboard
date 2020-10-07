@@ -1,13 +1,9 @@
 import test from "ava";
-import { join, dirname } from "path";
-import { fileURLToPath } from "url";
 import { readFileSync } from "fs";
 import { decodeUnit } from "../src/service-systemd-control.mjs";
 
-const here = dirname(fileURLToPath(import.meta.url));
-
 function getRawUnit(name) {
-  return readFileSync(join(here, "fixtures", name), {
+  return readFileSync(new URL(`fixtures/${name}`, import.meta.url).pathname, {
     encoding: "utf8"
   });
 }
@@ -115,16 +111,13 @@ test("systemctl decode automount unit", t => {
 test("systemctl decode slice unit", t => {
   t.like(decodeUnit(getRawUnit("root.slice-list")), {
     unit: "-.slice",
-    description:
-      "Root Slice",
+    description: "Root Slice",
     load: "loaded",
     //active: "active",
     //since: "2020-08-12 01:32:09 CEST",
     tasks: 361,
     memory: 1.7 * 1024 * 1024 * 1024,
-    docs: [
-      "man:systemd.special(7)"
-    ],
+    docs: ["man:systemd.special(7)"],
     CGroup: {
       "init.scope": undefined /*[
         "-1 /sbin/init"
@@ -133,12 +126,11 @@ test("systemctl decode slice unit", t => {
   });
 });
 
-
 test("systemctl decode path unit", t => {
   t.like(decodeUnit(getRawUnit("pacman-update.path-list")), {
     unit: "pacman-update.path",
     load: "loaded",
     active: "active",
-    since: new Date("2020-08-12 01:32:20 GMT+2"),
+    since: new Date("2020-08-12 01:32:20 GMT+2")
   });
 });
