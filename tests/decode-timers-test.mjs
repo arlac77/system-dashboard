@@ -1,16 +1,14 @@
 import test from "ava";
-import { join, dirname } from "path";
-import { fileURLToPath } from "url";
 import { readFileSync } from "fs";
-
 import { decodeTimers } from "../src/service-systemd-control.mjs";
 
-const here = dirname(fileURLToPath(import.meta.url));
-
 test("systemctl decode timers 1", t => {
-  const raw = readFileSync(join(here, "fixtures", "list-timers-1"), {
-    encoding: "utf8"
-  });
+  const raw = readFileSync(
+    new URL("fixtures/list-timers-1", import.meta.url).pathname,
+    {
+      encoding: "utf8"
+    }
+  );
 
   const timers = decodeTimers(raw);
   t.deepEqual(timers, [
@@ -78,23 +76,28 @@ test("systemctl decode timers 1", t => {
 });
 
 test("systemctl decode timers 2", t => {
-  const raw = readFileSync(join(here, "fixtures", "list-timers-2"), {
-    encoding: "utf8"
-  });
-
+  const raw = readFileSync(
+    new URL("fixtures/list-timers-2", import.meta.url).pathname,
+    {
+      encoding: "utf8"
+    }
+  );
 
   const timers = decodeTimers(raw);
-  t.deepEqual(timers, [{
-    // Thu 2020-08-27 00:00:00 CEST 9h left        Wed 2020-08-26 00:00:00 CEST 14h ago    logrotate.timer              logrotate.service             
-    next: new Date("2020-08-26 22:00:00 GMT+0"),
-    last: new Date("2020-08-25 22:00:00 GMT+0"),
-    unit: "logrotate.timer",
-    activates: "logrotate.service"
-  },{
-    // Sun 2020-09-27 01:07:45 CEST 46min left    Sat 2020-09-26 01:05:31 CEST 23h ago       certbot-renewal.timer        certbot-renewal.service       
-    next: new Date("2020-09-26 23:07:45 GMT+0"),
-    last: new Date("2020-09-25 23:05:31 GMT+0"),
-    unit: "certbot-renewal.timer",
-    activates: "certbot-renewal.service"
-  }]);
+  t.deepEqual(timers, [
+    {
+      // Thu 2020-08-27 00:00:00 CEST 9h left        Wed 2020-08-26 00:00:00 CEST 14h ago    logrotate.timer              logrotate.service
+      next: new Date("2020-08-26 22:00:00 GMT+0"),
+      last: new Date("2020-08-25 22:00:00 GMT+0"),
+      unit: "logrotate.timer",
+      activates: "logrotate.service"
+    },
+    {
+      // Sun 2020-09-27 01:07:45 CEST 46min left    Sat 2020-09-26 01:05:31 CEST 23h ago       certbot-renewal.timer        certbot-renewal.service
+      next: new Date("2020-09-26 23:07:45 GMT+0"),
+      last: new Date("2020-09-25 23:05:31 GMT+0"),
+      unit: "certbot-renewal.timer",
+      activates: "certbot-renewal.service"
+    }
+  ]);
 });

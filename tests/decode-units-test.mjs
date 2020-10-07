@@ -1,15 +1,14 @@
 import test from "ava";
-import { join, dirname } from "path";
-import { fileURLToPath } from "url";
 import { readFileSync } from "fs";
 import { decodeUnits } from "../src/service-systemd-control.mjs";
 
-const here = dirname(fileURLToPath(import.meta.url));
-
 test("systemctl decode units", t => {
-  const raw = readFileSync(join(here, "fixtures", "list-units"), {
-    encoding: "utf8"
-  });
+  const raw = readFileSync(
+    new URL("fixtures/list-units", import.meta.url).pathname,
+    {
+      encoding: "utf8"
+    }
+  );
 
   const units = decodeUnits(raw);
 
@@ -45,9 +44,17 @@ test("systemctl decode units", t => {
     }
   );
 
+  /*
+   dev-disk-by\x2duuid-806fc6bb\x2d526c\x2d40ea\x2dbe90\x2d233701157796.device
+  */
+
   //console.log(units.map(u => u.unit));
   t.deepEqual(
-    units.find(u => u.unit === "dev-disk-by-uuid-806fc6bb-526c-40ea-be90-233701157796.device"),
+    units.find(
+      u =>
+        u.unit ===
+        "dev-disk-by-uuid-806fc6bb-526c-40ea-be90-233701157796.device"
+    ),
     {
       unit: "dev-disk-by-uuid-806fc6bb-526c-40ea-be90-233701157796.device",
       load: "loaded",
