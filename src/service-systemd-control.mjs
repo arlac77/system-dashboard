@@ -17,10 +17,10 @@ export function decodeUnits(data) {
   // avahi-daemon.service                       loaded    active   running Avahi mDNS/DNS-SD Stack
   // backup.service                             loaded    inactive dead    backup
 
-  return data.split(/\n/).map(line => {
+  return hex2char(data).split(/\n/).map(line => {
     const [unit, load, active, sub, ...description] = line.split(/\s+/);
     return {
-      unit: hex2char(unit),
+      unit,
       load,
       active,
       sub,
@@ -79,7 +79,7 @@ export function decodeMachines(data) {
 * pine1 (host) degraded 2      0   
 */
 
-  return data.split(/\n/).map(line => {
+  return hex2char(data).split(/\n/).map(line => {
     const [name, type, state, failed, jobs] = line.split(/\s+/);
     return {
       name,
@@ -130,8 +130,7 @@ TriggeredBy: * hook-ci.socket
   let key;
   let values;
 
-  data.split(/\n/).forEach(line => {
-    line = hex2char(line);
+  hex2char(data).split(/\n/).forEach(line => {
     let m = line.match(/^\s*([\w\-\s]+):\s+([^\(]+)(\s*\(([^\)]*)\))?\s*(.*)/);
     if (m) {
       key = m[1].toLowerCase();
@@ -237,7 +236,7 @@ export function decodeFiles(data) {
   const files = {};
   let lines;
 
-  for (const line of data.split(/\n/)) {
+  for (const line of hex2char(data).split(/\n/)) {
     const m = line.match(/^#\s+(\/(.+))/);
 
     if (m) {
