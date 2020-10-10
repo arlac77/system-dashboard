@@ -35,10 +35,9 @@ initialize();
 
 function info() {
   return JSON.parse(
-    readFileSync(
-      new URL("../package.json", import.meta.url).pathname,
-      { encoding: "utf8" }
-    )
+    readFileSync(new URL("../package.json", import.meta.url).pathname, {
+      encoding: "utf8"
+    })
   );
 }
 
