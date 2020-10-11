@@ -1,10 +1,27 @@
 import test from "ava";
 import got from "got";
-
+import { StandaloneServiceProvider } from "@kronos-integration/service";
+import setup from "../src/system-dashboard.mjs";
+ 
 let port = 3149;
 
 test.before(async t => {
   port++;
+
+  const config = {
+  http: {
+    logLevel: "error",
+    listen: { port }
+  },
+  swarm: {
+    logLevel: "error",
+    key: "sdlfkjdf-dsakfds-sdfrj4.s-ss-rk4jl3l"
+  }
+};
+
+  const serviceProvider = new StandaloneServiceProvider(config);
+
+  setup(serviceProvider);
 
   t.context.port = port;
 
@@ -20,12 +37,12 @@ test.before(async t => {
 });
 
 test.after.always(async t => {
-  t.context.server.close();
+//  t.context.server.close();
 });
 
-test.skip("logs", async t => {
+test.skip("state", async t => {
   const response = await got.get(
-    `http://localhost:${t.context.port}/logs`,
+    `http://localhost:${t.context.port}/state/uptime`,
     {
       headers: {
         Authorization: `Bearer ${t.context.token}`
@@ -36,6 +53,6 @@ test.skip("logs", async t => {
   t.is(response.statusCode, 200);
 
   const json = JSON.parse(response.body);
-  t.true(json.length >= 1);
-  t.is(json[0].id, "job1");
+  console.log(json);
+  t.deepEqual(json, {});
 });
