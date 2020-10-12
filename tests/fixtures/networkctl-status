@@ -1,0 +1,62 @@
+* 1: lo                                                                 
+                     Link File: /usr/lib/systemd/network/99-default.link
+                  Network File: n/a                                     
+                          Type: loopback                                
+                         State: carrier (unmanaged)                     
+                           MTU: 65536                                   
+                         QDisc: noqueue                                 
+  IPv6 Address Generation Mode: eui64                                   
+          Queue Length (Tx/Rx): 1/1                                     
+                       Address: 127.0.0.1                               
+                                ::1                                     
+                    Rx Packets: 9588427                                 
+                    Tx Packets: 9588427                                 
+                      Rx Bytes: 6026170741                              
+                      Tx Bytes: 6026170741                              
+                     Rx Errors: 0                                       
+                     Tx Errors: 0                                       
+                    Rx Dropped: 0                                       
+                    Tx Dropped: 0                                       
+             Multicast Packets: 0                                       
+                    Collisions: 0                                       
+
+* 2: eth0                                                                  
+                     Link File: /usr/lib/systemd/network/99-default.link   
+                  Network File: /etc/systemd/network/eth0.network          
+                          Type: ether                                      
+                         State: routable (configured)                      
+                          Path: platform-xhci-hcd.6.auto-usb-0:1:1.0       
+                        Driver: r8152                                      
+                        Vendor: Realtek Semiconductor Corp.                
+                         Model: RTL8153 Gigabit Ethernet Adapter           
+                    HW Address: 00:1e:06:31:08:57 (WIBRAIN)                
+                           MTU: 1500                                       
+                         QDisc: fq_codel                                   
+  IPv6 Address Generation Mode: eui64                                      
+          Queue Length (Tx/Rx): 1/1                                        
+              Auto negotiation: yes                                        
+                         Speed: 1Gbps                                      
+                        Duplex: full                                       
+                          Port: mii                                        
+                       Address: 10.0.0.20                                  
+                                10.0.6.1                                   
+                                2003:fb:f02:8300:21e:6ff:fe31:857          
+                                fd02:adeb:9d7:2e18:10::20                  
+                                fd02:adeb:9d7:2e18:10:0:6:1                
+                                fe80::21e:6ff:fe31:857                     
+                       Gateway: 10.0.0.2 (AVM GmbH)                        
+                                fe80::c225:6ff:fee2:8a78 (AVM GmbH)        
+                           DNS: fd02:adeb:9d7:2e18:10::20                  
+             DHCP6 Client IAID: 0xa01fce31                                 
+             DHCP6 Client DUID: DUID-EN/Vendor:0000ab11189e3c5fa9bd8f340000
+                  Connected To: fritz.box on port c0:25:06:e2:8a:78 (LAN:3)
+                    Rx Packets: 327464905                                  
+                    Tx Packets: 189393298                                  
+                      Rx Bytes: 2011490494                                 
+                      Tx Bytes: 1979451813                                 
+                     Rx Errors: 0                                          
+                     Tx Errors: 0                                          
+                    Rx Dropped: 1149                                       
+                    Tx Dropped: 0                                          
+             Multicast Packets: 0                                          
+                    Collisions: 0                                          
