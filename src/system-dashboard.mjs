@@ -4,6 +4,7 @@ import ServiceAuthenticator from "@kronos-integration/service-authenticator";
 import ServiceAdmin from "@kronos-integration/service-admin";
 import ServiceSwarm from "@kronos-integration/service-swarm";
 import ServiceSystemdControl from "./service-systemd-control.mjs";
+import ServiceNetworkControl from "./service-network-control.mjs";
 import {
   DecodeJSONInterceptor,
   EncodeJSONInterceptor
@@ -88,7 +89,8 @@ export default async function setup(sp) {
             }
           ])
         ),
-  
+        "/networkctl/interfaces": { ...GET, connected: "service(networkctl).interfaces" },
+
         "/other/fail2ban": {
           ...GET,
           connected: "service(systemctl).fail2ban"
@@ -126,7 +128,12 @@ export default async function setup(sp) {
     systemctl: {
       type: ServiceSystemdControl,
       autostart: true
+    },
+    networkctl: {
+      type: ServiceNetworkControl,
+      autostart: true
     }
+
   });
 
   await sp.start();

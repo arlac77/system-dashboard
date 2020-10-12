@@ -29,7 +29,7 @@
                         Driver: r8152                                      
                         Vendor: Realtek Semiconductor Corp.                
                          Model: RTL8153 Gigabit Ethernet Adapter           
-                    HW Address: 00:1e:06:31:08:57 (WIBRAIN)                
+                    HW Address: 00:1f:06:61:08:57 (WIBRAIN)                
                            MTU: 1500                                       
                          QDisc: fq_codel                                   
   IPv6 Address Generation Mode: eui64                                      
@@ -40,16 +40,16 @@
                           Port: mii                                        
                        Address: 10.0.0.20                                  
                                 10.0.6.1                                   
-                                2003:fb:f02:8300:21e:6ff:fe31:857          
-                                fd02:adeb:9d7:2e18:10::20                  
-                                fd02:adeb:9d7:2e18:10:0:6:1                
-                                fe80::21e:6ff:fe31:857                     
+                                2003:fb:f07:8300:21e:6ff:fe31:857          
+                                ed02:adeb:9d7:2f18:10::20                  
+                                ed02:adeb:9d7:2f18:10:0:6:1                
+                                ee80::21e:6ff:fe31:857                     
                        Gateway: 10.0.0.2 (AVM GmbH)                        
                                 fe80::c225:6ff:fee2:8a78 (AVM GmbH)        
-                           DNS: fd02:adeb:9d7:2e18:10::20                  
+                           DNS: ed02:adeb:9d7:2e18:10::20                  
              DHCP6 Client IAID: 0xa01fce31                                 
              DHCP6 Client DUID: DUID-EN/Vendor:0000ab11189e3c5fa9bd8f340000
-                  Connected To: fritz.box on port c0:25:06:e2:8a:78 (LAN:3)
+                  Connected To: fritz.box on port c0:25:08:e2:7a:78 (LAN:3)
                     Rx Packets: 327464905                                  
                     Tx Packets: 189393298                                  
                       Rx Bytes: 2011490494                                 

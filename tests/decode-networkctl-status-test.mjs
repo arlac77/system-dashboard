@@ -1,0 +1,76 @@
+import test from "ava";
+import { readFile } from "fs/promises";
+import { decodeNetworkStatus } from "../src/service-network-control.mjs";
+
+test("netowkctl status", async t => {
+  const interfaces = decodeNetworkStatus(
+    await readFile(
+      new URL("fixtures/networkctl-status", import.meta.url).pathname,
+      {
+        encoding: "utf8"
+      }
+    )
+  );
+  t.deepEqual(interfaces, [
+    {
+      Address: "127.0.0.1",
+      Collisions: 0,
+      "IPv6 Address Generation Mode": "eui64",
+      "Link File": "/usr/lib/systemd/network/99-default.link",
+      MTU: 65536,
+      "Multicast Packets": 0,
+      "Network File": "n/a",
+      QDisc: "noqueue",
+      "Queue Length (Tx/Rx)": "1/1",
+      "Rx Bytes": 6026170741,
+      "Rx Dropped": 0,
+      "Rx Errors": 0,
+      "Rx Packets": 9588427,
+      State: "carrier (unmanaged)",
+      "Tx Bytes": 6026170741,
+      "Tx Dropped": 0,
+      "Tx Errors": 0,
+      "Tx Packets": 9588427,
+      Type: "loopback",
+      name: "lo",
+      number: 1
+    },
+    {
+      Address: "10.0.0.20",
+      "Auto negotiation": "yes",
+      Collisions: 0,
+      "Connected To": "fritz.box on port c0:25:08:e2:7a:78 (LAN:3)",
+      "DHCP6 Client DUID": "DUID-EN/Vendor:0000ab11189e3c5fa9bd8f340000",
+      "DHCP6 Client IAID": "0xa01fce31",
+      DNS: "ed02:adeb:9d7:2e18:10::20",
+      Driver: "r8152",
+      Duplex: "full",
+      Gateway: "10.0.0.2 (AVM GmbH)",
+      "HW Address": "00:1f:06:61:08:57 (WIBRAIN)",
+      "IPv6 Address Generation Mode": "eui64",
+      "Link File": "/usr/lib/systemd/network/99-default.link",
+      MTU: 1500,
+      Model: "RTL8153 Gigabit Ethernet Adapter",
+      "Multicast Packets": 0,
+      "Network File": "/etc/systemd/network/eth0.network",
+      Path: "platform-xhci-hcd.6.auto-usb-0:1:1.0",
+      Port: "mii",
+      QDisc: "fq_codel",
+      "Queue Length (Tx/Rx)": "1/1",
+      "Rx Bytes": 2011490494,
+      "Rx Dropped": 1149,
+      "Rx Errors": 0,
+      "Rx Packets": 327464905,
+      Speed: "1Gbps",
+      State: "routable (configured)",
+      "Tx Bytes": 1979451813,
+      "Tx Dropped": 0,
+      "Tx Errors": 0,
+      "Tx Packets": 189393298,
+      Type: "ether",
+      Vendor: "Realtek Semiconductor Corp.",
+      name: "eth0",
+      number: 2
+    }
+  ]);
+});
