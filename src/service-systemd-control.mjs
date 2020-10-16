@@ -160,9 +160,17 @@ TriggeredBy: * hook-ci.socket
         case "Active":
           unit.active = value;
           unit.sub = Object.keys(options)[0];
+
           m = extra.match(/\w+\s+([^;]+);\s+(.*)/);
           if (m) {
             unit.since = decodeDate(m[1]);
+          }
+          else {
+            m = value.match(/(.+)since\s+(.+)/)
+            if(m) {
+              unit.active = m[1].trim();
+              unit.since = decodeDate(m[2]);
+            }
           }
           break;
         case "Docs":

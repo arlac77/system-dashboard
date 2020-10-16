@@ -113,8 +113,11 @@ test("systemctl decode slice unit", t => {
     unit: "-.slice",
     description: "Root Slice",
     load: "loaded",
-    //active: "active",
-    //since: "2020-08-12 01:32:09 CEST",
+
+    //Active: active since Wed 2020-08-12 01:32:09 CEST; 4 days ago
+    active: "active",
+    since: new Date("2020-08-12 01:32:09 GMT+2"),
+
     tasks: 361,
     memory: 1.7 * 1024 * 1024 * 1024,
     docs: ["man:systemd.special(7)"],
