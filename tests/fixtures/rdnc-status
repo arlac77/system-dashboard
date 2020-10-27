@@ -1,0 +1,18 @@
+version: BIND 9.16.8 (Stable Release) <id:539f9f0> (version.bind/txt/ch disabled)
+running on odroid1: Linux armv7l 4.14.180-1-ARCH #1 SMP PREEMPT Tue May 26 02:05:58 UTC 2020
+boot time: Tue, 27 Oct 2020 09:31:39 GMT
+last configured: Tue, 27 Oct 2020 09:31:39 GMT
+configuration file: /etc/named.conf
+CPUs found: 8
+worker threads: 8
+UDP listeners per interface: 8
+number of zones: 112 (97 automatic)
+debug level: 0
+xfers running: 0
+xfers deferred: 0
+soa queries in progress: 0
+query logging is OFF
+recursive clients: 0/54/60
+tcp clients: 0/6
+TCP high-water: 0
+server is up and running
