@@ -1,6 +1,9 @@
 import test from "ava";
 import { readFile } from "fs/promises";
-import { decodeNetworkStatus } from "../src/service-network-control.mjs";
+import {
+  decodeNetworkStatus,
+  decodeNetworkNeighburs
+} from "../src/service-network-control.mjs";
 
 test("netowkctl status", async t => {
   const interfaces = decodeNetworkStatus(
@@ -71,6 +74,40 @@ test("netowkctl status", async t => {
       Vendor: "Realtek Semiconductor Corp.",
       name: "eth0",
       number: 2
+    }
+  ]);
+});
+
+test("neighbour", async t => {
+  const neighbour = decodeNetworkNeighburs(
+    await readFile(new URL("fixtures/ip-neighbour", import.meta.url).pathname, {
+      encoding: "utf8"
+    })
+  );
+  t.deepEqual(neighbour, [
+    {
+      address: "10.0.1.6",
+      device: "eth0",
+      hwaddr: "c8:1b:14:87:ca:32",
+      state: "STALE"
+    },
+    {
+      address: "10.0.168.110",
+      device: "eth0",
+      hwaddr: undefined,
+      state: "FAILED"
+    },
+    {
+      address: "fd02:adeb:9d7:2e18:10:0:4:3",
+      device: "eth0",
+      hwaddr: undefined,
+      state: "FAILED"
+    },
+    {
+      address: "fe80::ce8:b2ef:d54d:d831",
+      device: "eth0",
+      hwaddr: "29:37:38:41:0c:40",
+      state: "STALE"
     }
   ]);
 });

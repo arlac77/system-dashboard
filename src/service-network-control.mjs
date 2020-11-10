@@ -43,6 +43,21 @@ export function decodeNetworkStatus(data) {
   return interfaces;
 }
 
+export function decodeNetworkNeighburs(data) {
+  return data
+    .split(/\n/)
+    .filter(line => line.length > 0)
+    .map(line => {
+      const columns = line.split(/\s+/);
+      return {
+        address: columns[0],
+        device: columns[2],
+        hwaddr: columns[4],
+        state: columns[columns.length - 1]
+      };
+    });
+}
+
 export class ServiceNetworkControl extends Service {
   /**
    * @return {string} 'networkctl'
@@ -65,6 +80,15 @@ export class ServiceNetworkControl extends Service {
             }
           );
           return decodeNetworkStatus(p.stdout);
+        }
+      },
+      neighbours: {
+        default: true,
+        receive: async params => {
+          const p = await execa("ip ", ["neighbour"], {
+            reject: false
+          });
+          return decodeNetworkNeighburs(p.stdout);
         }
       }
     };

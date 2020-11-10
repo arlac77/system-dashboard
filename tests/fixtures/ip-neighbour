@@ -1,0 +1,4 @@
+10.0.1.6 dev eth0 lladdr c8:1b:14:87:ca:32 STALE
+10.0.168.110 dev eth0  FAILED
+fd02:adeb:9d7:2e18:10:0:4:3 dev eth0  FAILED
+fe80::ce8:b2ef:d54d:d831 dev eth0 lladdr 29:37:38:41:0c:40 STALE
