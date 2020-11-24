@@ -11,6 +11,7 @@ post_install() {
 post_upgrade() {
 	systemctl daemon-reload
 	systemctl restart {{name}}
+	systemctl restart {{name}}.socket
 }
 
 pre_remove() {
