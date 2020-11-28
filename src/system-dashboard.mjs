@@ -112,7 +112,7 @@ export default async function setup(sp) {
       type: ServiceAuthenticator,
       autostart: true,
       endpoints: {
-        ldap: "service(ldap).authenticate"
+        "ldap.authenticate": "service(ldap).authenticate"
       }
     },
     admin: {
