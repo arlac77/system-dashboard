@@ -55,7 +55,9 @@ export default async function setup(sp) {
           ...WS,
           connected: "service(swarm).peers.services"
         },
-        "/services": { ...WS, connected: "service(admin).services" },
+        "/admin/services": { ...WS, connected: "service(admin).services" },
+        "/admin/requests": { ...WS, connected: "service(admin).requests" },
+        "/admin/command": { ...POST, connected: "service(admin).command" },
 
         "/state/uptime": {
           ...WS,
