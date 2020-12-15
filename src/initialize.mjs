@@ -18,7 +18,7 @@ import {
   CTXBodyParamInterceptor
 } from "@kronos-integration/service-http";
 
-export default async function setup(sp) {
+export default async function initialize(sp) {
   const GETInterceptors = [
     new CTXJWTVerifyInterceptor(),
     new CTXInterceptor({
@@ -43,7 +43,7 @@ export default async function setup(sp) {
   const WS = {
     ws: true,
     interceptors: [new DecodeJSONInterceptor()],
-    receivingInterceptors :[new EncodeJSONInterceptor()]
+    receivingInterceptors: [new EncodeJSONInterceptor()]
   };
 
   await sp.declareServices({
@@ -76,13 +76,28 @@ export default async function setup(sp) {
           connected: "service(health).state"
         },
 
-        "/authenticate": { ...POST_PLAIN, connected: "service(auth).access_token" },
-        "/systemctl/machine": { ...GET, connected: "service(systemctl).machines" },
+        "/authenticate": {
+          ...POST_PLAIN,
+          connected: "service(auth).access_token"
+        },
+        "/systemctl/machine": {
+          ...GET,
+          connected: "service(systemctl).machines"
+        },
         "/systemctl/timer": { ...GET, connected: "service(systemctl).timers" },
-        "/systemctl/socket": { ...GET, connected: "service(systemctl).sockets" },
+        "/systemctl/socket": {
+          ...GET,
+          connected: "service(systemctl).sockets"
+        },
         "/systemctl/unit": { ...GET, connected: "service(systemctl).units" },
-        "/systemctl/unit/:unit": { ...GET, connected: "service(systemctl).unit" },
-        "/systemctl/unit/:unit/files": { ...GET, connected: "service(systemctl).files" },
+        "/systemctl/unit/:unit": {
+          ...GET,
+          connected: "service(systemctl).unit"
+        },
+        "/systemctl/unit/:unit/files": {
+          ...GET,
+          connected: "service(systemctl).files"
+        },
         ...Object.fromEntries(
           ServiceSystemdControl.unitActionNames.map(name => [
             `/systemctl/unit/:unit/${name}`,
@@ -92,7 +107,10 @@ export default async function setup(sp) {
             }
           ])
         ),
-        "/networkctl/interfaces": { ...GET, connected: "service(networkctl).interfaces" },
+        "/networkctl/interfaces": {
+          ...GET,
+          connected: "service(networkctl).interfaces"
+        },
 
         "/fail2ban": {
           ...GET,
@@ -127,9 +145,9 @@ export default async function setup(sp) {
       endpoints: {
         "topic.services": {
           connected: "service(admin).services",
-          receivingInterceptors :[new EncodeJSONInterceptor()]
-        }, 
-        "peers.services": { }
+          receivingInterceptors: [new EncodeJSONInterceptor()]
+        },
+        "peers.services": {}
       }
     },
     systemctl: {

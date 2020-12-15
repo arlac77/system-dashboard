@@ -1,7 +1,7 @@
 import test from "ava";
 import got from "got";
 import { StandaloneServiceProvider } from "@kronos-integration/service";
-import setup from "../src/system-dashboard.mjs";
+import initialize from "../src/initialize.mjs";
 
 let port = 3149;
 
@@ -21,7 +21,7 @@ test.before(async t => {
 
   t.context.sp = new StandaloneServiceProvider(config);
 
-  setup(t.context.sp);
+  initialize(t.context.sp);
 
   t.context.port = port;
 
