@@ -12,7 +12,7 @@ export class ServiceNamed extends Service {
   static get endpoints() {
     return {
       ...super.endpoints,
-      interfaces: {
+      status: {
         default: true,
         receive: async params => {
           const p = await execa(
