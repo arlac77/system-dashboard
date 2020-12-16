@@ -1,4 +1,4 @@
-import ServiceHealthCheck from "@kronos-integration/service-health-check";
+import ServiceHealth from "@kronos-integration/service-health";
 import ServiceLDAP from "@kronos-integration/service-ldap";
 import ServiceAuthenticator from "@kronos-integration/service-authenticator";
 import ServiceAdmin from "@kronos-integration/service-admin";
@@ -126,7 +126,7 @@ export default async function initialize(sp) {
       type: ServiceLDAP
     },
     health: {
-      type: ServiceHealthCheck
+      type: ServiceHealth
     },
     auth: {
       type: ServiceAuthenticator,
