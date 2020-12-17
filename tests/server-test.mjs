@@ -11,7 +11,7 @@ test.before(async t => {
   const config = {
     http: {
       logLevel: "error",
-      listen: { port }
+      listen: { socket: port }
     },
     swarm: {
       logLevel: "error",
@@ -38,9 +38,7 @@ test.before(async t => {
   } catch (e) {}
 });
 
-test.after.always(async t => {
-  //  t.context.server.close();
-});
+//test.after(async t => t.context.sp.stop());
 
 test("startup", async t => {
   t.true(t.context.sp.state === "running" || t.context.sp.state === "starting");
