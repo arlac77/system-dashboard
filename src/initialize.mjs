@@ -19,6 +19,20 @@ import {
 } from "@kronos-integration/service-http";
 
 export default async function initialize(sp) {
+
+  sp.registerFactories([
+    ServiceHTTP,
+    ServiceLDAP,
+    ServiceAuthenticator,
+    ServiceHealth,
+    ServiceAdmin,
+    DecodeJSONInterceptor,
+    EncodeJSONInterceptor,
+    CTXBodyParamInterceptor,
+    CTXJWTVerifyInterceptor,
+    CTXInterceptor
+  ]);
+
   const GETInterceptors = [
     new CTXJWTVerifyInterceptor(),
     new CTXInterceptor({
