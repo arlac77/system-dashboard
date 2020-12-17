@@ -26,6 +26,7 @@ export default async function initialize(sp) {
     ServiceAuthenticator,
     ServiceHealth,
     ServiceAdmin,
+    ServiceSwarm,
     DecodeJSONInterceptor,
     EncodeJSONInterceptor,
     CTXBodyParamInterceptor,
