@@ -93,7 +93,7 @@ export default async function initialize(sp) {
 
         "/authenticate": {
           ...POST_PLAIN,
-          connected: "service(auth).access_token"
+          connected: "service(authenticator).access_token"
         },
         "/systemctl/machine": {
           ...GET,
@@ -143,7 +143,7 @@ export default async function initialize(sp) {
     health: {
       type: ServiceHealth
     },
-    auth: {
+    authenticator: {
       type: ServiceAuthenticator,
       autostart: true,
       endpoints: {
