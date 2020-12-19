@@ -53,12 +53,12 @@ export default async function initialize(sp) {
   };
   const POST_PLAIN = {
     method: "POST",
-    interceptors: [new CTXBodyParamInterceptor()]
+    interceptors: new CTXBodyParamInterceptor()
   };
   const WS = {
     ws: true,
-    interceptors: [new DecodeJSONInterceptor()],
-    receivingInterceptors: [new EncodeJSONInterceptor()]
+    interceptors: new DecodeJSONInterceptor(),
+    receivingInterceptors: new EncodeJSONInterceptor()
   };
 
   await sp.declareServices({
@@ -160,7 +160,7 @@ export default async function initialize(sp) {
       endpoints: {
         "topic.services": {
           connected: "service(admin).services",
-          receivingInterceptors: [new EncodeJSONInterceptor()]
+          receivingInterceptors: new EncodeJSONInterceptor()
         },
         "peers.services": {}
       }
