@@ -145,14 +145,12 @@ export default async function initialize(sp) {
     },
     authenticator: {
       type: ServiceAuthenticator,
-      autostart: true,
       endpoints: {
         "ldap.authenticate": "service(ldap).authenticate"
       }
     },
     admin: {
-      type: ServiceAdmin,
-      autostart: true
+      type: ServiceAdmin
     },
     swarm: {
       type: ServiceSwarm,
@@ -166,16 +164,13 @@ export default async function initialize(sp) {
       }
     },
     systemctl: {
-      type: ServiceSystemdControl,
-      autostart: true
+      type: ServiceSystemdControl
     },
     networkctl: {
-      type: ServiceNetworkControl,
-      autostart: true
+      type: ServiceNetworkControl
     },
     named: {
-      type: ServiceNamed,
-      autostart: true
+      type: ServiceNamed
     }
   });
 }
