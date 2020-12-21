@@ -22,6 +22,7 @@ test.before(async t => {
   t.context.sp = new StandaloneServiceProvider(config);
 
   initialize(t.context.sp);
+  await t.context.sp.start();
 
   t.context.port = port;
 
