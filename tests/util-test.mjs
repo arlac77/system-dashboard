@@ -7,12 +7,12 @@ test("decode date", t => {
 
   t.is(
     decodeDate(line).toString(),
-    "Thu Aug 13 2020 00:00:00 GMT+0200 (Central European Summer Time)"
+    "Wed Aug 12 2020 22:00:00 GMT+0200 (Central European Summer Time)"
   );
 
   t.is(
     decodeDate(line.substring(line.indexOf("left") + 5)).toString(),
-    "Wed Aug 12 2020 00:00:03 GMT+0200 (Central European Summer Time)"
+    "Tue Aug 11 2020 22:00:03 GMT+0200 (Central European Summer Time)"
   );
 
   t.deepEqual(line.substring(line.indexOf("ago") + 4).trim().split(/\s+/), [

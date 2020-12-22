@@ -1,14 +1,21 @@
-/*
 const tz = {
+  UTC: 0,
+  "GMT+0000": 0,
+  "GMT+0100": 1 * 60 * 60 * 1000,
+  "GMT+0200": 2 * 60 * 60 * 1000,
+  CET: 1 * 60 * 60 * 1000,
   CEST: 2 * 60 * 60 * 1000
 };
-*/
 
 export function decodeDate(line) {
   const m = line.match(
     /\w+\s+(?<year>\d\d\d\d)-(?<month>\d\d)-(?<day>\d\d)\s(?<hour>\d\d):(?<minute>\d\d):(?<second>\d\d)\s(?<tz>\w+)/
   );
   if (m) {
+    //console.log(m.groups.tz,new Date().getTimezoneOffset());
+
+    const offset = tz[m.groups.tz] ? tz[m.groups.tz] : 0;
+
     return new Date(
       new Date(
         parseInt(m.groups.year),
@@ -18,8 +25,7 @@ export function decodeDate(line) {
         parseInt(m.groups.minute),
         parseInt(m.groups.second),
         0
-      ).getTime() -
-        0 * 60 * 60 * 1000
+      ).getTime() - offset
     );
   }
 }
