@@ -40,9 +40,9 @@ export default async function initialize(sp) {
     new CTXJWTVerifyInterceptor(),
     new CTXInterceptor({
       headers: {
-        "Cache-Control": "no-store, no-cache, must-revalidate",
-        Pragma: "no-cache",
-        Expires: 0
+        "cache-control": "no-store, no-cache, must-revalidate",
+        pragma: "no-cache",
+        expires: 0
       }
     })
   ];
@@ -74,7 +74,6 @@ export default async function initialize(sp) {
         },
         "/admin/services": { ...WS, connected: "service(admin).services" },
         "/admin/requests": { ...WS, connected: "service(admin).requests" },
-        "/admin/command": { ...POST, connected: "service(admin).command" },
 
         "/state/uptime": {
           ...WS,
