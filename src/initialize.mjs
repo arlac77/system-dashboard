@@ -19,7 +19,6 @@ import {
 } from "@kronos-integration/service-http";
 
 export default async function initialize(sp) {
-
   sp.registerFactories([
     ServiceHTTP,
     ServiceLDAP,
@@ -137,23 +136,15 @@ export default async function initialize(sp) {
         }
       }
     },
-    ldap: {
-      type: ServiceLDAP
-    },
-    health: {
-      type: ServiceHealth
-    },
+    ldap: {},
+    health: {},
     authenticator: {
-      type: ServiceAuthenticator,
       endpoints: {
         "ldap.authenticate": "service(ldap).authenticate"
       }
     },
-    admin: {
-      type: ServiceAdmin
-    },
+    admin: {},
     swarm: {
-      type: ServiceSwarm,
       autostart: true,
       endpoints: {
         "topic.services": {
@@ -163,14 +154,8 @@ export default async function initialize(sp) {
         "peers.services": {}
       }
     },
-    systemctl: {
-      type: ServiceSystemdControl
-    },
-    networkctl: {
-      type: ServiceNetworkControl
-    },
-    named: {
-      type: ServiceNamed
-    }
+    systemctl: {},
+    networkctl: {},
+    named: {}
   });
 }
