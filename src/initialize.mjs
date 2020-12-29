@@ -1,7 +1,10 @@
 import ServiceHealth from "@kronos-integration/service-health";
 import ServiceLDAP from "@kronos-integration/service-ldap";
 import ServiceAuthenticator from "@kronos-integration/service-authenticator";
-import ServiceAdmin from "@kronos-integration/service-admin";
+import {
+  ServiceAdmin,
+  LiveProbeInterceptor
+} from "@kronos-integration/service-admin";
 import ServiceSwarm from "@kronos-integration/service-swarm";
 import ServiceSystemdControl from "./service-systemd-control.mjs";
 import ServiceNetworkControl from "./service-network-control.mjs";
@@ -33,7 +36,8 @@ export default async function initialize(sp) {
     EncodeJSONInterceptor,
     CTXBodyParamInterceptor,
     CTXJWTVerifyInterceptor,
-    CTXInterceptor
+    CTXInterceptor,
+    LiveProbeInterceptor
   ]);
 
   const GETInterceptors = [
