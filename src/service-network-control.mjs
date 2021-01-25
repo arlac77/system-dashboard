@@ -85,7 +85,7 @@ export class ServiceNetworkControl extends Service {
       neighbours: {
         default: true,
         receive: async params => {
-          const p = await execa("ip ", ["neighbour"], {
+          const p = await execa("ip", ["neighbour"], {
             reject: false
           });
           return decodeNetworkNeighburs(p.stdout);
