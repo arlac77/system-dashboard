@@ -89,7 +89,8 @@
       "/etc/nginx/config.d/${name}.conf": "pacman/nginx.conf",
       "/usr/lib/tmpfiles.d/${name}.conf": "pacman/tmpfiles.conf",
       "/usr/lib/sysusers.d/${name}.conf": "pacman/sysusers.conf",
-      "/etc/polkit-1/rules.d/${name}.rules": "pacman/polkit.rules"
+      "/etc/polkit-1/rules.d/${name}.rules": "pacman/polkit.rules",
+      "/etc/nginx/sites/common/${name}.conf": "pacman/nginx.conf"
     },
     "depends": {
       "systemd": ">=248",
