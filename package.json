@@ -92,7 +92,7 @@
       "/etc/nginx/sites/common/${name}.conf": "pacman/nginx.conf"
     },
     "depends": {
-      "systemd": ">=249",
+      "systemd": ">=249.1",
       "nginx-mainline": ">=1.21.1"
     },
     "groups": "webhook",
