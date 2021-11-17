@@ -34,7 +34,7 @@
     "@kronos-integration/service-http": "^10.6.78",
     "@kronos-integration/service-ldap": "^4.0.58",
     "@kronos-integration/service-swarm": "^1.9.86",
-    "execa": "^5.1.1"
+    "execa": "^6.0.0"
   },
   "devDependencies": {
     "@semantic-release/commit-analyzer": "^9.0.1",
