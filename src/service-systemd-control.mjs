@@ -1,5 +1,5 @@
 import { Service } from "@kronos-integration/service";
-import execa from "execa";
+import { execa } from "execa";
 import {
   decodeDate,
   hex2char,
