@@ -44,9 +44,7 @@ export default async function initialize(sp) {
     new CTXJWTVerifyInterceptor(),
     new CTXInterceptor({
       headers: {
-        "cache-control": "no-store, no-cache, must-revalidate",
-        pragma: "no-cache",
-        expires: 0
+        "cache-control": "no-store, no-cache, must-revalidate"
       }
     })
   ];
