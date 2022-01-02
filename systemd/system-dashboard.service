@@ -16,6 +16,7 @@ FileDescriptorStoreMax=1
 OOMPolicy=stop
 User={{name}}
 Group={{name}}
+UMask=0077
 SupplementaryGroups=http {{name}}
 NoNewPrivileges=true
 ProtectSystem=full
