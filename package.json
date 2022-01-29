@@ -72,40 +72,24 @@
     "base": "/services/${name}/api",
     "socket": "/run/${name}/http/socket"
   },
-  "systemd": {
-    "units": {
-      "${name}": "systemd/${name}*"
-    }
-  },
-  "pacman": {
-    "arch": [
-      "aarch64",
-      "armv7h",
-      "x86_64"
-    ],
+  "pkg": {
     "backup": "etc/${name}/config.json",
     "content": {
       "/etc/${name}/config.json": "config/config.json",
-      "/usr/lib/tmpfiles.d/${name}.conf": "pacman/tmpfiles.conf",
-      "/usr/lib/sysusers.d/${name}.conf": "pacman/sysusers.conf",
-      "/etc/polkit-1/rules.d/${name}.rules": "pacman/polkit.rules",
-      "/etc/nginx/sites/common/${name}.conf": "pacman/nginx.conf"
+      "/usr/lib/tmpfiles.d/${name}.conf": "pkg/tmpfiles.conf",
+      "/usr/lib/sysusers.d/${name}.conf": "pkg/sysusers.conf",
+      "/etc/polkit-1/rules.d/${name}.rules": "pkg/polkit.rules",
+      "/etc/nginx/sites/common/${name}.conf": "pkg/nginx.conf",
+      "${installdir}/":[{"type":"npm-pack"},{"type":"node-modules"}]
     },
     "depends": {
       "systemd": ">=250.3",
       "nginx-mainline": ">=1.21.4"
     },
     "groups": "webhook",
-    "hooks": "pacman/hooks.sh",
+    "hooks": "pkg/hooks.sh",
     "installdir": "/services/${name}",
     "group": "services",
-    "content-provider": {
-      "systemd": {
-        "units": {
-          "${name}": "systemd/${name}*"
-        }
-      }
-    }
   },
   "release": {
     "plugins": [
@@ -115,8 +99,7 @@
       [
         "@semantic-release/exec",
         {
-          "verifyConditionsCmd": "which makepkg",
-          "publishCmd": "npx npm-pkgbuild --pkgver ${nextRelease.version} --npm-dist --npm-modules pkgbuild pacman makepkg"
+          "publishCmd": "npx npm-pkgbuild"
         }
       ],
       "@semantic-release/npm"
@@ -125,7 +108,7 @@
   "template": {
     "inheritFrom": [
       "arlac77/template-arlac77-github",
-      "arlac77/template-kronos-app"
+      "arlac77/template-kronos-app#next"
     ]
   }
 }
