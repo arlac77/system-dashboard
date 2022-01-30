@@ -43,7 +43,7 @@
     "ava": "^4.0.1",
     "c8": "^7.3.0",
     "got": "^12.0.0",
-    "npm-pkgbuild": "^7.23.7",
+    "npm-pkgbuild": "^7.23.8",
     "semantic-release": "^19.0.2"
   },
   "optionalDependencies": {
@@ -71,6 +71,34 @@
   "config": {
     "base": "/services/${name}/api",
     "socket": "/run/${name}/http/socket"
+  },
+  "pacman": {
+    "arch": [
+      "aarch64",
+      "armv7h",
+      "x86_64"
+    ],
+    "group": "services",
+    "hooks": "pacman/hooks.sh",
+    "backup": "etc/${name}/config.json",
+    "installdir": "/services/${name}",
+    "content-provider": {
+      "systemd": {
+        "units": {
+          "${name}": "systemd/${name}*"
+        }
+      }
+    },
+    "content": {
+      "/usr/lib/tmpfiles.d/${name}.conf": "pacman/tmpfiles.conf",
+      "/usr/lib/sysusers.d/${name}.conf": "pacman/sysusers.conf",
+      "/etc/${name}/config.json": "config/config.json",
+      "/etc/nginx/sites/common/${name}.conf": "pacman/nginx.conf"
+    },
+    "depends": {
+      "nginx-mainline": ">=1.21.4",
+      "systemd": ">=250.3"
+    }
   },
   "pkg": {
     "backup": "etc/${name}/config.json",
@@ -100,7 +128,9 @@
     "hooks": "pkg/hooks.sh",
     "installdir": "/services/${name}",
     "group": "services",
-    "output": { "arch" : {}}
+    "output": {
+      "arch": {}
+    }
   },
   "release": {
     "plugins": [
@@ -113,7 +143,14 @@
           "publishCmd": "npx npm-pkgbuild"
         }
       ],
-      "@semantic-release/npm"
+      "@semantic-release/npm",
+      [
+        "@semantic-release/exec",
+        {
+          "verifyConditionsCmd": "which makepkg",
+          "publishCmd": "npx npm-pkgbuild --pkgver ${nextRelease.version} --npm-dist --npm-modules pkgbuild pacman makepkg"
+        }
+      ]
     ]
   },
   "template": {
