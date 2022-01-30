@@ -89,7 +89,7 @@
     "groups": "webhook",
     "hooks": "pkg/hooks.sh",
     "installdir": "/services/${name}",
-    "group": "services"x,
+    "group": "services"
   },
   "release": {
     "plugins": [
