@@ -72,8 +72,18 @@
     "base": "/services/${name}/api",
     "socket": "/run/${name}/http/socket"
   },
+  "pacman": {
+    "hooks": "pacman/hooks.sh",
+    "installdir": "/services/system-dashboard/frontend",
+    "content": {
+      "/etc/nginx/sites/common/${name}.conf": "pacman/nginx.conf"
+    },
+    "depends": {
+      "nginx-mainline": ">=1.21.4",
+      "systemd": ">=250.3"
+    }
+  },
   "pkg": {
-    "backup": "etc/${name}/config.json",
     "content": {
       "/etc/${name}/config.json": "config/config.json",
       "/usr/lib/tmpfiles.d/${name}.conf": "pkg/tmpfiles.conf",
@@ -92,16 +102,18 @@
         "base": "systemd"
       }
     },
+    "output": {
+      "arch": {}
+    },
+    "hooks": "pkg/hooks.sh",
+    "backup": "etc/${name}/config.json",
+    "groups": "webhook",
     "depends": {
       "systemd": ">=250.3",
       "nginx-mainline": ">=1.21.4"
     },
-    "groups": "webhook",
-    "hooks": "pkg/hooks.sh",
-    "installdir": "/services/${name}",
-    "output": {
-      "arch": {}
-    }
+    "group": "services",
+    "installdir": "/services/${name}"
   },
   "release": {
     "plugins": [
