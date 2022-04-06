@@ -50,7 +50,7 @@
     "@kronos-integration/service-systemd": "^2.5.3"
   },
   "engines": {
-    "node": ">={{node_version}}"
+    "node": ">=16.14.2"
   },
   "os": [
     "linux"
