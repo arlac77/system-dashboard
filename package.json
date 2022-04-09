@@ -76,11 +76,10 @@
   "pkg": {
     "content": {
       "/etc/${name}/config.json": "config/config.json",
-      "/usr/lib/tmpfiles.d/${name}.conf": "pkg/tmpfiles.conf",
       "/usr/lib/sysusers.d/${name}.conf": "pkg/sysusers.conf",
       "/etc/polkit-1/rules.d/${name}.rules": "pkg/polkit.rules",
       "/etc/nginx/sites/common/${name}.conf": "pkg/nginx.conf",
-      "${installdir}/": [
+      "${installdir}": [
         {
           "type": "npm-pack"
         },
@@ -88,9 +87,6 @@
           "type": "node-modules"
         }
       ],
-      "/usr/lib/systemd/system/": {
-        "base": "systemd"
-      },
       "${systemd.unit.dir}": {
         "base": "systemd"
       },
@@ -105,8 +101,7 @@
     "depends": {
       "systemd": ">=250.4",
       "nginx-mainline": ">=1.21.4"
-    },
-    "installdir": "/services/${name}"
+    }
   },
   "release": {
     "plugins": [
