@@ -75,10 +75,6 @@
   },
   "pkg": {
     "content": {
-      "${config.dir}config.json": "config/config.json",
-      "${sysusers.config.dir}${name}.conf": "pkg/sysusers.conf",
-      "/etc/polkit-1/rules.d/${name}.rules": "pkg/polkit.rules",
-      "${nginx.sites.dir}${name}.conf": "pkg/nginx.conf",
       "${install.dir}": [
         {
           "type": "npm-pack"
@@ -90,14 +86,14 @@
       "${systemd.unit.dir}": {
         "base": "systemd"
       },
+      "${config.dir}config.json": "config/config.json",
+      "${sysusers.config.dir}${name}.conf": "pkg/sysusers.conf",
+      "${polkit.rules.dir}${name}.rules": "pkg/polkit.rules",
+      "${nginx.sites.dir}${name}.conf": "pkg/nginx.conf",
       "${tmpfiles.config.dir}${name}.conf": "pkg/tmpfiles.conf"
-    },
-    "output": {
-      "arch": {}
     },
     "hooks": "pkg/hooks.sh",
     "backup": "${config.dir}config.json",
-    "groups": "webhook",
     "depends": {
       "systemd": ">=250.4",
       "nginx-mainline": ">=1.21.4"
