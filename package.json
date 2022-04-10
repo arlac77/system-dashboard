@@ -69,10 +69,6 @@
     "url": "https://github.com/arlac77/system-dashboard/issues"
   },
   "homepage": "https://github.com/arlac77/system-dashboard#readme",
-  "config": {
-    "base": "/services/${name}/api",
-    "socket": "/run/${name}/http/socket"
-  },
   "pkg": {
     "content": {
       "${install.dir}": [
@@ -95,6 +91,7 @@
     "hooks": "pkg/hooks.sh",
     "backup": "${config.dir}config.json",
     "groups": "services",
+    "http.base.path": "/services/${name}/api",
     "depends": {
       "systemd": ">=250.4",
       "nginx-mainline": ">=1.21.4"
