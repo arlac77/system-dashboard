@@ -43,7 +43,7 @@
     "ava": "^4.1.0",
     "c8": "^7.3.0",
     "got": "^12.0.3",
-    "npm-pkgbuild": "^8.3.12",
+    "npm-pkgbuild": "^8.3.13",
     "semantic-release": "^19.0.2"
   },
   "optionalDependencies": {
@@ -75,11 +75,11 @@
   },
   "pkg": {
     "content": {
-      "/etc/${name}/config.json": "config/config.json",
-      "/usr/lib/sysusers.d/${name}.conf": "pkg/sysusers.conf",
+      "${config.dir}config.json": "config/config.json",
+      "${sysusers.config.dir}${name}.conf": "pkg/sysusers.conf",
       "/etc/polkit-1/rules.d/${name}.rules": "pkg/polkit.rules",
-      "/etc/nginx/sites/common/${name}.conf": "pkg/nginx.conf",
-      "${installdir}": [
+      "${nginx.sites.dir}${name}.conf": "pkg/nginx.conf",
+      "${install.dir}": [
         {
           "type": "npm-pack"
         },
@@ -96,7 +96,7 @@
       "arch": {}
     },
     "hooks": "pkg/hooks.sh",
-    "backup": "etc/${name}/config.json",
+    "backup": "${config.dir}config.json",
     "groups": "webhook",
     "depends": {
       "systemd": ">=250.4",
