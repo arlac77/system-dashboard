@@ -107,12 +107,6 @@
         }
       ],
       "@semantic-release/github",
-      [
-        "@semantic-release/exec",
-        {
-          "publishCmd": "npx npm-pkgbuild --verbose"
-        }
-      ],
       "@semantic-release/npm"
     ]
   },
