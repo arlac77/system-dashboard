@@ -94,7 +94,7 @@
       "systemd": ">=250.5",
       "nginx-mainline": ">=1.21.4"
     },
-    "http.base.path": "/services/${name}/api"
+    "http.path": "/services/${name}/api"
   },
   "release": {
     "plugins": [
