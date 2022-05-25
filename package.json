@@ -48,7 +48,7 @@
   },
   "optionalDependencies": {
     "@kronos-integration/service-systemd": "^2.5.4",
-    "mf-hosting": "^1.4.0"
+    "mf-hosting": "^1.6.0"
   },
   "engines": {
     "node": ">=16.15.0"
@@ -90,10 +90,6 @@
     "hooks": "pkg/hooks.sh",
     "backup": "${config.dir}config.json",
     "groups": "services",
-    "depends": {
-      "systemd": ">=251.0",
-      "nginx-mainline": ">=1.21.4"
-    },
     "http.path": "/services/${name}/api"
   },
   "release": {
