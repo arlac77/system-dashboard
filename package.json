@@ -90,10 +90,6 @@
     "hooks": "pkg/hooks.sh",
     "backup": "${config.dir}config.json",
     "groups": "services",
-    "depends": {
-      "systemd": ">=251.0",
-      "nginx-mainline": ">=1.21.4"
-    },
     "http.path": "/services/${name}/api"
   },
   "release": {
