@@ -115,13 +115,7 @@
           ]
         }
       ],
-      "@semantic-release/npm",
-      [
-        "@semantic-release/github",
-        {
-          "assets": []
-        }
-      ]
+      "@semantic-release/npm"
     ]
   },
   "template": {
