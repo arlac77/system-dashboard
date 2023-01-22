@@ -83,7 +83,6 @@
       "${config.dir}config.json": "config/config.json",
       "${sysusers.config.dir}${name}.conf": "pkg/sysusers.conf",
       "${polkit.rules.dir}${name}.rules": "pkg/polkit.rules",
-      "${nginx.sites.dir}${name}.conf": "pkg/nginx.conf",
       "${tmpfiles.config.dir}${name}.conf": "pkg/tmpfiles.conf"
     },
     "hooks": "pkg/hooks.sh",
