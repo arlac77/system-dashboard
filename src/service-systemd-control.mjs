@@ -93,7 +93,7 @@ export function decodeMachines(data) {
 export function decodeOptions(str) {
   const options = {};
 
-  while (str && str.length) {
+  while (str?.length) {
     let m = str.match(/^(\w+)$/);
     if (m) {
       options[m[1]] = true;
