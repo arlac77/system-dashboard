@@ -42,7 +42,7 @@
     "ava": "^5.2.0",
     "c8": "^7.3.0",
     "got": "^12.5.3",
-    "npm-pkgbuild": "^11.5.6",
+    "npm-pkgbuild": "^11.5.7",
     "semantic-release": "^20.1.0"
   },
   "optionalDependencies": {
@@ -85,6 +85,7 @@
       "${tmpfiles.config.dir}${name}.conf": "pkg/tmpfiles.conf"
     },
     "hooks": "pkg/hooks.sh",
+    "backup": "${config.dir}config.json",
     "http.path": "/services/${name}/api",
     "kronos": true
   },
