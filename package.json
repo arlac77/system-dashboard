@@ -85,8 +85,8 @@
       "${tmpfiles.config.dir}${name}.conf": "pkg/tmpfiles.conf"
     },
     "hooks": "pkg/hooks.sh",
-    "backup": "${config.dir}config.json",
-    "http.path": "/services/${name}/api"
+    "http.path": "/services/${name}/api",
+    "kronos": true
   },
   "release": {
     "plugins": [
