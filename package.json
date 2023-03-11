@@ -80,7 +80,6 @@
       ],
       "${systemd.unit.dir}${name}.service": "pkg/${name}.service",
       "${config.dir}config.json": "config/config.json",
-      "${sysusers.config.dir}${name}.conf": "pkg/sysusers.conf",
       "${polkit.rules.dir}${name}.rules": "pkg/polkit.rules",
       "${tmpfiles.config.dir}${name}.conf": "pkg/tmpfiles.conf"
     },
