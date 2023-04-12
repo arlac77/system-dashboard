@@ -17,16 +17,18 @@ export function decodeUnits(data) {
   // avahi-daemon.service                       loaded    active   running Avahi mDNS/DNS-SD Stack
   // backup.service                             loaded    inactive dead    backup
 
-  return hex2char(data).split(/\n/).map(line => {
-    const [unit, load, active, sub, ...description] = line.split(/\s+/);
-    return {
-      unit,
-      load,
-      active,
-      sub,
-      description: description.join(" ").trim()
-    };
-  });
+  return hex2char(data)
+    .split(/\n/)
+    .map(line => {
+      const [unit, load, active, sub, ...description] = line.split(/\s+/);
+      return {
+        unit,
+        load,
+        active,
+        sub,
+        description: description.join(" ").trim()
+      };
+    });
 }
 
 /*
@@ -79,15 +81,17 @@ export function decodeMachines(data) {
 * pine1 (host) degraded 2      0   
 */
 
-  return hex2char(data).split(/\n/).map(line => {
-    const [name, type, state, failed, jobs] = line.split(/\s+/);
-    return {
-      name,
-      state,
-      failed: parseInt(failed),
-      jobs: parseInt(jobs)
-    };
-  });
+  return hex2char(data)
+    .split(/\n/)
+    .map(line => {
+      const [name, type, state, failed, jobs] = line.split(/\s+/);
+      return {
+        name,
+        state,
+        failed: parseInt(failed),
+        jobs: parseInt(jobs)
+      };
+    });
 }
 
 export function decodeOptions(str) {
@@ -130,112 +134,115 @@ TriggeredBy: * hook-ci.socket
   let key;
   let values;
 
-  hex2char(data).split(/\n/).forEach(line => {
-    let m = line.match(/^\s*([\w\-\s]+):\s+([^\(]+)(\s*\(([^\)]*)\))?\s*(.*)/);
-    if (m) {
-      key = m[1].toLowerCase();
-
-      const value = m[2].trim();
-      const extra = m[5];
-      const options = decodeOptions(m[4]);
-      switch (m[1]) {
-        case "Loaded":
-          unit.load = value.split(/\s/)[0];
-          break;
-        case "Memory":
-          unit.memory = parseBytes(value);
-          if (options.high) {
-            unit.highMemory = parseBytes(options.high);
-          }
-          if (options.max) {
-            unit.maxMemory = parseBytes(options.max);
-          }
-          break;
-        case "Tasks":
-          unit.tasks = parseInt(value);
-          if (options.limit) {
-            unit.taskLimit = parseInt(options.limit);
-          }
-          break;
-        case "Active":
-          unit.active = value;
-          unit.sub = Object.keys(options)[0];
-
-          m = extra.match(/\w+\s+([^;]+);\s+(.*)/);
-          if (m) {
-            unit.since = decodeDate(m[1]);
-          }
-          else {
-            m = value.match(/(.+)since\s+(.+)/)
-            if(m) {
-              unit.active = m[1].trim();
-              unit.since = decodeDate(m[2]);
-            }
-          }
-          break;
-        case "Docs":
-          m = line.match(/^\s*([\w\-\s]+):\s+(.*)/);
-          values = [m[2]];
-          unit.docs = values;
-          break;
-
-        case "Transient":
-          unit.transient = parseBoolean(value);
-          break;
-        case "Follow":
-          unit.follow = value.replace("unit currently follows state of ", "");
-          break;
-        case "Main PID":
-          unit.mainPid = parseInt(value.split(/\s/)[0]);
-          break;
-        case "TriggeredBy":
-          unit.triggeredBy = value.split(/\s/)[1];
-          break;
-        case "Trigger":
-          m = value.match(/([^;]+);\s+(.*)\s+left/);
-          if (m) {
-            unit.trigger = decodeDate(m[1]);
-          }
-          break;
-
-        case "Triggers":
-          unit.triggers = value.replace(/\*\s+/, "");
-          break;
-
-        case "Drop-In":
-          values = [];
-          unit.dropIn = { [value]: values };
-          break;
-        case "CGroup":
-          values = [];
-          unit.CGroup = { [value]: values };
-          break;
-
-        //case "Where":
-        //case "Device":
-        default:
-          unit[key] = value;
-      }
-    } else {
-      m = line.match(/^\*?\s?([\w\.\-]+)(\s+-\s+(.*))?/);
+  hex2char(data)
+    .split(/\n/)
+    .forEach(line => {
+      let m = line.match(
+        /^\s*([\w\-\s]+):\s+([^\(]+)(\s*\(([^\)]*)\))?\s*(.*)/
+      );
       if (m) {
-        unit.unit = m[1];
-        unit.description = m[3];
-      } else {
-        m = line.match(/^\s{13}(.+)/);
-        if (m) {
-          const value = m[1];
+        key = m[1].toLowerCase();
 
-          m = value.match(/^(`|\|)(\-)?\s*(.*)/);
+        const value = m[2].trim();
+        const extra = m[5];
+        const options = decodeOptions(m[4]);
+        switch (m[1]) {
+          case "Loaded":
+            unit.load = value.split(/\s/)[0];
+            break;
+          case "Memory":
+            unit.memory = parseBytes(value);
+            if (options.high) {
+              unit.highMemory = parseBytes(options.high);
+            }
+            if (options.max) {
+              unit.maxMemory = parseBytes(options.max);
+            }
+            break;
+          case "Tasks":
+            unit.tasks = parseInt(value);
+            if (options.limit) {
+              unit.taskLimit = parseInt(options.limit);
+            }
+            break;
+          case "Active":
+            unit.active = value;
+            unit.sub = Object.keys(options)[0];
+
+            m = extra.match(/\w+\s+([^;]+);\s+(.*)/);
+            if (m) {
+              unit.since = decodeDate(m[1]);
+            } else {
+              m = value.match(/(.+)since\s+(.+)/);
+              if (m) {
+                unit.active = m[1].trim();
+                unit.since = decodeDate(m[2]);
+              }
+            }
+            break;
+          case "Docs":
+            m = line.match(/^\s*([\w\-\s]+):\s+(.*)/);
+            values = [m[2]];
+            unit.docs = values;
+            break;
+
+          case "Transient":
+            unit.transient = parseBoolean(value);
+            break;
+          case "Follow":
+            unit.follow = value.replace("unit currently follows state of ", "");
+            break;
+          case "Main PID":
+            unit.mainPid = parseInt(value.split(/\s/)[0]);
+            break;
+          case "TriggeredBy":
+            unit.triggeredBy = value.split(/\s/)[1];
+            break;
+          case "Trigger":
+            m = value.match(/([^;]+);\s+(.*)\s+left/);
+            if (m) {
+              unit.trigger = decodeDate(m[1]);
+            }
+            break;
+
+          case "Triggers":
+            unit.triggers = value.replace(/\*\s+/, "");
+            break;
+
+          case "Drop-In":
+            values = [];
+            unit.dropIn = { [value]: values };
+            break;
+          case "CGroup":
+            values = [];
+            unit.CGroup = { [value]: values };
+            break;
+
+          //case "Where":
+          //case "Device":
+          default:
+            unit[key] = value;
+        }
+      } else {
+        m = line.match(/^\*?\s?([\w\.\-]+)(\s+-\s+(.*))?/);
+        if (m) {
+          unit.unit = m[1];
+          unit.description = m[3];
+        } else {
+          m = line.match(/^\s{13}(.+)/);
           if (m) {
-            values.push(m[3]);
-          } else {
-            values.push(value);
+            const value = m[1];
+
+            m = value.match(/^(`|\|)(\-)?\s*(.*)/);
+            if (m) {
+              values.push(m[3]);
+            } else {
+              values.push(value);
+            }
           }
         }
       }
-    }
-  });
+    });
 
   return unit;
 }

@@ -15,10 +15,7 @@ export class ServiceNamed extends Service {
       status: {
         default: true,
         receive: async params => {
-          const p = await execa(
-            "rndc",
-            ["status"]
-          );
+          const p = await execa("rndc", ["status"]);
           return p.stdout;
         }
       }
