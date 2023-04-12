@@ -130,7 +130,10 @@ export default async function initialize(sp) {
           ...GET,
           connected: "service(networkctl).interfaces"
         },
-
+        "/networkctl/neighbours": {
+          ...GET,
+          connected: "service(networkctl).neighbours"
+        },
         "/fail2ban": {
           ...GET,
           connected: "service(systemctl).fail2ban"
