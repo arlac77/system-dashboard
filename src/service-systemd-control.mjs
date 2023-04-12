@@ -278,6 +278,8 @@ export class ServiceSystemdControl extends Service {
   }
 
   static get endpoints() {
+    const commonFlags = ["--full", "--all", "--plain", "--no-legend"];
+
     return {
       ...super.endpoints,
       files: {
@@ -303,52 +305,28 @@ export class ServiceSystemdControl extends Service {
       units: {
         default: true,
         receive: async () => {
-          const p = await execa("systemctl", [
-            "list-units",
-            "--full",
-            "--all",
-            "--plain",
-            "--no-legend"
-          ]);
+          const p = await execa("systemctl", ["list-units", ...commonFlags]);
           return decodeUnits(p.stdout);
         }
       },
       timers: {
         default: true,
         receive: async () => {
-          const p = await execa("systemctl", [
-            "list-timers",
-            "--full",
-            "--all",
-            "--plain",
-            "--no-legend"
-          ]);
+          const p = await execa("systemctl", ["list-timers", ...commonFlags]);
           return decodeTimers(p.stdout);
         }
       },
       sockets: {
         default: true,
         receive: async () => {
-          const p = await execa("systemctl", [
-            "list-sockets",
-            "--full",
-            "--all",
-            "--plain",
-            "--no-legend"
-          ]);
+          const p = await execa("systemctl", ["list-sockets", ...commonFlags]);
           return decodeSockets(p.stdout);
         }
       },
       machines: {
         default: true,
         receive: async () => {
-          const p = await execa("systemctl", [
-            "list-machines",
-            "--full",
-            "--all",
-            "--plain",
-            "--no-legend"
-          ]);
+          const p = await execa("systemctl", ["list-machines", ...commonFlags]);
           return decodeMachines(p.stdout);
         }
       },
