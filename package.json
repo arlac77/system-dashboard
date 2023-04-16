@@ -53,7 +53,8 @@
     "node": ">=18.15.0"
   },
   "os": [
-    "linux"
+    "linux",
+    "darwin"
   ],
   "cpu": [
     "arm",
