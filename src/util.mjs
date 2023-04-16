@@ -1,10 +1,6 @@
 const tz = {
-  UTC: 0,
-  "GMT+0000": 0,
-  "GMT+0100": 1 * 60 * 60 * 1000,
-  "GMT+0200": 2 * 60 * 60 * 1000,
-  CET: 1 * 60 * 60 * 1000,
-  CEST: 2 * 60 * 60 * 1000
+  CET: "+01:00",
+  CEST: "+02:00"
 };
 
 export function decodeDate(line) {
@@ -12,21 +8,18 @@ export function decodeDate(line) {
     /\w+\s+(?<year>\d\d\d\d)-(?<month>\d\d)-(?<day>\d\d)\s(?<hour>\d\d):(?<minute>\d\d):(?<second>\d\d)\s(?<tz>\w+)/
   );
   if (m) {
-    //console.log(m.groups.tz,new Date().getTimezoneOffset());
+    let offset;
 
-    const offset = tz[m.groups.tz] ? tz[m.groups.tz] : 0;
+    const tm = m.groups.tz.match(/GMT+(\d\d)(\d\d)/);
+    if (tm) {
+      offset = "+${tm[1]}:${tm[2]}";
+    } else {
+      offset = tz[m.groups.tz] || "Z";
+    }
 
-    return new Date(
-      new Date(
-        parseInt(m.groups.year),
-        parseInt(m.groups.month) - 1,
-        parseInt(m.groups.day),
-        parseInt(m.groups.hour),
-        parseInt(m.groups.minute),
-        parseInt(m.groups.second),
-        0
-      ).getTime() - offset
-    );
+    const d = `${m.groups.year}-${m.groups.month}-${m.groups.day}T${m.groups.hour}:${m.groups.minute}:${m.groups.second}${offset}`;
+
+    return new Date(d);
   }
 }
 
