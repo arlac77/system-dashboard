@@ -43,7 +43,6 @@ export function parseBytes(value) {
       return memory * 1024 * 1024;
     case "G":
       return memory * 1024 * 1024 * 1024;
-      break;
   }
   return memory;
 }
