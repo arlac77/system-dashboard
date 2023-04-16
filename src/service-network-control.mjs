@@ -17,12 +17,12 @@ const types = {
 
 export function decodeNetworkStatus(data) {
   const interfaces = [];
-  let i;
+  let iface;
   data.split(/\n/).map(line => {
-    let m = line.match(/^\*?\s+(\d+):\s+(\w+)/);
+    let m = line.match(/^[^\s]+\s+(\d+):\s+([^\s+]+)/);
     if (m) {
-      i = { number: parseInt(m[1]), name: m[2] };
-      interfaces.push(i);
+      iface = { number: parseInt(m[1]), name: m[2] };
+      interfaces.push(iface);
     } else {
       let m = line.match(/^\s+([^:]+):\s+(.*)/);
       if (m) {
@@ -31,10 +31,10 @@ export function decodeNetworkStatus(data) {
         if (type) {
           switch (type.type) {
             case "integer":
-              i[m[1]] = parseInt(m[2].trim());
+              iface[m[1]] = parseInt(m[2].trim());
           }
         } else {
-          i[m[1]] = m[2].trim();
+          iface[m[1]] = m[2].trim();
         }
       }
     }
