@@ -66,12 +66,25 @@ kobject-uevent 1                               systemd-udevd-kernel.socket      
 route 1361                                     systemd-networkd.socket              systemd-networkd.service             
 */
   return data.split(/\n/).map(line => {
-    const last = line.substr(47).split(/\s+/);
-    return {
-      listen: line.substring(0, 47).trim(),
-      units: [last[0]],
-      activates: last[1]
-    };
+    switch (line[0]) {
+      case "/":
+      case "[": {
+        const [listen, unit, activates] = line.split(/\s+/);
+        return {
+          listen,
+          units: [unit],
+          activates
+        };
+      }
+      default: {
+        const [listen, extra, unit, activates] = line.split(/\s+/);
+        return {
+          listen: listen + " " + extra,
+          units: [unit],
+          activates
+        };
+      }
+    }
   });
 }
 
