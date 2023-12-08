@@ -8,6 +8,7 @@ import {
 //import ServiceSwarm from "@kronos-integration/service-swarm";
 import ServiceSystemdControl from "./service-systemd-control.mjs";
 import ServiceNetworkControl from "./service-network-control.mjs";
+import ServiceResolverControl from "./service-resolver-control.mjs";
 import ServiceNamed from "./service-named.mjs";
 import {
   DecodeJSONInterceptor,
@@ -32,6 +33,7 @@ export default async function initialize(sp) {
     ServiceNamed,
     ServiceNetworkControl,
     ServiceSystemdControl,
+    ServiceResolverControl,
     DecodeJSONInterceptor,
     EncodeJSONInterceptor,
     CTXBodyParamInterceptor,
@@ -134,6 +136,11 @@ export default async function initialize(sp) {
           ...GET,
           connected: "service(networkctl).neighbours"
         },
+        "/resolverctl/interfaces": {
+          ...GET,
+          connected: "service(resolverctl).interfaces"
+        },
+
         "/fail2ban": {
           ...GET,
           connected: "service(systemctl).fail2ban"
