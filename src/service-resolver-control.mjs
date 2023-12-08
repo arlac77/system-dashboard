@@ -6,11 +6,23 @@ export function decodeResolverInterfaces(data) {
   let iface;
 
   data.split(/\n/).map(line => {
-    let m = line.match(/^([^\(]+)\((\w+)\)|(\w+))$/);
+    let m = line.match(/^(\w+)(\s+(\d+))?(\s+\((\w+)\))?$/);
     if (m) {
-      iface = { name: m[0] || m[2] };
+      let name = m[1];
+      if (m[3]) {
+        name += ` ${m[3]}`;
+      }
+      iface = { name, properties: {} };
+      if (m[5]) {
+        iface.alias = m[5];
+      }
+
       interfaces.push(iface);
     } else {
+      m = line.match(/^([\s\w\.]+)\w+: (.*)/);
+      if(m) {
+        iface.properties[m[1].trim()] = m[2];
+      }
     }
   });
 

@@ -13,8 +13,8 @@ Link 2 (ip6tnl0)
 Link 3 (net0)
     Current Scopes: DNS LLMNR/IPv4 LLMNR/IPv6
          Protocols: +DefaultRoute +LLMNR -mDNS -DNSOverTLS DNSSEC=no/unsupported
-Current DNS Server: fd02:adeb:9d7:2e18:2e3a:fdff:feb3:b9e2
-       DNS Servers: fd02:adeb:9d7:2e18:2e3a:fdff:feb3:b9e2 2003:fb:f47:8a00:2e3a:fdff:feb3:b9e2
+Current DNS Server: fd02:adeb:9d7:2e18:2e3a:fdff:abab:abab
+       DNS Servers: fd02:adeb:9d7:2e18:2e3a:fdff:abab:abab 2003:fb:f47:8a00:2e3a:fdff:abab:abab
         DNS Domain: mf.de
 
 Link 81 (docker0)
