@@ -1,5 +1,5 @@
 import test from "ava";
-import { readFileSync } from "fs";
+import { readFileSync } from "node:fs";
 import { decodeUnit } from "../src/service-systemd-control.mjs";
 
 function getRawUnit(name) {

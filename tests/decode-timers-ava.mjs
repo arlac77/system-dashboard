@@ -1,5 +1,5 @@
 import test from "ava";
-import { readFileSync } from "fs";
+import { readFileSync } from "node:fs";
 import { decodeTimers } from "../src/service-systemd-control.mjs";
 
 test("systemctl decode timers 1", t => {
