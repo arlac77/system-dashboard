@@ -64,7 +64,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/arlac77/system-dashboard"
+    "url": "git+https://github.com/arlac77/system-dashboard.git"
   },
   "bugs": {
     "url": "https://github.com/arlac77/system-dashboard/issues"
