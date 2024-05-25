@@ -83,8 +83,7 @@
       ],
       "${systemd.unit.dir}${name}.service": "pkg/${name}.service",
       "${config.dir}config.json": "config/config.json",
-      "${polkit.rules.dir}${name}.rules": "pkg/polkit.rules",
-      "kronos": true
+      "${polkit.rules.dir}${name}.rules": "pkg/polkit.rules"
     },
     "http.path": "/services/${name}/api",
     "kronos": true
