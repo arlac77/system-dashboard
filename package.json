@@ -3,7 +3,7 @@
   "version": "0.0.0-semantic-release",
   "publishConfig": {
     "access": "public",
-    "provenance": true
+    "provenance": false
   },
   "main": "./src/system-dashboard-cli.mjs",
   "description": "web gateway to systemd",
@@ -44,15 +44,15 @@
     "ava": "^6.1.3",
     "c8": "^10.0.0",
     "got": "^14.4.5",
-    "npm-pkgbuild": "^15.6.2",
-    "semantic-release": "^24.1.2"
+    "mf-hosting": "^2.8.8",
+    "npm-pkgbuild": "^16.0.1",
+    "semantic-release": "^24.2.3"
   },
   "optionalDependencies": {
-    "@kronos-integration/service-systemd": "^2.6.3",
-    "mf-hosting": "^2.8.8"
+    "@kronos-integration/service-systemd": "^2.6.3"
   },
   "engines": {
-    "node": ">=22.12.0"
+    "node": ">=22.14.0"
   },
   "os": [
     "linux",
@@ -73,14 +73,12 @@
   "homepage": "https://github.com/arlac77/system-dashboard#readme",
   "pkgbuild": {
     "content": {
-      "${install.dir}": [
-        {
-          "type": "npm-pack"
-        },
-        {
-          "type": "node-modules"
-        }
-      ],
+      "${install.dir}": {
+        "type": "npm-pack"
+      },
+      "${install.dir}/node_modules": {
+        "type": "node-modules"
+      },
       "${systemd.unit.dir}${name}.service": "pkg/${name}.service",
       "${config.dir}config.json": "config/config.json",
       "${polkit.rules.dir}${name}.rules": "pkg/polkit.rules"
