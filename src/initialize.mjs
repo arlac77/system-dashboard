@@ -5,7 +5,7 @@ import {
   ServiceAdmin,
   LiveProbeInterceptor
 } from "@kronos-integration/service-admin";
-//import ServiceSwarm from "@kronos-integration/service-swarm";
+import ServiceSwarm from "@kronos-integration/service-swarm";
 import ServiceSystemdControl from "./service-systemd-control.mjs";
 import ServiceNetworkControl from "./service-network-control.mjs";
 import ServiceResolverControl from "./service-resolver-control.mjs";
@@ -29,7 +29,7 @@ export default async function initialize(sp) {
     ServiceAuthenticator,
     ServiceHealth,
     ServiceAdmin,
-//    ServiceSwarm,
+    ServiceSwarm,
     ServiceNamed,
     ServiceNetworkControl,
     ServiceSystemdControl,
@@ -72,11 +72,11 @@ export default async function initialize(sp) {
       type: ServiceHTTP,
       autostart: true,
       endpoints: {
-/*        "/services/peers": {
+        "/services/peers": {
           ...WS,
           connected: "service(swarm).peers.services"
         },
-*/
+
         "/admin/services": { ...WS, connected: "service(admin).services" },
         "/admin/requests": { ...WS, connected: "service(admin).requests" },
 
