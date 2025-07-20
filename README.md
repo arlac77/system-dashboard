@@ -2,9 +2,10 @@
 [![GitHub Issues](https://img.shields.io/github/issues/arlac77/system-dashboard.svg?style=flat-square)](https://github.com/arlac77/system-dashboard/issues)
 [![Build Status](https://img.shields.io/endpoint.svg?url=https%3A%2F%2Factions-badge.atrox.dev%2Farlac77%2Fsystem-dashboard%2Fbadge\&style=flat)](https://actions-badge.atrox.dev/arlac77/system-dashboard/goto)
 [![Coverage Status](https://coveralls.io/repos/arlac77/system-dashboard/badge.svg)](https://coveralls.io/github/arlac77/system-dashboard)
+
 # system-dashboard
 
-{{description}}
+web gateway to systemd mostly systemctl
 
 # usage
 
