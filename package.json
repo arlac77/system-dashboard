@@ -5,6 +5,7 @@
     "access": "public",
     "provenance": false
   },
+  "packageManager": "npm@11.6.4+sha512.1118cab46a05a50aee6bff5b1b4fa1df18afff89d57465620a3518035026955db87c5bdf9d207b07b7487d99f2490d450cb774655ad63ec2cba7bf1d0ad25d45",
   "main": "./src/system-dashboard-cli.mjs",
   "description": "web gateway to systemd",
   "keywords": [
@@ -17,7 +18,7 @@
       "email": "markus.felten@gmx.de"
     }
   ],
-  "license": "BSD-2-Clause",
+  "license": "0BSD",
   "bin": {
     "system-dashboard": "src/system-dashboard-cli.mjs"
   },
@@ -38,19 +39,20 @@
     "execa": "^9.6.0"
   },
   "devDependencies": {
-    "@semantic-release/commit-analyzer": "^13.0.0",
+    "@semantic-release/commit-analyzer": "^13.0.1",
     "@semantic-release/exec": "^7.1.0",
     "@semantic-release/github": "^12.0.2",
     "@semantic-release/release-notes-generator": "^14.1.0",
-    "ava": "^6.4.0",
+    "ava": "^6.4.1",
     "c8": "^10.0.0",
     "got": "^14.6.5",
     "mf-hosting": "^2.9.5",
-    "npm-pkgbuild": "^19.0.7",
+    "npm-pkgbuild": "^19.0.8",
     "semantic-release": "^25.0.2"
   },
   "optionalDependencies": {
-    "@kronos-integration/service-systemd": "^4.2.1"
+    "@kronos-integration/service-systemd": "^4.2.1",
+    "mf-hosting": "^2.9.5"
   },
   "engines": {
     "node": ">=24.11.1"
@@ -140,6 +142,5 @@
       "arlac77/template-arlac77-github",
       "arlac77/template-kronos-app"
     ]
-  },
-  "packageManager": "npm@11.6.3+sha512.4085a763162e0e3acd19a4e9d23ad3aa0978e501ccf947dd7233c12a689ae0bb0190763c4ef12366990056b34eec438903ffed38fde4fbd722a17c2a7407ee92"
+  }
 }
