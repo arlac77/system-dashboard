@@ -1,7 +1,9 @@
+[![npm](https://img.shields.io/npm/v/system-dashboard.svg)](https://www.npmjs.com/package/system-dashboard)
 [![License](https://img.shields.io/badge/License-0BSD-blue.svg)](https://spdx.org/licenses/0BSD.html)
+[![bundlejs](https://deno.bundlejs.com/?q=system-dashboard\&badge=detailed)](https://bundlejs.com/?q=system-dashboard)
+[![downloads](http://img.shields.io/npm/dm/system-dashboard.svg?style=flat-square)](https://npmjs.org/package/system-dashboard)
 [![GitHub Issues](https://img.shields.io/github/issues/arlac77/system-dashboard.svg?style=flat-square)](https://github.com/arlac77/system-dashboard/issues)
 [![Build Status](https://img.shields.io/endpoint.svg?url=https%3A%2F%2Factions-badge.atrox.dev%2Farlac77%2Fsystem-dashboard%2Fbadge\&style=flat)](https://actions-badge.atrox.dev/arlac77/system-dashboard/goto)
-[![Coverage Status](https://coveralls.io/repos/arlac77/system-dashboard/badge.svg)](https://coveralls.io/github/arlac77/system-dashboard)
 
 # system-dashboard
 
