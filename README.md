@@ -7,8 +7,13 @@
 
 # system-dashboard
 
-web gateway to systemd mostly systemctl
+web gateway to systemd
 
+- systemctl
+- resolvectl
+- networctl
+- timedatectl
+ 
 # usage
 
 # API
