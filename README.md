@@ -11,7 +11,7 @@ web gateway to systemd
 
 - systemctl
 - resolvectl
-- networctl
+- networkctl
 - timedatectl
  
 # usage
