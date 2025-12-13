@@ -159,7 +159,7 @@ export default async function initialize(sp) {
       }
     },
     admin: {},
-   /* swarm: {
+    swarm: {
       autostart: true,
       endpoints: {
         "topic.services": {
@@ -168,8 +168,7 @@ export default async function initialize(sp) {
         },
         "peers.services": {}
       }
-    },
-    */
+    }, 
     systemctl: {},
     networkctl: {},
     named: {}
