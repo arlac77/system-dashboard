@@ -5,10 +5,6 @@ After=network-online.target
 
 [Service]
 Type=notify
-LoadCredentialEncrypted=swarm.seed:{{credentials.dir}}{{name}}.swarm.seed
-LoadCredentialEncrypted=http.jwt.public:{{credentials.dir}}mf-jwt.rsa.pub
-LoadCredentialEncrypted=authenticator.jwt.private:{{credentials.dir}}mf-jwt.rsa
-LoadCredentialEncrypted=authenticator.jwt.public:{{credentials.dir}}mf-jwt.rsa.pub
 ExecStart=/usr/bin/node --unhandled-rejections=strict --trace-uncaught --no-warnings --title {{name}} {{install.dir}}src/{{name}}-cli.mjs
 ExecReload=/bin/kill -HUP $MAINPID
 EnvironmentFile=-/etc/conf.d/{{name}}
@@ -49,6 +45,7 @@ RestrictRealtime=true
 RestrictSUIDSGID=true
 CPUWeight=20
 IOWeight=20
+LoadCredentialEncrypted=authenticator.jwt.public:{{credentials.dir}}mf-jwt.rsa.pub
 MemoryAccounting=true
 MemoryHigh=40M
 MemoryMax=70M
