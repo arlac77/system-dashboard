@@ -9,6 +9,7 @@ import ServiceSwarm from "@kronos-integration/service-swarm";
 import ServiceSystemdControl from "./service-systemd-control.mjs";
 import ServiceNetworkControl from "./service-network-control.mjs";
 import ServiceResolverControl from "./service-resolver-control.mjs";
+import ServiceTimeDateControl from "./service-timedate-control.mjs";
 import ServiceNamed from "./service-named.mjs";
 import {
   DecodeJSONInterceptor,
@@ -34,6 +35,7 @@ export default async function initialize(sp) {
     ServiceNetworkControl,
     ServiceSystemdControl,
     ServiceResolverControl,
+    ServiceTimeDateControl,
     DecodeJSONInterceptor,
     EncodeJSONInterceptor,
     CTXBodyParamInterceptor,
@@ -139,6 +141,10 @@ export default async function initialize(sp) {
         "/resolverctl/interfaces": {
           ...GET,
           connected: "service(resolverctl).interfaces"
+        },
+        "/timedatectl/properties": {
+          ...GET,
+          connected: "service(timedatectl).properties"
         },
 
         "/fail2ban": {
