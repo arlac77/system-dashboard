@@ -43,6 +43,7 @@ async function initializeServiceProvider() {
       }
     }
 
+    serviceProvider.version = pkg.version;
     await initialize(serviceProvider);
     await serviceProvider.start();
   } catch (error) {
