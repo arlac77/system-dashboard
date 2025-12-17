@@ -99,6 +99,7 @@ export default async function initialize(sp) {
           connected: "service(health).state"
         },
         "/info": {
+          ...GET,
           connected: sp.endpoints.info
         },
 
