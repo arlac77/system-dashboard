@@ -98,6 +98,9 @@ export default async function initialize(sp) {
           ...WS,
           connected: "service(health).state"
         },
+        "/info": {
+          connected: sp.endpoints.info
+        },
 
         "/authenticate": {
           ...POST_PLAIN,
