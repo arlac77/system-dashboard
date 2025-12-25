@@ -15,34 +15,20 @@ const types = {
   "Tx Packets": { type: "integer" }
 };
 
+/**
+ * 
+ * @param {string} data 
+ * @returns {Array<Object>}
+ */
 export function decodeNetworkStatus(data) {
-  const interfaces = [];
-  let iface;
-  data.split(/\n/).map(line => {
-    let m = line.match(/^[^\s]+\s+(\d+):\s+([^\s+]+)/);
-    if (m) {
-      iface = { number: parseInt(m[1]), name: m[2] };
-      interfaces.push(iface);
-    } else {
-      let m = line.match(/^\s+([^:]+):\s+(.*)/);
-      if (m) {
-        const type = types[m[1]];
-
-        if (type) {
-          switch (type.type) {
-            case "integer":
-              iface[m[1]] = parseInt(m[2].trim());
-          }
-        } else {
-          iface[m[1]] = m[2].trim();
-        }
-      }
-    }
-  });
-
-  return interfaces;
+  return JSON.parse(data).Interfaces;
 }
 
+/**
+ * 
+ * @param {string} data 
+ * @returns {Object}
+ */
 export function decodeNetworkNeighburs(data) {
   return data
     .split(/\n/)
@@ -74,7 +60,7 @@ export class ServiceNetworkControl extends Service {
         receive: async params => {
           const p = await execa(
             "networkctl",
-            ["-a", "-s", "status", "--no-legend"],
+            ["--json=short", "status"],
             {
               reject: false
             }
