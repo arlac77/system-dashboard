@@ -11,6 +11,10 @@ web gateway to systemd
 
 - systemctl
 - resolvectl
+  - status
+  - statistics
+  - show-cache
+  - show-server-state
 - networkctl
 - timedatectl
  

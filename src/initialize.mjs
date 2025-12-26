@@ -142,15 +142,26 @@ export default async function initialize(sp) {
           ...GET,
           connected: "service(networkctl).neighbours"
         },
-        "/resolverctl/interfaces": {
+        "/resolverctl/status": {
           ...GET,
-          connected: "service(resolverctl).interfaces"
+          connected: "service(resolverctl).status"
+        },
+        "/resolverctl/statistics": {
+          ...GET,
+          connected: "service(resolverctl).statistics"
+        },
+        "/resolverctl/show-cache": {
+          ...GET,
+          connected: "service(resolverctl).show-cache"
+        },
+        "/resolverctl/show-server-state": {
+          ...GET,
+          connected: "service(resolverctl).show-server-state"
         },
         "/timedatectl/properties": {
           ...GET,
           connected: "service(timedatectl).properties"
         },
-
         "/fail2ban": {
           ...GET,
           connected: "service(systemctl).fail2ban"

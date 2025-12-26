@@ -10,7 +10,11 @@
   "description": "web gateway to systemd",
   "keywords": [
     "kronos-integration",
-    "systemd"
+    "systemd",
+    "resolvectl",
+    "journalctl",
+    "timedatectl",
+    "networkctl"
   ],
   "contributors": [
     {
