@@ -1,20 +1,6 @@
 import { Service } from "@kronos-integration/service";
 import { execa } from "execa";
 
-const types = {
-  Collisions: { type: "integer" },
-  MTU: { type: "integer" },
-  "Multicast Packets": { type: "integer" },
-  "Rx Bytes": { type: "integer" },
-  "Rx Dropped": { type: "integer" },
-  "Rx Errors": { type: "integer" },
-  "Rx Packets": { type: "integer" },
-  "Tx Bytes": { type: "integer" },
-  "Tx Dropped": { type: "integer" },
-  "Tx Errors": { type: "integer" },
-  "Tx Packets": { type: "integer" }
-};
-
 /**
  * 
  * @param {string} data 
