@@ -1,9 +1,9 @@
 import test from "ava";
 import { readFile } from "node:fs/promises";
-import { decodeResolverInterfaces } from "../src/service-resolver-control.mjs";
+import { decodeResolver } from "../src/service-resolver-control.mjs";
 
 test("netowkctl status", async t => {
-  const interfaces = decodeResolverInterfaces(
+  const interfaces = decodeResolver(
     await readFile(
       new URL("fixtures/resolvectl.json", import.meta.url).pathname,
       {
