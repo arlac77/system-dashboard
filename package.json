@@ -39,7 +39,7 @@
     "@kronos-integration/service-health": "^8.0.18",
     "@kronos-integration/service-http": "^14.0.29",
     "@kronos-integration/service-ldap": "^6.0.11",
-    "@kronos-integration/service-swarm": "^4.0.18",
+    "@kronos-integration/service-swarm": "^4.0.19",
     "execa": "^9.6.0"
   },
   "devDependencies": {
@@ -50,7 +50,7 @@
     "ava": "^6.4.1",
     "c8": "^10.0.0",
     "got": "^14.6.5",
-    "mf-hosting": "^2.9.13",
+    "mf-hosting": "^2.9.14",
     "npm-pkgbuild": "^19.1.2",
     "semantic-release": "^25.0.2"
   },
