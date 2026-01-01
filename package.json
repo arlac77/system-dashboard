@@ -9,12 +9,12 @@
   "main": "./src/system-dashboard-cli.mjs",
   "description": "web gateway to systemd",
   "keywords": [
-    "kronos-integration",
-    "systemd",
-    "resolvectl",
     "journalctl",
-    "timedatectl",
-    "networkctl"
+    "kronos-integration",
+    "networkctl",
+    "resolvectl",
+    "systemd",
+    "timedatectl"
   ],
   "contributors": [
     {
