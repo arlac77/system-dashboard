@@ -50,8 +50,8 @@
     "ava": "^6.4.1",
     "c8": "^10.0.0",
     "got": "^14.6.6",
-    "mf-hosting": "^2.9.14",
-    "npm-pkgbuild": "^20.1.0",
+    "mf-hosting": "^2.9.15",
+    "npm-pkgbuild": "^20.1.1",
     "semantic-release": "^25.0.2"
   },
   "optionalDependencies": {
