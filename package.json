@@ -51,7 +51,7 @@
     "c8": "^10.0.0",
     "got": "^14.6.6",
     "mf-hosting": "^2.9.14",
-    "npm-pkgbuild": "^20.0.1",
+    "npm-pkgbuild": "^20.1.0",
     "semantic-release": "^25.0.2"
   },
   "optionalDependencies": {
