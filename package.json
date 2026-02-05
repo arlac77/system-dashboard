@@ -58,7 +58,7 @@
     "@kronos-integration/service-systemd": "^5.0.0"
   },
   "engines": {
-    "node": ">=24.12.0"
+    "node": ">=24.13.0"
   },
   "os": [
     "linux",
@@ -79,17 +79,17 @@
   "homepage": "https://github.com/arlac77/system-dashboard#readme",
   "pkgbuild": {
     "content": {
-      "${install.dir}": {
+      "${install_dir}": {
         "type": "npm-pack"
       },
-      "${install.dir}/node_modules": {
+      "${install_dir}/node_modules": {
         "type": "node-modules"
       },
-      "${systemd.unit.dir}${name}.service": "pkg/${name}.service",
-      "${config.dir}config.json": "config/config.json",
-      "${polkit.rules.dir}${name}.rules": "pkg/polkit.rules"
+      "${systemd_unit_dir}${name}.service": "pkg/${name}.service",
+      "${config_dir}config.json": "config/config.json",
+      "${polkit_rules_dir}${name}.rules": "pkg/polkit.rules"
     },
-    "http.path": "/services/${name}/api",
+    "http_path": "/services/${name}/api",
     "kronos": true
   },
   "release": {
