@@ -39,7 +39,7 @@
     "@kronos-integration/service-health": "^8.0.39",
     "@kronos-integration/service-http": "^14.0.33",
     "@kronos-integration/service-ldap": "^6.1.1",
-    "@kronos-integration/service-swarm": "^4.0.43",
+    "@kronos-integration/service-swarm": "^4.0.46",
     "execa": "^9.6.0"
   },
   "devDependencies": {
